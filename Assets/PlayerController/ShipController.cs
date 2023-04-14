@@ -8,6 +8,7 @@ public class ShipController : MonoBehaviour
 
     private void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody component
     }
 
@@ -22,7 +23,7 @@ public class ShipController : MonoBehaviour
         rb.velocity = direction.normalized * speed; // Move the ship towards the mouse cursor
 
         // Rotate the ship to face the direction of movement
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(direction.x, -direction.y) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }
