@@ -3,7 +3,7 @@ using UnityEngine;
 public class ShipController : MonoBehaviour
 {
     public float speed = 10f; // Speed of the ship
-    private Vector2 mousePos; // Position of the mouse cursor
+    public Vector2 mousePos; // Position of the mouse cursor
     private Rigidbody2D rb; // Rigidbody of the ship
 
     private void Start()
@@ -20,5 +20,9 @@ public class ShipController : MonoBehaviour
     {
         Vector2 direction = mousePos - rb.position; // Calculate direction towards the mouse cursor
         rb.velocity = direction.normalized * speed; // Move the ship towards the mouse cursor
+
+        // Rotate the ship to face the direction of movement
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }
