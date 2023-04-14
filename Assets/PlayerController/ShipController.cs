@@ -26,4 +26,9 @@ public class ShipController : MonoBehaviour
         float angle = Mathf.Atan2(direction.x, -direction.y) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
+
+    private void Dash()
+    {
+
+    }
 }

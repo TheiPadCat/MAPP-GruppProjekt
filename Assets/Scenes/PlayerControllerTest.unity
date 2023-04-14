@@ -572,6 +572,14 @@ PrefabInstance:
       propertyPath: m_FlipY
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
+      propertyPath: dashForce
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
+      propertyPath: dashDuration
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656109, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: m_Name
       value: Player
