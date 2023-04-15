@@ -572,6 +572,10 @@ PrefabInstance:
       propertyPath: m_FlipY
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2467837900458656107, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: dashForce
       value: 10000
@@ -582,11 +586,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: dashDuration
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: speedMultiplier
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: mouseDetectionRadius
@@ -606,19 +610,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[0].inSlope
-      value: 0
+      value: 25.849056
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[1].inSlope
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[0].outSlope
-      value: 0
+      value: 25.849056
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
+      propertyPath: speedCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[1].outSlope
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
+      propertyPath: speedCurve.m_Curve.Array.data[0].outWeight
+      value: 0.0125
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[0].tangentMode
@@ -626,7 +638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[1].tangentMode
-      value: 0
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656109, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: m_Name
