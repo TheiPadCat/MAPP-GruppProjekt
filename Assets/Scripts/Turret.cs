@@ -4,25 +4,32 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    public float fireRate;
 
     [SerializeField] Transform target;
     [SerializeField] ContactFilter2D contactFilter;
     [SerializeField] Transform baseIsland;
     [SerializeField] float rangeRadius;
     [SerializeField] GameObject bulletPrefab;
-    private CircleCollider2D scanArea;
-    public List<Collider2D> targetList = new List<Collider2D>();
-    private ContactFilter2D contractFilter;
     [SerializeField] LayerMask layerMask;
+    [SerializeField] float turnSpeed;
+
+    private CircleCollider2D scanArea;
+    private List<Collider2D> targetList = new List<Collider2D>();
+    private ContactFilter2D contractFilter;
+    private ParticleSystem particles;
+    private float fireCoolDown;
+
     // Start is called before the first frame update
     void Start()
     {
+        particles = GetComponentInChildren<ParticleSystem>();
         contactFilter.useLayerMask = true;
         contactFilter.layerMask = layerMask;
         scanArea = GetComponent<CircleCollider2D>();
         scanArea.radius = rangeRadius;
-        InvokeRepeating("Shoot", 1, 1);
 
+        fireCoolDown = 0;
     }
 
     // Update is called once per frame
@@ -49,6 +56,16 @@ public class Turret : MonoBehaviour
 
         }
 
+        if (fireCoolDown <= 0f)
+        {
+            Shoot();
+
+            fireCoolDown = 1f / fireRate;
+        }
+
+        fireCoolDown -= Time.deltaTime;
+
+
     }
     private void FindTarget()
     {
@@ -62,6 +79,18 @@ public class Turret : MonoBehaviour
         }
     }
 
+
+    private void Shoot()
+    {
+        GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+
+        newBullet.GetComponent<bulletScript>().direction = transform.right;
+        particles.Emit(5);
+    }
+
+
+
+    
     private void OnDrawGizmos()
     {
         if (target != null)
@@ -71,12 +100,4 @@ public class Turret : MonoBehaviour
 
     }
 
-
-    private void Shoot()
-    {
-        GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-
-        newBullet.GetComponent<bulletScript>().direction = transform.right;
-
-    }
 }

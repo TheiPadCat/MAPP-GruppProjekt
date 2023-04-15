@@ -19,7 +19,7 @@ public class bulletScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("hit");
+         
             Destroy(gameObject);
         }
     }
