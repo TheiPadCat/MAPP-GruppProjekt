@@ -7,6 +7,7 @@ public class bulletScript : MonoBehaviour
     [SerializeField] float bulletVelocity;
     private Transform target;
     public Vector3 direction;
+    public float dmg;
 
     // Start is called before the first frame update
     void Start()

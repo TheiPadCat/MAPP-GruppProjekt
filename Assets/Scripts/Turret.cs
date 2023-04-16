@@ -5,18 +5,22 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     public float fireRate;
+    public float maxLifeTime;
+    private float currentLifeTime;
+    private bool lifeTimeActive;
 
     [SerializeField] Transform target;
     [SerializeField] ContactFilter2D contactFilter;
     [SerializeField] Transform baseIsland;
     [SerializeField] float rangeRadius;
     [SerializeField] GameObject bulletPrefab;
-    [SerializeField] LayerMask layerMask;
+  
     [SerializeField] float turnSpeed;
+    
+
 
     private CircleCollider2D scanArea;
     private List<Collider2D> targetList = new List<Collider2D>();
-    private ContactFilter2D contractFilter;
     private ParticleSystem particles;
     private float fireCoolDown;
 
@@ -24,12 +28,13 @@ public class Turret : MonoBehaviour
     void Start()
     {
         particles = GetComponentInChildren<ParticleSystem>();
-        contactFilter.useLayerMask = true;
-        contactFilter.layerMask = layerMask;
+
         scanArea = GetComponent<CircleCollider2D>();
         scanArea.radius = rangeRadius;
 
         fireCoolDown = 0;
+
+        currentLifeTime = maxLifeTime;
     }
 
     // Update is called once per frame
@@ -52,7 +57,9 @@ public class Turret : MonoBehaviour
         if (target != null)
         {
             Vector3 direction = target.transform.position - transform.position;
-            transform.right = direction;
+            //   transform.right = direction;
+            transform.right = Vector3.Lerp(transform.right, direction, Time.deltaTime * turnSpeed);
+           
 
         }
 
@@ -65,6 +72,15 @@ public class Turret : MonoBehaviour
 
         fireCoolDown -= Time.deltaTime;
 
+        if(lifeTimeActive)
+        {
+            currentLifeTime -= Time.deltaTime;
+        }
+
+        if(currentLifeTime <= 0f && lifeTimeActive)
+        {
+            Destroy(transform.root.gameObject);
+        }
 
     }
     private void FindTarget()
@@ -72,6 +88,8 @@ public class Turret : MonoBehaviour
         target = targetList[0].transform;
         for (int i = 1; i < targetList.Count; i++)
         {
+
+            //Siktar på fienden närmast basen
             if (Vector2.Distance(target.transform.position, baseIsland.position) > Vector2.Distance(targetList[i].transform.position, baseIsland.position))
             {
                 target = targetList[i].transform;
@@ -83,13 +101,23 @@ public class Turret : MonoBehaviour
     private void Shoot()
     {
         GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-
         newBullet.GetComponent<bulletScript>().direction = transform.right;
         particles.Emit(5);
     }
 
-
-
+    //Sätter på timer när man lägger ut den
+    public void ToggleLifeTime(bool toggle)
+    {
+        if(toggle == true)
+        {
+            currentLifeTime = maxLifeTime;
+            lifeTimeActive = true;
+        }
+        else
+        {
+            lifeTimeActive = false;
+        }
+    }
     
     private void OnDrawGizmos()
     {
