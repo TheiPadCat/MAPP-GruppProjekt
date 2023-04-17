@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Spawn : MonoBehaviour
 {
@@ -14,8 +15,8 @@ public class Spawn : MonoBehaviour
         if(random)
         {
             
-            float x = Random.Range(-5,5);
-            float y = Random.Range(-2, 2);
+            float x = Random.Range(-10,10);
+            float y = Random.Range(-4, 4);
             GameObject turret = Instantiate(prefab,new Vector2(x,y), Quaternion.identity);
             StartCoroutine(WaitBeforeDelete(2, turret));
         }
@@ -36,17 +37,17 @@ public class Spawn : MonoBehaviour
 
     void Start()
     {
-        
+        StartCoroutine(SpawnTimer(1.5f));
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator SpawnTimer(float seconds)
     {
-        if (Input.GetKeyDown("space"))
+        while (true)
         {
-            print("Spawnar turret");
+            yield return new WaitForSeconds(seconds);
             SpawnPrefab();
-
         }
+        
+
     }
 }
