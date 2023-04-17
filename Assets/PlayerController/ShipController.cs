@@ -9,13 +9,20 @@ public class ShipController : MonoBehaviour
     public float speedWhenMouseOver = 0f;
     public float mouseDetectionRadius = 0.5f;
 
-    public float dashForce = 20f;
+    public float dashVelocity = 20f;
     public float dashDuration = 0.2f;
     public float dashCooldown = 2f;
     private float lastDashTime;
 
     public Vector2 mousePos;
     private Rigidbody2D rb;
+
+    public float driftForce = 5f;
+    public float maxDriftTime = 2f;
+    private bool isDrifting = false;
+    private float driftTimer = 0f;
+
+
 
     private void Start()
     {
@@ -26,11 +33,22 @@ public class ShipController : MonoBehaviour
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > lastDashTime + dashCooldown)
+        /*if (Input.GetKeyDown(KeyCode.Space) && Time.time > lastDashTime + dashCooldown)
         {
-            StartCoroutine(DashCoroutine());
+            Dash();
             Debug.Log("Dash");
+        }*/
+        if (Input.GetKey(KeyCode.Space) && rb.velocity.magnitude > 10f)
+        {
+            isDrifting = true;
+            Debug.Log("Drifting is true");
         }
+        else
+        {
+            isDrifting = false;
+            driftTimer = 0f;
+        }
+
     }
 
     private void FixedUpdate()
@@ -49,14 +67,26 @@ public class ShipController : MonoBehaviour
 
         float angle = Mathf.Atan2(direction.x, -direction.y) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        if (isDrifting)
+        {
+            driftTimer += Time.fixedDeltaTime;
+
+            // Gradually increase drift force up to a maximum value
+            float currentDriftForce = Mathf.Lerp(0, driftForce, Mathf.Clamp01(driftTimer / maxDriftTime));
+
+            Vector2 driftDirection = Vector3.Cross(transform.up, direction.normalized).z > 0 ? transform.right : -transform.right;
+            rb.AddForce(driftDirection * currentDriftForce, ForceMode2D.Force);
+            Debug.Log("Drifting");
+        }
+
+
     }
 
-    private IEnumerator DashCoroutine()
+    private void Dash()
     {
-        rb.AddForce(transform.up * dashForce, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(dashDuration);
-
-        rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0f, maxSpeed);
+        Vector2 dashDirection = transform.up * dashVelocity;
+        rb.velocity += dashDirection;
         lastDashTime = Time.time;
     }
 }

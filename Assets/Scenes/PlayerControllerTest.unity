@@ -573,6 +573,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656107, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467837900458656107, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
@@ -581,12 +585,20 @@ PrefabInstance:
       value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
+      propertyPath: driftForce
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: dashCooldown
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: dashDuration
-      value: 1
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
+      propertyPath: driftVelocity
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656108, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: speedMultiplier
