@@ -14,20 +14,21 @@ public class Turret : MonoBehaviour
     [SerializeField] Transform baseIsland;
     [SerializeField] float rangeRadius;
     [SerializeField] GameObject bulletPrefab;
-  
+
     [SerializeField] float turnSpeed;
-    
+
 
 
     private CircleCollider2D scanArea;
     private List<Collider2D> targetList = new List<Collider2D>();
-    private ParticleSystem particles;
+    [SerializeField] ParticleSystem sparkParticles;
+    [SerializeField] ParticleSystem smokeParticles;
     private float fireCoolDown;
 
     // Start is called before the first frame update
     void Start()
     {
-        particles = GetComponentInChildren<ParticleSystem>();
+       
 
         scanArea = GetComponent<CircleCollider2D>();
         scanArea.radius = rangeRadius;
@@ -63,7 +64,7 @@ public class Turret : MonoBehaviour
 
         }
 
-        if (fireCoolDown <= 0f)
+        if (fireCoolDown <= 0f && target != null)
         {
             Shoot();
 
@@ -102,7 +103,8 @@ public class Turret : MonoBehaviour
     {
         GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         newBullet.GetComponent<bulletScript>().direction = transform.right;
-        particles.Emit(5);
+        sparkParticles.Emit(5);
+        smokeParticles.Emit(4);
     }
 
     //Sätter på timer när man lägger ut den

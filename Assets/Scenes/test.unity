@@ -1013,10 +1013,6 @@ PrefabInstance:
       propertyPath: baseIsland
       value: 
       objectReference: {fileID: 480930607}
-    - target: {fileID: 1955083083664814915, guid: a4fd38dadd8c04b4abab4c98f344b43e, type: 3}
-      propertyPath: contactFilter.layerMask.m_Bits
-      value: 136
-      objectReference: {fileID: 0}
     - target: {fileID: 1955083083738580092, guid: a4fd38dadd8c04b4abab4c98f344b43e, type: 3}
       propertyPath: m_Name
       value: TurretBoat
