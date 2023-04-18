@@ -15,23 +15,15 @@ public class CarButABoat : MonoBehaviour
 
     void FixedUpdate()
     {
-        float h = -Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = (mousePos - rb.position).normalized;
 
-        Vector2 speed = transform.up * (v * acceleration);
+        Vector2 speed = direction * acceleration * Vector2.Distance(mousePos, rb.position);
         rb.AddForce(speed);
 
-        float direction = Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up));
-        if (direction >= 0.0f)
-        {
-            rb.rotation += h * steering * (rb.velocity.magnitude / 5.0f);
-            
-        }
-        else
-        {
-            rb.rotation -= h * steering * (rb.velocity.magnitude / 5.0f);
-            
-        }
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+        Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, steering));
 
         Vector2 forward = new Vector2(0.0f, 0.5f);
         float steeringRightAngle;
@@ -48,10 +40,7 @@ public class CarButABoat : MonoBehaviour
         Debug.DrawLine((Vector3)rb.position, (Vector3)rb.GetRelativePoint(rightAngleFromForward), Color.green);
 
         float driftForce = Vector2.Dot(rb.velocity, rb.GetRelativeVector(rightAngleFromForward.normalized));
-
         Vector2 relativeForce = (rightAngleFromForward.normalized * -1.0f) * (driftForce * 10.0f);
-
-
         Debug.DrawLine((Vector3)rb.position, (Vector3)rb.GetRelativePoint(relativeForce), Color.red);
 
         rb.AddForce(rb.GetRelativeVector(relativeForce));

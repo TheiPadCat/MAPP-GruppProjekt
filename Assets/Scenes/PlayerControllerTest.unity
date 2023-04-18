@@ -534,8 +534,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6a797693379407fad563c702d21767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 20
-  steering: 10
+  acceleration: 5
+  steering: 5
 --- !u!1001 &2467837900138183839
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -589,7 +589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656106, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: m_FlipY
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656107, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: m_Mass
