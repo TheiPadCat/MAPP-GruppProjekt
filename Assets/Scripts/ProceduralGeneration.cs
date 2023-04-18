@@ -26,4 +26,10 @@ public class ProceduralGeneration : MonoBehaviour
             Instantiate(grass, new Vector2(x, height), Quaternion.identity);
         }
     }
+
+    void spawnObject(GameObject obj, int width, int height)
+    {
+        obj = Instantiate(obj, new Vector2(width, height), Quaternion.identity);
+        obj.transform.parent = this.transform;
+    }
 }
