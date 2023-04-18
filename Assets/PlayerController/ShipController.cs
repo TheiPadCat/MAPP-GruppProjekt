@@ -18,15 +18,18 @@ public class ShipController : MonoBehaviour
     private Rigidbody2D rb;
 
     public float driftForce = 5f;
-    public float maxDriftTime = 2f;
     private bool isDrifting = false;
-    private float driftTimer = 0f;
 
+    private float sidewaysForce = 10f;
+    private float turnThreshold = 100f;
+    private bool isTurning = false;
 
+    private LowPassFilter filter = new LowPassFilter(0.5f);
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        
     }
 
     private void Update()
@@ -38,7 +41,7 @@ public class ShipController : MonoBehaviour
             Dash();
             Debug.Log("Dash");
         }*/
-        if (Input.GetKey(KeyCode.Space) && rb.velocity.magnitude > 10f)
+        if (Input.GetKey(KeyCode.Space))
         {
             isDrifting = true;
             Debug.Log("Drifting is true");
@@ -46,7 +49,16 @@ public class ShipController : MonoBehaviour
         else
         {
             isDrifting = false;
-            driftTimer = 0f;
+        }
+
+        if (rb.velocity.magnitude > 10f && Mathf.Abs(Input.GetAxisRaw("Horizontal")) > turnThreshold)
+        {
+            isTurning = true;
+            Debug.Log("isTurning = true");
+        }
+        else
+        {
+            isTurning = false;
         }
 
     }
@@ -70,15 +82,20 @@ public class ShipController : MonoBehaviour
 
         if (isDrifting)
         {
-            driftTimer += Time.fixedDeltaTime;
-
-            // Gradually increase drift force up to a maximum value
-            float currentDriftForce = Mathf.Lerp(0, driftForce, Mathf.Clamp01(driftTimer / maxDriftTime));
-
             Vector2 driftDirection = Vector3.Cross(transform.up, direction.normalized).z > 0 ? transform.right : -transform.right;
-            rb.AddForce(driftDirection * currentDriftForce, ForceMode2D.Force);
+            rb.AddForce(driftDirection * driftForce, ForceMode2D.Force);
+            transform.position = filter.Filter(transform.position);
             Debug.Log("Drifting");
         }
+
+        if (isTurning)
+        {
+            float sideways = Input.GetAxisRaw("Horizontal") * sidewaysForce;
+            rb.AddForce(transform.right * sideways, ForceMode2D.Force);
+            transform.rotation = Quaternion.Euler(0f, 0f, -90f * Mathf.Sign(sideways));
+            Debug.Log("Turning");
+        }
+
 
 
     }
@@ -88,5 +105,23 @@ public class ShipController : MonoBehaviour
         Vector2 dashDirection = transform.up * dashVelocity;
         rb.velocity += dashDirection;
         lastDashTime = Time.time;
+    }
+}
+
+public class LowPassFilter
+{
+    private float smoothingFactor;
+    private Vector3 lastValue;
+
+    public LowPassFilter(float smoothingFactor)
+    {
+        this.smoothingFactor = smoothingFactor;
+    }
+
+    public Vector3 Filter(Vector3 value)
+    {
+        Vector3 filteredValue = lastValue * smoothingFactor + value * (1 - smoothingFactor);
+        lastValue = filteredValue;
+        return filteredValue;
     }
 }
