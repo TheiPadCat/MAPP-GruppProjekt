@@ -30,6 +30,8 @@ public class Turret : MonoBehaviour
     {
        
 
+
+
         scanArea = GetComponent<CircleCollider2D>();
         scanArea.radius = rangeRadius;
 

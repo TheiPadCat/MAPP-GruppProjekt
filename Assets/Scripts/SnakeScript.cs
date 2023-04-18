@@ -10,6 +10,9 @@ public class SnakeScript : MonoBehaviour
     [SerializeField] float dampTime;
     [SerializeField] float followDistance;
 
+
+    [SerializeField] GameObject turretPrefab;
+
     private Vector3[] boatVelocity;
     // Start is called before the first frame update
     void Start()
@@ -120,10 +123,14 @@ public class SnakeScript : MonoBehaviour
             }
            
         }
-     /*   if (collision.gameObject.CompareTag("Package"))
+     
+        /*
+        else if(collision.gameObject.CompareTag("Supply"))
         {
-            //Lägg till nytt torn
+            Destroy(collision.gameObject);
+            GameObject newTurret = Instantiate(turretPrefab, transform);
+            Debug.Log("TEEEEEST");
         }
-     */
+    */
     }
 }
