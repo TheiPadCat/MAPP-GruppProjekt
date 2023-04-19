@@ -20,7 +20,6 @@ public class bulletScript : MonoBehaviour
         //Detta borde flyttas till en manager
         Physics2D.IgnoreLayerCollision(6,8);
 
-
         GetComponent<Rigidbody2D>().velocity = direction * bulletVelocity;
 
     }
