@@ -15,6 +15,13 @@ public class SnakeScript : MonoBehaviour
 
     private Vector3[] boatVelocity;
     // Start is called before the first frame update
+
+
+
+    private void Awake()
+    {
+        Physics2D.IgnoreLayerCollision(6, 6);
+    }
     void Start()
     {
         pickParticles = GameObject.Find("PickParticles");
@@ -117,7 +124,7 @@ public class SnakeScript : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Turret"))
         {
@@ -144,7 +151,7 @@ public class SnakeScript : MonoBehaviour
     
     }
 
-
+   
 
     private void PlayPickParticles(Vector3 pos)
     {
