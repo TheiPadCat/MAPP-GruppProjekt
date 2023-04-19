@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 2467837900458656105}
   - component: {fileID: 2467837900458656106}
   - component: {fileID: 2467837900458656107}
-  - component: {fileID: 2467837900458656108}
-  - component: {fileID: 1961819642}
+  - component: {fileID: 376096386}
+  - component: {fileID: 376096387}
+  - component: {fileID: 2520470873073939586}
+  - component: {fileID: 376096398}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -108,52 +110,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &2467837900458656108
+--- !u!114 &376096386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2467837900458656109}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c55b8655511743aaa0d9fa2321b2968, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d46dc10d46156c4e94bdc26cfec0cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 15
-  speedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 25.849056
-      outSlope: 25.849056
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.0125
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  speedMultiplier: 1
-  speedWhenMouseOver: 0
-  mouseDetectionRadius: 1
-  dashVelocity: 20
-  dashDuration: 10
-  dashCooldown: 1
-  mousePos: {x: 0, y: 0}
-  driftForce: 3000
---- !u!114 &1961819642
+  trailList: []
+  dampTime: 0.5
+  followDistance: 1.5
+  pickParticles: {fileID: 0}
+  turretPrefab: {fileID: 0}
+--- !u!114 &376096387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,3 +142,36 @@ MonoBehaviour:
   acceleration: 5
   steering: 5
   dashForce: 5
+  maxVelocity: 10
+--- !u!70 &2520470873073939586
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2467837900458656109}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.006326318, y: -0.29102886}
+  m_Size: {x: 1.1449425, y: 2.0686424}
+  m_Direction: 0
+--- !u!58 &376096398
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2467837900458656109}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5151515

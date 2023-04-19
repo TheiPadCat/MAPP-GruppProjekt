@@ -10,7 +10,7 @@ public class Package : MonoBehaviour
 
     private int Randomize()
     {
-        return Random.Range(0, turretList.Count - 1);
+        return Random.Range(0, turretList.Count);
     }
     
 
