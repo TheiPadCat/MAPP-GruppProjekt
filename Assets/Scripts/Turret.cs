@@ -113,7 +113,7 @@ public class Turret : MonoBehaviour
     private void Shoot()
     {
         GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        newBullet.GetComponent<bulletScript>().direction = transform.right;
+        newBullet.transform.right = transform.right;
         sparkParticles.Emit(5);
         smokeParticles.Emit(4);
         ExplosionParticles.Emit(5);
