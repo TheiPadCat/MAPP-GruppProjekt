@@ -7,10 +7,18 @@ public class bulletScript : MonoBehaviour
     [SerializeField] float bulletVelocity;
     private Transform target;
     public Vector3 direction;
+    public float dmg;
 
+
+    
+
+    private LayerMask test;
     // Start is called before the first frame update
     void Start()
     {
+       
+
+
         GetComponent<Rigidbody2D>().velocity = direction * bulletVelocity;
 
     }
@@ -19,7 +27,7 @@ public class bulletScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("hit");
+         
             Destroy(gameObject);
         }
     }
