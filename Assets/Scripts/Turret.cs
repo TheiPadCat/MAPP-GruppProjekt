@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Turret : MonoBehaviour
 {
@@ -28,8 +29,8 @@ public class Turret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
 
+       baseIsland = GameObject.Find("Island").transform;
 
 
         scanArea = GetComponent<CircleCollider2D>();
@@ -88,6 +89,10 @@ public class Turret : MonoBehaviour
     }
     private void FindTarget()
     {
+        if(baseIsland == null)
+        {
+            return;
+        }
         target = targetList[0].transform;
         for (int i = 1; i < targetList.Count; i++)
         {

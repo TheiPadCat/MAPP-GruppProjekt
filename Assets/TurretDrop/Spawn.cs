@@ -9,6 +9,7 @@ public class Spawn : MonoBehaviour
     [SerializeField] private GameObject prefab;
     [SerializeField] private Vector2 spawnPosition;
     [SerializeField] private bool random;
+    [SerializeField] int despawnTime;
 
     public void SpawnPrefab()
     {
@@ -17,7 +18,7 @@ public class Spawn : MonoBehaviour
             float x = Random.Range(-10,10);
             float y = Random.Range(-4, 4);
             GameObject turret = Instantiate(prefab,new Vector2(x,y), Quaternion.identity);
-            StartCoroutine(WaitBeforeDelete(2, turret));
+            StartCoroutine(WaitBeforeDelete(despawnTime, turret));
         }
         else
         {

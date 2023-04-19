@@ -27,7 +27,7 @@ public class SnakeScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            releaseBoat();
+            ReleaseBoat();
         }
 
 
@@ -60,7 +60,7 @@ public class SnakeScript : MonoBehaviour
     }
 
 
-    private void releaseBoat()
+    private void ReleaseBoat()
     {
         if (trailList.Count > 0)
         {
@@ -71,7 +71,7 @@ public class SnakeScript : MonoBehaviour
         }
 
     }
-    private void addBoat(GameObject boat)
+    private void AddBoat(GameObject boat)
     {
         trailList.Add(boat);
     }
@@ -85,6 +85,8 @@ public class SnakeScript : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        /*
+
         for (int i = 0; i < trailList.Count; i++)
         {
             Vector3 direction;
@@ -109,6 +111,8 @@ public class SnakeScript : MonoBehaviour
 
             Gizmos.DrawLine(trailList[i].transform.position, targetPosition);
         }
+
+        */
     }
 
 
@@ -119,18 +123,20 @@ public class SnakeScript : MonoBehaviour
             if(!trailList.Contains(collision.gameObject))
             {
                 trailList.Add(collision.gameObject);
+                Calibrate();
                 collision.gameObject.GetComponentInChildren<Turret>().ToggleLifeTime(false);
             }
            
         }
      
-        /*
         else if(collision.gameObject.CompareTag("Supply"))
         {
+            GameObject newTurret = collision.gameObject.GetComponentInChildren<Package>().Unpack();
+           trailList.Add(newTurret);
+            Calibrate();
             Destroy(collision.gameObject);
-            GameObject newTurret = Instantiate(turretPrefab, transform);
-            Debug.Log("TEEEEEST");
+        
         }
-    */
+    
     }
 }
