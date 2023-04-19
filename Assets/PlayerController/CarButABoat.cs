@@ -6,7 +6,11 @@ public class CarButABoat : MonoBehaviour
 {
     public float acceleration;
     public float steering;
+
+    public float dashForce = 5f;
+
     private Rigidbody2D rb;
+
 
     void Start()
     {
@@ -20,6 +24,11 @@ public class CarButABoat : MonoBehaviour
 
         Vector2 speed = direction * acceleration * Vector2.Distance(mousePos, rb.position);
         rb.AddForce(speed);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.velocity += rb.velocity.normalized * dashForce;
+        }
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
