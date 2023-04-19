@@ -7,7 +7,7 @@ public class ExplosiveBulletScript: MonoBehaviour
 {
     [SerializeField] float bulletVelocity;
     [SerializeField] private float shatterForce = 20f;
-    [SerializeField] private int shatterTime = 2;
+    [SerializeField] private int shatterTime = 1;
     private int amountOfShatters;
   
     private bool hasInstantiated;
@@ -93,9 +93,9 @@ public class ExplosiveBulletScript: MonoBehaviour
 
         yield return new WaitForSeconds(1);
         
-        Destroy(gameObject);
+       
         Destroy(bombToExplode);
-
+ Destroy(gameObject);
         print("Förstör bomb + bullet");
     }
 
