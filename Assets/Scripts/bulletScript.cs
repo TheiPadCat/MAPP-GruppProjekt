@@ -18,7 +18,7 @@ public class bulletScript : MonoBehaviour
     {
        
 
-        GetComponent<Rigidbody2D>().velocity = direction * bulletVelocity;
+        GetComponent<Rigidbody2D>().velocity = transform.right * bulletVelocity;
 
     }
 

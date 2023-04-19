@@ -32,7 +32,7 @@ public class ExplosiveBulletScript: MonoBehaviour
         Physics2D.IgnoreLayerCollision(6, 8);
 
        
-        GetComponent<Rigidbody2D>().velocity = direction * bulletVelocity;
+        GetComponent<Rigidbody2D>().velocity = transform.right * bulletVelocity;
 
     }
 
