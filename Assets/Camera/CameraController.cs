@@ -12,28 +12,44 @@ public class CameraController : MonoBehaviour
     private Camera cam; // The camera component
     private float currentZoom; // The current zoom level
 
+    private Vector3 velocity;
+
     private void Start()
     {
+        
         cam = GetComponent<Camera>(); // Get the camera component
         currentZoom = cam.orthographicSize; // Set the initial zoom level
     }
 
     private void Update()
     {
+       
+
+    
+    }
+
+    private void LateUpdate()
+    {
+        /*
+        transform.position = Vector3.SmoothDamp(transform.position, target.transform.position, ref velocity, 0.01f);
+        transform.position += new Vector3(0, 0, -10);
+        */
+
+
+
+
+
+
         // Calculate the new zoom level based on the ship's velocity
-           float targetZoom = Mathf.Lerp(maxZoom, minZoom, target.GetComponent<Rigidbody2D>().velocity.magnitude * zoomFactor);
+        float targetZoom = Mathf.Lerp(maxZoom, minZoom, target.GetComponent<Rigidbody2D>().velocity.magnitude * zoomFactor);
         // Smoothly adjust the camera's zoom level towards the target zoom level
-          currentZoom = Mathf.Lerp(currentZoom, targetZoom, Time.deltaTime * zoomSpeed);
+        currentZoom = Mathf.Lerp(currentZoom, targetZoom, Time.deltaTime * zoomSpeed);
         //  cam.orthographicSize = currentZoom; // Apply the new zoom level to the camera
 
 
         Vector3 test = new Vector3(target.position.x, target.position.y, -10);
         // Smoothly move the camera towards the target's position
         transform.position = Vector3.Lerp(transform.position, test, Time.deltaTime * followSpeed);
-    }
 
-    private void LateUpdate()
-    {
-       
     }
 }
