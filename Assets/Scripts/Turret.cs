@@ -24,7 +24,11 @@ public class Turret : MonoBehaviour
     private List<Collider2D> targetList = new List<Collider2D>();
     [SerializeField] ParticleSystem sparkParticles;
     [SerializeField] ParticleSystem smokeParticles;
+    [SerializeField] ParticleSystem ExplosionParticles;
     private float fireCoolDown;
+
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -112,6 +116,7 @@ public class Turret : MonoBehaviour
         newBullet.transform.right = transform.right;
         sparkParticles.Emit(5);
         smokeParticles.Emit(4);
+        ExplosionParticles.Emit(5);
     }
 
     //Sätter på timer när man lägger ut den
@@ -133,6 +138,9 @@ public class Turret : MonoBehaviour
         if (target != null)
         {
             Gizmos.DrawLine(transform.position, target.transform.position);
+
+
+            
         }
 
     }
