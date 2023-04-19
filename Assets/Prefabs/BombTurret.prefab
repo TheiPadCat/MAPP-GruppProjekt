@@ -14882,7 +14882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdaec6ae6ed69fa4aba19095604c7f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
+  fireRate: 0.4
   maxLifeTime: 10
   target: {fileID: 0}
   contactFilter:

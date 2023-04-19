@@ -5541,6 +5541,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 376096386, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
+      propertyPath: dampTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 376096386, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
+      propertyPath: followDistance
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2467837900458656105, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: m_RootOrder
       value: 1
