@@ -10,6 +10,8 @@ public class CarButABoat : MonoBehaviour
 
     public float dashForce = 5f;
 
+    [SerializeField] float maxVelocity; 
+
     private Rigidbody2D rb;
 
 
@@ -19,6 +21,8 @@ public class CarButABoat : MonoBehaviour
     }
 
     void FixedUpdate()
+
+ 
     {
         Vector2 direction;
 
@@ -75,6 +79,16 @@ public class CarButABoat : MonoBehaviour
         Vector2 relativeForce = (rightAngleFromForward.normalized * -1.0f) * (driftForce * 10.0f);
         Debug.DrawLine((Vector3)rb.position, (Vector3)rb.GetRelativePoint(relativeForce), Color.red);
 
+
+        relativeForce = Vector2.ClampMagnitude(relativeForce, maxVelocity);
+
         rb.AddForce(rb.GetRelativeVector(relativeForce));
+
+
+
+
+
+     
+
     }
 }

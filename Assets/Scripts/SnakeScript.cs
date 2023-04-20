@@ -9,14 +9,22 @@ public class SnakeScript : MonoBehaviour
     public List<GameObject> trailList = new List<GameObject>();
     [SerializeField] float dampTime;
     [SerializeField] float followDistance;
-
+    [SerializeField] GameObject pickParticles;
 
     [SerializeField] GameObject turretPrefab;
 
     private Vector3[] boatVelocity;
     // Start is called before the first frame update
+
+
+
+    private void Awake()
+    {
+        Physics2D.IgnoreLayerCollision(6, 6);
+    }
     void Start()
     {
+        pickParticles = GameObject.Find("PickParticles");
         Calibrate();
 
     }
@@ -116,7 +124,7 @@ public class SnakeScript : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Turret"))
         {
@@ -125,6 +133,8 @@ public class SnakeScript : MonoBehaviour
                 trailList.Add(collision.gameObject);
                 Calibrate();
                 collision.gameObject.GetComponentInChildren<Turret>().ToggleLifeTime(false);
+
+                PlayPickParticles(collision.transform.position);
             }
            
         }
@@ -134,9 +144,18 @@ public class SnakeScript : MonoBehaviour
             GameObject newTurret = collision.gameObject.GetComponentInChildren<Package>().Unpack();
            trailList.Add(newTurret);
             Calibrate();
+            PlayPickParticles(collision.transform.position);
             Destroy(collision.gameObject);
         
         }
     
+    }
+
+   
+
+    private void PlayPickParticles(Vector3 pos)
+    {
+        pickParticles.transform.position = pos;
+        pickParticles.GetComponent<ParticleSystem>().Emit(10);
     }
 }

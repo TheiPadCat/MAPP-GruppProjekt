@@ -15,7 +15,6 @@ public class Spawn : MonoBehaviour
     {
         if(random)
         {
-            
             float x = Random.Range(-10,10);
             float y = Random.Range(-4, 4);
             GameObject turret = Instantiate(prefab,new Vector2(x,y), Quaternion.identity);
