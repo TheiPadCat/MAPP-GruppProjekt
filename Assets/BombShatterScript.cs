@@ -8,6 +8,8 @@ public class BombShatterScript : MonoBehaviour
 
 
     [SerializeField] ParticleSystem explodeParticles;
+    public int damageAmount;
+    public bool canHurtEnemy = false;
     void Start()
     {
 
@@ -21,27 +23,27 @@ public class BombShatterScript : MonoBehaviour
         
     }
 
+    //Bomben sprängs efter några sekunder
 
-    private void OnTriggerEnter2D(Collider2D collision) 
+    private void OnTriggerEnter2D(Collider2D other) 
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-
-            //Wait ?? så den inte collidar direkt med fienden den spawnades från, och gör damage / sprängs
-            //enemy.doHarm
-          //  ParticleSystem explodeParticles = gameObject.GetComponentInChildren<ParticleSystem>();
-            explodeParticles.Emit(39);
-            //Sprängas
-            //Disable sprite
-            //Förstöra
+            if (canHurtEnemy)
+            {
+                //other.gameObject.GetComponent<Health>().TakeDamage(damageAmount);
+                print(gameObject + "tried to do damage");
+            }
+    
 
         }
     }
 
     public void Explode()
     {
-        //Trigger particle effect
-
+        canHurtEnemy = true;
+        explodeParticles.Emit(39);
     }
+
 
 }

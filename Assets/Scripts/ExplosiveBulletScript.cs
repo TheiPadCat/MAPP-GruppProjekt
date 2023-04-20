@@ -21,6 +21,15 @@ public class ExplosiveBulletScript: MonoBehaviour
     [SerializeField] LayerMask bulletLayer;
     [SerializeField] LayerMask playerLayer;
 
+
+    GameObject bomb1;
+    GameObject bomb2;
+    GameObject bomb3;
+    GameObject bomb4;
+
+    
+
+
     private LayerMask test;
 
     private GameObject bomb;
@@ -47,10 +56,10 @@ public class ExplosiveBulletScript: MonoBehaviour
             {
                 //Skapa instanser av alla bomber
                
-               GameObject bomb1 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
-               GameObject bomb2 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
-               GameObject bomb3 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
-               GameObject bomb4 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
+               bomb1 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
+               bomb2 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
+               bomb3 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
+               bomb4 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
                 hasInstantiated = true;
 
                 //Ta bort Bullet objektets barn
@@ -82,7 +91,7 @@ public class ExplosiveBulletScript: MonoBehaviour
             }
 
           
-        }
+        } 
     }
 
     IEnumerator shatterAfterTime(GameObject bombToExplode)
@@ -90,13 +99,12 @@ public class ExplosiveBulletScript: MonoBehaviour
         yield return new WaitForSeconds(shatterTime);
         //Sprängas
         print(bombToExplode + " sprängs");
-        //bomb1.shatter
-  
-        yield return new WaitForSeconds(1);
-        
-       
+
+        bombToExplode.GetComponent<BombShatterScript>().Explode();
+
+        yield return new WaitForSeconds(0.3f);
         Destroy(bombToExplode);
- Destroy(gameObject);
+        Destroy(gameObject);
         print("Förstör bomb + bullet");
     }
 
