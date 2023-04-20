@@ -6,6 +6,7 @@ public class CarButABoat : MonoBehaviour
 {
     public float acceleration;
     public float steering;
+    public bool usingMouseInput = true;
 
     public float dashForce = 5f;
 
@@ -23,11 +24,33 @@ public class CarButABoat : MonoBehaviour
 
  
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = (mousePos - rb.position).normalized;
+        Vector2 direction;
 
-        Vector2 speed = direction * acceleration * Vector2.Distance(mousePos, rb.position);
-        rb.AddForce(speed);
+        if (usingMouseInput)
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            direction = (mousePos - rb.position).normalized;
+            Vector2 speed = direction * acceleration * Vector2.Distance(mousePos, rb.position);
+            rb.AddForce(speed);
+        }
+        else
+        {
+            if (Input.touchCount > 0)
+            {
+                Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                direction = (touchPos - rb.position).normalized;
+                Vector2 speed = direction * acceleration * Vector2.Distance(touchPos, rb.position);
+                rb.AddForce(speed);
+            }
+            else
+            {
+                direction = Vector2.zero;
+            }
+        }
+        
+        
+
+        
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
