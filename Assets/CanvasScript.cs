@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CanvasScript : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class CanvasScript : MonoBehaviour
 
     public void RestartGame()
     {
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
      
 

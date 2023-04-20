@@ -12,6 +12,10 @@ public class CameraController : MonoBehaviour
     private Camera cam; // The camera component
     private float currentZoom; // The current zoom level
 
+
+
+    private Vector3 velocity;
+
     private void Start()
     {
         cam = GetComponent<Camera>(); // Get the camera component
@@ -27,9 +31,15 @@ public class CameraController : MonoBehaviour
         //  cam.orthographicSize = currentZoom; // Apply the new zoom level to the camera
 
 
-        Vector3 test = new Vector3(target.position.x, target.position.y, -10);
+      //  Vector3 test = new Vector3(target.position.x, target.position.y, -10);
         // Smoothly move the camera towards the target's position
-        transform.position = Vector3.Lerp(transform.position, test, Time.deltaTime * followSpeed);
+        //transform.position = Vector3.Lerp(transform.position, test, Time.deltaTime * followSpeed);
+
+
+
+       transform.position = Vector3.SmoothDamp(transform.position, target.transform.position, ref velocity, 1);
+        transform.position = new Vector3(transform.position.x,transform.position.y, -10);
+      //transform.rotation = Quaternion.identity;
     }
 
     private void LateUpdate()

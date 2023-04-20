@@ -39,6 +39,14 @@ public class SnakeScript : MonoBehaviour
         }
 
 
+       
+
+
+    }
+
+
+    private void FixedUpdate()
+    {
         for (int i = 0; i < trailList.Count; i++)
         {
             Vector3 direction;
@@ -63,12 +71,9 @@ public class SnakeScript : MonoBehaviour
 
 
         }
-
-
     }
 
-
-   public void ReleaseBoat()
+    public void ReleaseBoat()
     {
         if (trailList.Count > 0)
         {

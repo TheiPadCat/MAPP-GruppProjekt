@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 376096387}
   - component: {fileID: 2520470873073939586}
   - component: {fileID: 376096398}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trailList: []
-  dampTime: 0.5
+  dampTime: 0.3
   followDistance: 1.5
   pickParticles: {fileID: 0}
   turretPrefab: {fileID: 0}
@@ -141,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 5
   steering: 5
+  usingMouseInput: 1
   dashForce: 5
   maxVelocity: 10
 --- !u!70 &2520470873073939586
