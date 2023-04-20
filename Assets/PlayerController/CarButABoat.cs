@@ -44,7 +44,7 @@ public class CarButABoat : MonoBehaviour
             }
             else
             {
-                direction = Vector2.zero;
+                direction = rb.velocity.normalized;
             }
         }
         

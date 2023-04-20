@@ -21,12 +21,12 @@ public class Flamethrower : MonoBehaviour
 
     void Update()
     {
-        AimAtTarget();
-        FindTarget();
+        
         if (CanFire())
         {
-       
-           
+            AimAtTarget();
+            FindTarget();
+
             StartCoroutine(Fire());
         }
     }
@@ -68,11 +68,11 @@ public class Flamethrower : MonoBehaviour
         if (target != null)
         {
             Vector3 direction = target.position - noseOfTheTurret.position;
-            // Quaternion targetRotation = Quaternion.LookRotation(direction);
-            // noseOfTheTurret.rotation = Quaternion.RotateTowards(noseOfTheTurret.rotation, targetRotation, Time.deltaTime * 360f);
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            noseOfTheTurret.rotation = Quaternion.RotateTowards(noseOfTheTurret.rotation, targetRotation, Time.deltaTime * 360f);
 
 
-            transform.right = Vector3.Lerp(transform.right, direction, Time.deltaTime * 3);
+            //transform.right = Vector2.Lerp(transform.right, direction, Time.deltaTime * 3);
         }
     }
 
@@ -84,7 +84,8 @@ public class Flamethrower : MonoBehaviour
     IEnumerator Fire()
     {
         isFiring = true;
-        fireParticles.Play(); 
+        fireParticles.Play();
+        fireParticles.transform.rotation = noseOfTheTurret.rotation;
 
         float timer = 0f;
         while (timer < fireDuration && target != null)
