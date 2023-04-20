@@ -128,11 +128,15 @@ public class SnakeScript : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Turret"))
         {
+            Debug.Log("pick up");
+
             if(!trailList.Contains(collision.gameObject))
             {
                 trailList.Add(collision.gameObject);
                 Calibrate();
-                collision.gameObject.GetComponentInChildren<Turret>().ToggleLifeTime(false);
+
+                //KANSKE LÄGGA TILLBAKA DET HÄR IN VETE FAN MÅSTE FIXA SÅ FLAME THROWER HAR DEN OCKSÅ
+              //  collision.gameObject.GetComponentInChildren<Turret>().ToggleLifeTime(false);
 
                 PlayPickParticles(collision.transform.position);
             }
@@ -155,7 +159,11 @@ public class SnakeScript : MonoBehaviour
 
     private void PlayPickParticles(Vector3 pos)
     {
-        pickParticles.transform.position = pos;
+        if(pickParticles != null)
+        {
+  pickParticles.transform.position = pos;
         pickParticles.GetComponent<ParticleSystem>().Emit(10);
+        }
+      
     }
 }
