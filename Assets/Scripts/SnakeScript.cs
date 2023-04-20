@@ -20,7 +20,7 @@ public class SnakeScript : MonoBehaviour
 
     private void Awake()
     {
-        Physics2D.IgnoreLayerCollision(6, 6);
+      
     }
     void Start()
     {
@@ -68,7 +68,7 @@ public class SnakeScript : MonoBehaviour
     }
 
 
-    private void ReleaseBoat()
+   public void ReleaseBoat()
     {
         if (trailList.Count > 0)
         {
