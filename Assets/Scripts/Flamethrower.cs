@@ -17,13 +17,16 @@ public class Flamethrower : MonoBehaviour
     private float lastFireTime; // när turret senast var aktiverad
     private bool isFiring; // är flamethrower aktiv eller inte
 
+    [SerializeField] ParticleSystem fireParticles;
+
     void Update()
     {
         
         if (CanFire())
         {
-            FindTarget();
             AimAtTarget();
+            FindTarget();
+
             StartCoroutine(Fire());
         }
     }
@@ -67,6 +70,9 @@ public class Flamethrower : MonoBehaviour
             Vector3 direction = target.position - noseOfTheTurret.position;
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             noseOfTheTurret.rotation = Quaternion.RotateTowards(noseOfTheTurret.rotation, targetRotation, Time.deltaTime * 360f);
+
+
+            //transform.right = Vector2.Lerp(transform.right, direction, Time.deltaTime * 3);
         }
     }
 
@@ -78,7 +84,8 @@ public class Flamethrower : MonoBehaviour
     IEnumerator Fire()
     {
         isFiring = true;
-        //fireParticles.Play(); joel fixar 
+        fireParticles.Play();
+        fireParticles.transform.rotation = noseOfTheTurret.rotation;
 
         float timer = 0f;
         while (timer < fireDuration && target != null)
@@ -101,7 +108,7 @@ public class Flamethrower : MonoBehaviour
             yield return null;
         }
 
-        //fireParticles.Stop(); joel fixar
+        fireParticles.Stop();
         isFiring = false;
         lastFireTime = Time.time;
         damageMultiplier = 1f;
@@ -111,6 +118,12 @@ public class Flamethrower : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, areaOfEffect);
+
+        if(target != null)
+        {
+            Gizmos.DrawLine(transform.position, target.position);
+        }
+      
     }
 }
 
