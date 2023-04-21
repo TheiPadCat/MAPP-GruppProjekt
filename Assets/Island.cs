@@ -12,10 +12,11 @@ public class Island : MonoBehaviour
     [SerializeField] GameObject GameOverPanel;
     [SerializeField] TMP_Text healthText;
     public int maxHealth;
-    public int health;
+    private int health;
     // Start is called before the first frame update
     void Start()
     {
+        health = maxHealth;
         UpdateHealthText();
     }
 
@@ -46,13 +47,13 @@ public class Island : MonoBehaviour
         }
     }
 
-
+    
     public void LoseGame()
     {
         Debug.Log("YOU LOSE");
 
         GameOverPanel.SetActive(true);
-        Time.timeScale = 0;
+        
     }
 
     

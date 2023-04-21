@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SnakeScript : MonoBehaviour
@@ -11,7 +12,12 @@ public class SnakeScript : MonoBehaviour
     [SerializeField] float followDistance;
     [SerializeField] GameObject pickParticles;
 
-    [SerializeField] GameObject turretPrefab;
+  
+
+
+    [SerializeField] TMP_Text boatsText;
+    public int maxBoats;
+    private int currentBoats;
 
     private Vector3[] boatVelocity;
     // Start is called before the first frame update
@@ -24,6 +30,7 @@ public class SnakeScript : MonoBehaviour
     }
     void Start()
     {
+        UpdateBoatCounter();
         pickParticles = GameObject.Find("PickParticles");
         Calibrate();
 
@@ -39,6 +46,14 @@ public class SnakeScript : MonoBehaviour
         }
 
 
+       
+
+
+    }
+
+
+    private void FixedUpdate()
+    {
         for (int i = 0; i < trailList.Count; i++)
         {
             Vector3 direction;
@@ -63,25 +78,26 @@ public class SnakeScript : MonoBehaviour
 
 
         }
-
-
     }
 
-
-   public void ReleaseBoat()
+    public void ReleaseBoat()
     {
         if (trailList.Count > 0)
         {
-            trailList[trailList.Count - 1].GetComponentInChildren<Turret>().ToggleLifeTime(true);
+           //trailList[trailList.Count - 1].GetComponentInChildren<Turret>().ToggleLifeTime(true);
+            trailList[trailList.Count - 1].GetComponentInChildren<TimerController>().ToggleLifeTime(true);
             trailList.Remove(trailList[trailList.Count - 1]);
+            currentBoats--;
 
-
+            UpdateBoatCounter();
         }
 
     }
-    private void AddBoat(GameObject boat)
+    private void AddBoat()
     {
-        trailList.Add(boat);
+        
+        currentBoats++;
+        UpdateBoatCounter();
     }
 
     public void Calibrate()
@@ -126,34 +142,44 @@ public class SnakeScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Turret"))
+        if(currentBoats < maxBoats)
         {
-            Debug.Log("pick up");
 
-            if(!trailList.Contains(collision.gameObject))
+            if (collision.gameObject.CompareTag("Turret"))
             {
-                trailList.Add(collision.gameObject);
-                Calibrate();
+                Debug.Log("pick up");
 
-                //KANSKE LÄGGA TILLBAKA DET HÄR IN VETE FAN MÅSTE FIXA SÅ FLAME THROWER HAR DEN OCKSÅ
-              //  collision.gameObject.GetComponentInChildren<Turret>().ToggleLifeTime(false);
+                if (!trailList.Contains(collision.gameObject))
+                {
+                    trailList.Add(collision.gameObject);
+                    Calibrate();
 
-                PlayPickParticles(collision.transform.position);
+                    //KANSKE LÄGGA TILLBAKA DET HÄR IN VETE FAN MÅSTE FIXA SÅ FLAME THROWER HAR DEN OCKSÅ
+                    // collision.gameObject.GetComponentInChildren<Turret>().ToggleLifeTime(false);
+                    collision.gameObject.GetComponentInChildren<TimerController>().ToggleLifeTime(false);
+
+                    PlayPickParticles(collision.transform.position);
+                    AddBoat();
+
+
+                }
+
             }
-           
+
+            else if (collision.gameObject.CompareTag("Supply"))
+            {
+                GameObject newTurret = collision.gameObject.GetComponentInChildren<Package>().Unpack();
+                trailList.Add(newTurret);
+                Calibrate();
+                PlayPickParticles(collision.transform.position);
+                Destroy(collision.gameObject);
+                AddBoat();
+
+            }
+
         }
-     
-        else if(collision.gameObject.CompareTag("Supply"))
-        {
-            GameObject newTurret = collision.gameObject.GetComponentInChildren<Package>().Unpack();
-           trailList.Add(newTurret);
-            Calibrate();
-            PlayPickParticles(collision.transform.position);
-            Destroy(collision.gameObject);
-        
-        }
-    
     }
+      
 
    
 
@@ -165,5 +191,11 @@ public class SnakeScript : MonoBehaviour
         pickParticles.GetComponent<ParticleSystem>().Emit(10);
         }
       
+    }
+
+
+    public void UpdateBoatCounter()
+    {
+        boatsText.text = currentBoats.ToString() + " / " + maxBoats.ToString();
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class Turret : MonoBehaviour
 {
@@ -28,12 +29,16 @@ public class Turret : MonoBehaviour
     private float fireCoolDown;
 
 
+    public Slider hpSlider;
+
     
 
     // Start is called before the first frame update
     void Start()
     {
-
+        hpSlider = transform.parent.GetComponentInChildren<Slider>();   
+        hpSlider.maxValue = maxLifeTime;
+        hpSlider.gameObject.SetActive(false);
        baseIsland = GameObject.Find("Island").transform;
 
 
@@ -65,7 +70,7 @@ public class Turret : MonoBehaviour
         if (target != null)
         {
             Vector3 direction = target.transform.position - transform.position;
-            //   transform.right = direction;
+        
             transform.right = Vector3.Lerp(transform.right, direction, Time.deltaTime * turnSpeed);
            
 
@@ -83,12 +88,14 @@ public class Turret : MonoBehaviour
         if(lifeTimeActive)
         {
             currentLifeTime -= Time.deltaTime;
+            updateHpSlider();
+            if (currentLifeTime <= 0f)
+            {
+                Destroy(transform.root.gameObject);
+            }
+
         }
 
-        if(currentLifeTime <= 0f && lifeTimeActive)
-        {
-            Destroy(transform.root.gameObject);
-        }
 
     }
     private void FindTarget()
@@ -126,10 +133,12 @@ public class Turret : MonoBehaviour
         {
             currentLifeTime = maxLifeTime;
             lifeTimeActive = true;
+            hpSlider.gameObject.SetActive(true);
         }
         else
         {
             lifeTimeActive = false;
+            hpSlider.gameObject.SetActive(false);
         }
     }
     
@@ -143,6 +152,14 @@ public class Turret : MonoBehaviour
             
         }
 
+    }
+
+    public void updateHpSlider()
+    {
+        hpSlider.value = currentLifeTime;
+       hpSlider.transform.position = transform.position + 1 * Vector3.up;
+        hpSlider.gameObject.transform.right = Vector3.right;
+        
     }
 
 }
