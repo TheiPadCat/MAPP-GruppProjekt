@@ -8,7 +8,6 @@ public class ExplosiveBulletScript: MonoBehaviour
     [SerializeField] float bulletVelocity;
     [SerializeField] private float shatterForce = 20f;
     [SerializeField] private int shatterTime = 1;
-    private int amountOfShatters;
   
     private bool hasInstantiated;
 
@@ -54,39 +53,47 @@ public class ExplosiveBulletScript: MonoBehaviour
 
             if (!hasInstantiated) //Kontrollera att vi inte spawnar för många instanser
             {
-                //Skapa instanser av alla bomber
-               
-               bomb1 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
-               bomb2 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
-               bomb3 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
-               bomb4 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
+                //Skapa instanser av 4 bomber
+
+                GameObject[] bombList = new GameObject[4];
+                for (int i = 0; i< bombList.Length; i++)
+                {
+                    bombList[i] = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
+
+                }
+
                 hasInstantiated = true;
 
-                //Ta bort Bullet objektets barn
-                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0) ;
+                //Stänga av komponenter i bullet så det inte syns
                 DisableChildren();
 
-                //Hämta alla rigidbody
-                Rigidbody2D bomb1Rb = bomb1.GetComponent<Rigidbody2D>();
-                Rigidbody2D bomb2Rb = bomb2.GetComponent<Rigidbody2D>();
-                Rigidbody2D bomb3Rb = bomb3.GetComponent<Rigidbody2D>();
-                Rigidbody2D bomb4Rb = bomb4.GetComponent<Rigidbody2D>();
+                //Stanna bullet
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0) ;
+                
+                
 
-                //Skjuta alla åt varsitt håll
-                bomb1Rb.AddForce(new Vector3(shatterForce, 0) * shatterForce, ForceMode2D.Impulse);
-                bomb2Rb.AddForce(new Vector3(0, shatterForce) * shatterForce, ForceMode2D.Impulse);
-                bomb3Rb.AddForce(new Vector3(-shatterForce, 0) * shatterForce, ForceMode2D.Impulse);
-                bomb4Rb.AddForce(new Vector3(0, -shatterForce) * shatterForce, ForceMode2D.Impulse);
+                //Hämta alla rigidbody för bomberna
+                Rigidbody2D[] bombRbList = new Rigidbody2D[bombList.Length];
+                for (int i = 0; i< bombRbList.Length; i++)
+                {
+                    bombRbList[i] = bombList[i].GetComponent<Rigidbody2D>();
 
-                //Sprängas efter 1 sekund
+                }
 
-                StartCoroutine(shatterAfterTime(bomb1));
-                StartCoroutine(shatterAfterTime(bomb2));
-                StartCoroutine(shatterAfterTime(bomb3));
-                StartCoroutine(shatterAfterTime(bomb4));
+                //Skjuta alla bomber åt varsitt håll
+                bombRbList[0].AddForce(new Vector3(shatterForce, 0) * shatterForce, ForceMode2D.Impulse);
+                bombRbList[1].AddForce(new Vector3(0, shatterForce) * shatterForce, ForceMode2D.Impulse);
+                bombRbList[2].AddForce(new Vector3(-shatterForce, 0) * shatterForce, ForceMode2D.Impulse);
+                bombRbList[3].AddForce(new Vector3(0, -shatterForce) * shatterForce, ForceMode2D.Impulse);
 
-                //Göra damage till fiender
+                //Spränga bomberna
+                for (int i = 0; i < bombList.Length; i++)
+                {
+                    StartCoroutine(shatterAfterTime(bombList[i]));
 
+                }
+
+    
            
             }
 
@@ -97,15 +104,13 @@ public class ExplosiveBulletScript: MonoBehaviour
     IEnumerator shatterAfterTime(GameObject bombToExplode)
     {
         yield return new WaitForSeconds(shatterTime);
-        //Sprängas
-        print(bombToExplode + " sprängs");
-
+      
         bombToExplode.GetComponent<BombShatterScript>().Explode();
 
         yield return new WaitForSeconds(0.3f);
         Destroy(bombToExplode);
         Destroy(gameObject);
-        print("Förstör bomb + bullet");
+        
     }
 
 
