@@ -13,7 +13,7 @@ public class ExplosiveBulletScript: MonoBehaviour
 
     private Transform target;
     public Vector3 direction;
-    public float dmg;
+    public int dmg;
 
    [SerializeField] GameObject explosivePrefab;
 
@@ -49,6 +49,7 @@ public class ExplosiveBulletScript: MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            collision.GetComponent<EnemyScript>().TakeDamage(dmg);
             Vector3 spawnPosition = collision.transform.position;
 
             if (!hasInstantiated) //Kontrollera att vi inte spawnar för många instanser

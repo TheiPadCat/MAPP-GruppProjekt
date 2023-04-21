@@ -5036,7 +5036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeParticles: {fileID: 6865495864647713508}
-  damageAmount: 0
+  damage: 2
   canHurtEnemy: 0
 --- !u!1 &8916711244284958575
 GameObject:
