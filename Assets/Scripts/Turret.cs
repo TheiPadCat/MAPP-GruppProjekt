@@ -101,7 +101,7 @@ public class Turret : MonoBehaviour
         for (int i = 1; i < targetList.Count; i++)
         {
 
-            //Siktar på fienden närmast basen
+            //Siktar pï¿½ fienden nï¿½rmast basen
             if (Vector2.Distance(target.transform.position, baseIsland.position) > Vector2.Distance(targetList[i].transform.position, baseIsland.position))
             {
                 target = targetList[i].transform;
@@ -119,7 +119,7 @@ public class Turret : MonoBehaviour
         ExplosionParticles.Emit(5);
     }
 
-    //Sätter på timer när man lägger ut den
+    //Sï¿½tter pï¿½ timer nï¿½r man lï¿½gger ut den
     public void ToggleLifeTime(bool toggle)
     {
         if(toggle == true)
