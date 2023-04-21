@@ -7,7 +7,7 @@ public class bulletScript : MonoBehaviour
     [SerializeField] float bulletVelocity;
     private Transform target;
     public Vector3 direction;
-    public float dmg;
+    public int dmg;
 
 
     
@@ -26,7 +26,7 @@ public class bulletScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-         
+            collision.GetComponent<EnemyScript>().TakeDamage(dmg);
             Destroy(gameObject);
         }
     }

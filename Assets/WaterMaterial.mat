@@ -62,6 +62,7 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
+    - _Density: 39.36
     - _Power: 3.75
     - _QueueControl: 0
     - _QueueOffset: 0

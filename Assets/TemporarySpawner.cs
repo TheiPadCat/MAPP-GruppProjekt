@@ -11,7 +11,7 @@ public class TemporarySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Spawn", 1, 5);
+        InvokeRepeating("Spawn", 1, 8);
         
 
     }

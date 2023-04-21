@@ -14598,9 +14598,9 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   baseIsland: {fileID: 0}
-  rangeRadius: 7
+  rangeRadius: 10
   bulletPrefab: {fileID: 7079678294669302919, guid: 0bb8838d1ca7e914ba851c013b1e542c, type: 3}
-  turnSpeed: 5
+  turnSpeed: 10
   sparkParticles: {fileID: 1955083083064364927}
   smokeParticles: {fileID: 310355641}
   ExplosionParticles: {fileID: 770983894}
