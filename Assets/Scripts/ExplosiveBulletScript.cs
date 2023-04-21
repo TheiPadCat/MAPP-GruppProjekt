@@ -7,19 +7,27 @@ public class ExplosiveBulletScript: MonoBehaviour
 {
     [SerializeField] float bulletVelocity;
     [SerializeField] private float shatterForce = 20f;
-    [SerializeField] private int shatterTime = 2;
-    private int amountOfShatters;
+    [SerializeField] private int shatterTime = 1;
   
     private bool hasInstantiated;
 
     private Transform target;
     public Vector3 direction;
-    public float dmg;
+    public int dmg;
 
    [SerializeField] GameObject explosivePrefab;
 
     [SerializeField] LayerMask bulletLayer;
     [SerializeField] LayerMask playerLayer;
+
+
+    GameObject bomb1;
+    GameObject bomb2;
+    GameObject bomb3;
+    GameObject bomb4;
+
+    
+
 
     private LayerMask test;
 
@@ -37,66 +45,73 @@ public class ExplosiveBulletScript: MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision) /// TO DO: FIXA METODER / LOOPAR IST FÖR BA DUMPA KOD
+    private void OnTriggerEnter2D(Collider2D collision) /// TO DO: FIXA METODER / LOOPAR IST FÃ–R BA DUMPA KOD
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            collision.GetComponent<EnemyScript>().TakeDamage(dmg);
             Vector3 spawnPosition = collision.transform.position;
 
-            if (!hasInstantiated) //Kontrollera att vi inte spawnar för många instanser
+            if (!hasInstantiated) //Kontrollera att vi inte spawnar fÃ¶r mÃ¥nga instanser
             {
-                //Skapa instanser av alla bomber
-               
-               GameObject bomb1 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
-               GameObject bomb2 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
-               GameObject bomb3 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
-               GameObject bomb4 = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
+                //Skapa instanser av 4 bomber
+
+                GameObject[] bombList = new GameObject[4];
+                for (int i = 0; i< bombList.Length; i++)
+                {
+                    bombList[i] = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
+
+                }
+
                 hasInstantiated = true;
 
-                //Ta bort Bullet objektets barn
-                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0) ;
+                //StÃ¤nga av komponenter i bullet sÃ¥ det inte syns
                 DisableChildren();
 
-                //Hämta alla rigidbody
-                Rigidbody2D bomb1Rb = bomb1.GetComponent<Rigidbody2D>();
-                Rigidbody2D bomb2Rb = bomb2.GetComponent<Rigidbody2D>();
-                Rigidbody2D bomb3Rb = bomb3.GetComponent<Rigidbody2D>();
-                Rigidbody2D bomb4Rb = bomb4.GetComponent<Rigidbody2D>();
+                //Stanna bullet
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0) ;
+                
+                
 
-                //Skjuta alla åt varsitt håll
-                bomb1Rb.AddForce(new Vector3(shatterForce, 0) * shatterForce, ForceMode2D.Impulse);
-                bomb2Rb.AddForce(new Vector3(0, shatterForce) * shatterForce, ForceMode2D.Impulse);
-                bomb3Rb.AddForce(new Vector3(-shatterForce, 0) * shatterForce, ForceMode2D.Impulse);
-                bomb4Rb.AddForce(new Vector3(0, -shatterForce) * shatterForce, ForceMode2D.Impulse);
+                //HÃ¤mta alla rigidbody fÃ¶r bomberna
+                Rigidbody2D[] bombRbList = new Rigidbody2D[bombList.Length];
+                for (int i = 0; i< bombRbList.Length; i++)
+                {
+                    bombRbList[i] = bombList[i].GetComponent<Rigidbody2D>();
 
-                //Sprängas efter 1 sekund
+                }
 
-                StartCoroutine(shatterAfterTime(bomb1));
-                StartCoroutine(shatterAfterTime(bomb2));
-                StartCoroutine(shatterAfterTime(bomb3));
-                StartCoroutine(shatterAfterTime(bomb4));
+                //Skjuta alla bomber Ã¥t varsitt hÃ¥ll
+                bombRbList[0].AddForce(new Vector3(shatterForce, 0) * shatterForce, ForceMode2D.Impulse);
+                bombRbList[1].AddForce(new Vector3(0, shatterForce) * shatterForce, ForceMode2D.Impulse);
+                bombRbList[2].AddForce(new Vector3(-shatterForce, 0) * shatterForce, ForceMode2D.Impulse);
+                bombRbList[3].AddForce(new Vector3(0, -shatterForce) * shatterForce, ForceMode2D.Impulse);
 
-                //Göra damage till fiender
+                //SprÃ¤nga bomberna
+                for (int i = 0; i < bombList.Length; i++)
+                {
+                    StartCoroutine(shatterAfterTime(bombList[i]));
 
+                }
 
+    
+           
             }
 
           
-        }
+        } 
     }
 
     IEnumerator shatterAfterTime(GameObject bombToExplode)
     {
         yield return new WaitForSeconds(shatterTime);
-        //Sprängas
-        print(bombToExplode + " sprängs");
+      
+        bombToExplode.GetComponent<BombShatterScript>().Explode();
 
-        yield return new WaitForSeconds(1);
-        
-        Destroy(gameObject);
+        yield return new WaitForSeconds(0.3f);
         Destroy(bombToExplode);
-
-        print("Förstör bomb + bullet");
+        Destroy(gameObject);
+        
     }
 
 

@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7891448422973854282}
   m_Layer: 8
   m_Name: ExplosiveBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,11 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012fcc44d60e6584ca4a31cbe535562e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletVelocity: 10
+  bulletVelocity: 70
   shatterForce: 2
-  shatterTime: 10
+  shatterTime: 1
   direction: {x: 0, y: 0, z: 0}
-  dmg: 0
+  dmg: 1
   explosivePrefab: {fileID: 7079678294669302919, guid: ea3f79b5353f9dc4c9f0c90d6f010473, type: 3}
   bulletLayer:
     serializedVersion: 2

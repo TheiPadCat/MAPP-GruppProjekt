@@ -10,13 +10,14 @@ public class Spawn : MonoBehaviour
     [SerializeField] private Vector2 spawnPosition;
     [SerializeField] private bool random;
     [SerializeField] int despawnTime;
+    
 
     public void SpawnPrefab()
     {
         if(random)
         {
-            float x = Random.Range(-10,10);
-            float y = Random.Range(-4, 4);
+            float x = Random.Range(-spawnPosition.x,spawnPosition.x);
+            float y = Random.Range(-spawnPosition.y, spawnPosition.y);
             GameObject turret = Instantiate(prefab,new Vector2(x,y), Quaternion.identity);
             StartCoroutine(WaitBeforeDelete(despawnTime, turret));
         }

@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34459c760bda40c5ad83d122b2dacd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 30
+  width: 50
   height: 30
   dirt: {fileID: 5806550928046276204}
   grass: {fileID: 1559248276}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class Turret : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Turret : MonoBehaviour
     private float currentLifeTime;
     private bool lifeTimeActive;
 
-    [SerializeField] Transform target;
+    private Transform target;
     [SerializeField] ContactFilter2D contactFilter;
     [SerializeField] Transform baseIsland;
     [SerializeField] float rangeRadius;
@@ -28,12 +29,13 @@ public class Turret : MonoBehaviour
     private float fireCoolDown;
 
 
+
     
 
     // Start is called before the first frame update
     void Start()
     {
-
+       
        baseIsland = GameObject.Find("Island").transform;
 
 
@@ -65,10 +67,10 @@ public class Turret : MonoBehaviour
         if (target != null)
         {
             Vector3 direction = target.transform.position - transform.position;
-            //   transform.right = direction;
-            transform.right = Vector3.Lerp(transform.right, direction, Time.deltaTime * turnSpeed);
-           
 
+            //  transform.right = Vector3.Lerp(transform.right, direction, Time.deltaTime * turnSpeed);
+            
+            transform.right = new Vector3(direction.x, direction.y, direction.z);
         }
 
         if (fireCoolDown <= 0f && target != null)
@@ -83,12 +85,14 @@ public class Turret : MonoBehaviour
         if(lifeTimeActive)
         {
             currentLifeTime -= Time.deltaTime;
+           
+            if (currentLifeTime <= 0f)
+            {
+                Destroy(transform.root.gameObject);
+            }
+
         }
 
-        if(currentLifeTime <= 0f && lifeTimeActive)
-        {
-            Destroy(transform.root.gameObject);
-        }
 
     }
     private void FindTarget()
@@ -101,7 +105,7 @@ public class Turret : MonoBehaviour
         for (int i = 1; i < targetList.Count; i++)
         {
 
-            //Siktar pï¿½ fienden nï¿½rmast basen
+            //Siktar på fienden närmast basen
             if (Vector2.Distance(target.transform.position, baseIsland.position) > Vector2.Distance(targetList[i].transform.position, baseIsland.position))
             {
                 target = targetList[i].transform;
@@ -119,19 +123,10 @@ public class Turret : MonoBehaviour
         ExplosionParticles.Emit(5);
     }
 
-    //Sï¿½tter pï¿½ timer nï¿½r man lï¿½gger ut den
-    public void ToggleLifeTime(bool toggle)
-    {
-        if(toggle == true)
-        {
-            currentLifeTime = maxLifeTime;
-            lifeTimeActive = true;
-        }
-        else
-        {
-            lifeTimeActive = false;
-        }
-    }
+    //Sätter på timer när man lägger ut den
+
+
+   
     
     private void OnDrawGizmos()
     {
@@ -144,5 +139,7 @@ public class Turret : MonoBehaviour
         }
 
     }
+
+    
 
 }

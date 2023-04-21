@@ -10118,6 +10118,7 @@ MonoBehaviour:
   turnSpeed: 5
   sparkParticles: {fileID: 1955083083064364927}
   smokeParticles: {fileID: 310355641}
+  ExplosionParticles: {fileID: 0}
 --- !u!58 &1955083083664814912
 CircleCollider2D:
   m_ObjectHideFlags: 0
