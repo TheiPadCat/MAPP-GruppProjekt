@@ -16,10 +16,7 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentHealth <= 0 )
-        {
-            Die();
-        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -38,6 +35,15 @@ public class EnemyScript : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+    }
+
+    public void TakeDamage(int dmg)
+    {
+        currentHealth -= dmg;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
     }
 
 

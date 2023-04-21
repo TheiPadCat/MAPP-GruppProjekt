@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class CanvasScript : MonoBehaviour
 {
+    [SerializeField] GameObject pausePanel;
     // Start is called before the first frame update
     void Start()
     {
-        
+        pausePanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,5 +29,33 @@ public class CanvasScript : MonoBehaviour
     {
 
     }
+    
+    public void Pause()
+    {
+        pausePanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void UnPause()
+    {
+        pausePanel.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+
+    /*
+    public void TogglePause(bool toggle)
+    {
+        if(toggle == true)
+        {
+            pausePanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            pausePanel.SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
+    */
 
 }

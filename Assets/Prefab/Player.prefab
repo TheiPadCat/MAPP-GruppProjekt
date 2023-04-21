@@ -123,10 +123,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trailList: []
-  dampTime: 0.3
+  dampTime: 0.1
   followDistance: 1.5
   pickParticles: {fileID: 0}
-  turretPrefab: {fileID: 0}
+  boatsText: {fileID: 0}
+  maxBoats: 8
 --- !u!114 &376096387
 MonoBehaviour:
   m_ObjectHideFlags: 0
