@@ -107,37 +107,6 @@ public class SnakeScript : MonoBehaviour
 
 
 
-    private void OnDrawGizmos()
-    {
-        /*
-
-        for (int i = 0; i < trailList.Count; i++)
-        {
-            Vector3 direction;
-            Vector3 targetPosition;
-
-
-            if (i == 0)
-            {
-                direction = trailList[i].transform.position - transform.position;
-                targetPosition = transform.position + direction.normalized * followDistance;
-
-
-            }
-            else
-            {
-                direction = trailList[i].transform.position - trailList[i - 1].transform.position;
-                targetPosition = trailList[i - 1].transform.position + direction.normalized * followDistance;
-
-
-
-            }
-
-            Gizmos.DrawLine(trailList[i].transform.position, targetPosition);
-        }
-
-        */
-    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)

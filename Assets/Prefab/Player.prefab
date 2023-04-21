@@ -142,9 +142,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 5
   steering: 5
-  usingMouseInput: 1
+  usingMouseInput: 0
   dashForce: 5
-  maxVelocity: 10
+  maxVelocity: 20
 --- !u!70 &2520470873073939586
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

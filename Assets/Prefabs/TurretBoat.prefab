@@ -152,7 +152,7 @@ MonoBehaviour:
   baseIsland: {fileID: 0}
   rangeRadius: 12
   bulletPrefab: {fileID: 7079678294669302919, guid: 64391b0429153cd4e96bc30b5a59c20d, type: 3}
-  turnSpeed: 10
+  turnSpeed: 100
   sparkParticles: {fileID: 1955083083064364927}
   smokeParticles: {fileID: 310355641}
   ExplosionParticles: {fileID: 770983894}

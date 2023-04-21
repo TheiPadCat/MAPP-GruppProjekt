@@ -10,7 +10,7 @@ public class CarButABoat : MonoBehaviour
 
     public float dashForce = 5f;
 
-    [SerializeField] float maxVelocity; 
+    [SerializeField] float maxVelocity;
 
     private Rigidbody2D rb;
 
@@ -21,8 +21,6 @@ public class CarButABoat : MonoBehaviour
     }
 
     void FixedUpdate()
-
- 
     {
         Vector2 direction;
 
@@ -31,7 +29,10 @@ public class CarButABoat : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = (mousePos - rb.position).normalized;
             Vector2 speed = direction * acceleration * Vector2.Distance(mousePos, rb.position);
+
+         
             rb.AddForce(speed);
+        
         }
         else
         {
@@ -40,6 +41,9 @@ public class CarButABoat : MonoBehaviour
                 Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
                 direction = (touchPos - rb.position).normalized;
                 Vector2 speed = direction * acceleration * Vector2.Distance(touchPos, rb.position);
+
+              
+
                 rb.AddForce(speed);
             }
             else
@@ -47,10 +51,10 @@ public class CarButABoat : MonoBehaviour
                 direction = rb.velocity.normalized;
             }
         }
-        
-        
 
-        
+
+
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -80,15 +84,18 @@ public class CarButABoat : MonoBehaviour
         Debug.DrawLine((Vector3)rb.position, (Vector3)rb.GetRelativePoint(relativeForce), Color.red);
 
 
-        relativeForce = Vector2.ClampMagnitude(relativeForce, maxVelocity);
-
+    
         rb.AddForce(rb.GetRelativeVector(relativeForce));
 
 
+        
+
+        if(rb.velocity.magnitude > maxVelocity)
+        {
+            rb.velocity = rb.velocity.normalized * maxVelocity;
+        }
 
 
-
-     
 
     }
 }

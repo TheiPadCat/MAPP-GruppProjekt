@@ -11,7 +11,7 @@ public class Turret : MonoBehaviour
     private float currentLifeTime;
     private bool lifeTimeActive;
 
-    [SerializeField] Transform target;
+    private Transform target;
     [SerializeField] ContactFilter2D contactFilter;
     [SerializeField] Transform baseIsland;
     [SerializeField] float rangeRadius;
@@ -29,18 +29,13 @@ public class Turret : MonoBehaviour
     private float fireCoolDown;
 
 
-    public Slider hpSlider;
 
     
 
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        hpSlider = transform.parent.GetComponentInChildren<Slider>();   
-        hpSlider.maxValue = maxLifeTime;
-        hpSlider.gameObject.SetActive(false);
-        */
+       
        baseIsland = GameObject.Find("Island").transform;
 
 
@@ -72,10 +67,10 @@ public class Turret : MonoBehaviour
         if (target != null)
         {
             Vector3 direction = target.transform.position - transform.position;
-        
-            transform.right = Vector3.Lerp(transform.right, direction, Time.deltaTime * turnSpeed);
-           
 
+            //  transform.right = Vector3.Lerp(transform.right, direction, Time.deltaTime * turnSpeed);
+            
+            transform.right = new Vector3(direction.x, direction.y, direction.z);
         }
 
         if (fireCoolDown <= 0f && target != null)
@@ -131,22 +126,7 @@ public class Turret : MonoBehaviour
     //Sätter på timer när man lägger ut den
 
 
-    /*
-    public void ToggleLifeTime(bool toggle)
-    {
-        if(toggle == true)
-        {
-            currentLifeTime = maxLifeTime;
-            lifeTimeActive = true;
-            hpSlider.gameObject.SetActive(true);
-        }
-        else
-        {
-            lifeTimeActive = false;
-            hpSlider.gameObject.SetActive(false);
-        }
-    }
-    */
+   
     
     private void OnDrawGizmos()
     {
@@ -160,16 +140,6 @@ public class Turret : MonoBehaviour
 
     }
 
-    /*
-
-    public void updateHpSlider()
-    {
-        hpSlider.value = currentLifeTime;
-       hpSlider.transform.position = transform.position + 1 * Vector3.up;
-        hpSlider.gameObject.transform.right = Vector3.right;
-        
-    }
-
-    */
+    
 
 }
