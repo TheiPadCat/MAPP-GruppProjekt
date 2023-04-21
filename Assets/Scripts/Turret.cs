@@ -36,9 +36,11 @@ public class Turret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*
         hpSlider = transform.parent.GetComponentInChildren<Slider>();   
         hpSlider.maxValue = maxLifeTime;
         hpSlider.gameObject.SetActive(false);
+        */
        baseIsland = GameObject.Find("Island").transform;
 
 
@@ -88,7 +90,7 @@ public class Turret : MonoBehaviour
         if(lifeTimeActive)
         {
             currentLifeTime -= Time.deltaTime;
-            updateHpSlider();
+           
             if (currentLifeTime <= 0f)
             {
                 Destroy(transform.root.gameObject);
@@ -127,6 +129,9 @@ public class Turret : MonoBehaviour
     }
 
     //Sätter på timer när man lägger ut den
+
+
+    /*
     public void ToggleLifeTime(bool toggle)
     {
         if(toggle == true)
@@ -141,6 +146,7 @@ public class Turret : MonoBehaviour
             hpSlider.gameObject.SetActive(false);
         }
     }
+    */
     
     private void OnDrawGizmos()
     {
@@ -154,6 +160,8 @@ public class Turret : MonoBehaviour
 
     }
 
+    /*
+
     public void updateHpSlider()
     {
         hpSlider.value = currentLifeTime;
@@ -161,5 +169,7 @@ public class Turret : MonoBehaviour
         hpSlider.gameObject.transform.right = Vector3.right;
         
     }
+
+    */
 
 }

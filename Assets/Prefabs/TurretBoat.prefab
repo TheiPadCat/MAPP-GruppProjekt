@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdaec6ae6ed69fa4aba19095604c7f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
+  fireRate: 1.5
   maxLifeTime: 10
   target: {fileID: 0}
   contactFilter:
@@ -150,9 +150,9 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   baseIsland: {fileID: 0}
-  rangeRadius: 7
+  rangeRadius: 12
   bulletPrefab: {fileID: 7079678294669302919, guid: 64391b0429153cd4e96bc30b5a59c20d, type: 3}
-  turnSpeed: 5
+  turnSpeed: 10
   sparkParticles: {fileID: 1955083083064364927}
   smokeParticles: {fileID: 310355641}
   ExplosionParticles: {fileID: 770983894}

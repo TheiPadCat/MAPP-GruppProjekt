@@ -25,10 +25,7 @@ public class EnemyScript : MonoBehaviour
         {
             Destroy(transform.root.gameObject);
         }
-        else if(collision.gameObject.CompareTag("Bullet"))
-        {
-            currentHealth--;
-        }
+     
     }
 
 
