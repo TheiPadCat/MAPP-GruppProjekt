@@ -30,13 +30,13 @@ public class Island : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("test");
+       
         if(collision.gameObject.CompareTag("Enemy"))
         {
             health -= 1;
 
             Destroy(collision.gameObject.transform.root.gameObject);
-            Debug.Log("enemy hit");
+      
 
             UpdateHealthText();
 
@@ -50,7 +50,7 @@ public class Island : MonoBehaviour
     
     public void LoseGame()
     {
-        Debug.Log("YOU LOSE");
+      
 
         GameOverPanel.SetActive(true);
         
