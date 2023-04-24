@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
 
-    [SerializeField] int maxHealth;
-    private int currentHealth;
+    [SerializeField] float maxHealth;
+    private float currentHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +34,7 @@ public class EnemyScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage(float dmg)
     {
         currentHealth -= dmg;
         if (currentHealth <= 0)

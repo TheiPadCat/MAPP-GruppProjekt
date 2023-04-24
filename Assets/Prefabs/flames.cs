@@ -2,34 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flamethrower : MonoBehaviour
+public class flames : MonoBehaviour
 {
     public float fireRate;
     public float maxLifeTime;
     private float currentLifeTime;
     private bool lifeTimeActive;
+
     private Transform target;
-    
+    [SerializeField] ContactFilter2D contactFilter;
     [SerializeField] Transform baseIsland;
     [SerializeField] float rangeRadius;
-    [SerializeField] float maxDamage;
-    [SerializeField] float damageRate;
-    [SerializeField] ContactFilter2D contactFilter;
+    [SerializeField] GameObject bulletPrefab;
+
+    [SerializeField] float turnSpeed;
+
+
 
     private CircleCollider2D scanArea;
     private List<Collider2D> targetList = new List<Collider2D>();
-    
-
-    //[SerializeField] ParticleSystem flameParticles;
-
+    [SerializeField] ParticleSystem sparkParticles;
+    [SerializeField] ParticleSystem smokeParticles;
+    [SerializeField] ParticleSystem ExplosionParticles;
     private float fireCoolDown;
+
+    [SerializeField] float maxDamage;
+    [SerializeField] float damageRate;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+
         baseIsland = GameObject.Find("Island").transform;
 
-        scanArea = GetComponent<CircleCollider2D>();    
+
+        scanArea = GetComponent<CircleCollider2D>();
         scanArea.radius = rangeRadius;
 
         fireCoolDown = 0;
@@ -40,16 +49,33 @@ public class Flamethrower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         scanArea.OverlapCollider(contactFilter, targetList);
 
         if (targetList.Count > 0)
         {
-            FindTargets();
+            FindTarget();
+
+        }
+        else
+        {
+            target = null;
         }
 
-        if (fireCoolDown <= 0f && targetList.Count > 0)
+
+        if (target != null)
         {
-            Attack();
+            Vector3 direction = target.transform.position - transform.position;
+
+            //  transform.right = Vector3.Lerp(transform.right, direction, Time.deltaTime * turnSpeed);
+
+            transform.right = new Vector3(direction.x, direction.y, direction.z);
+        }
+
+        if (fireCoolDown <= 0f && target != null)
+        {
+            Shoot();
+
             fireCoolDown = 1f / fireRate;
         }
 
@@ -58,37 +84,36 @@ public class Flamethrower : MonoBehaviour
         if (lifeTimeActive)
         {
             currentLifeTime -= Time.deltaTime;
+
+            if (currentLifeTime <= 0f)
+            {
+                Destroy(transform.root.gameObject);
+            }
+
         }
 
-        if (currentLifeTime <= 0f && lifeTimeActive)
-        {
-            Destroy(transform.root.gameObject);
-        }
+
     }
-
-    private void FindTargets()
+    private void FindTarget()
     {
         if (baseIsland == null)
         {
             return;
         }
-        target = null;
-        float minDistance = Mathf.Infinity;
-        foreach (Collider2D collider in targetList)
+        target = targetList[0].transform;
+        for (int i = 1; i < targetList.Count; i++)
         {
-            if (collider.CompareTag("Enemy"))
+
+            //Siktar p? fienden n?rmast basen
+            if (Vector2.Distance(target.transform.position, baseIsland.position) > Vector2.Distance(targetList[i].transform.position, baseIsland.position))
             {
-                float distance = Vector2.Distance(collider.transform.position, baseIsland.position);
-                if (distance < minDistance)
-                {
-                    minDistance = distance;
-                    target = collider.transform;
-                }
+                target = targetList[i].transform;
             }
         }
     }
 
-    private void Attack()
+
+    private void Shoot()
     {
         foreach (Collider2D target in targetList)
         {
@@ -104,34 +129,32 @@ public class Flamethrower : MonoBehaviour
                 //EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
                 //if (enemyHealth != null)
                 //{
+                target.GetComponent<EnemyScript>().TakeDamage(damage);
                 //    enemyHealth.TakeDamage(damage);
                 //}
                 Debug.Log("Skada enemy");
             }
-            
+
         }
 
-        //flameParticles.Play();
     }
 
-    // Set timer when placing the turret
-    public void ToggleLifeTime(bool toggle)
-    {
-        if (toggle == true)
-        {
-            currentLifeTime = maxLifeTime;
-            lifeTimeActive = true;
-        }
-        else
-        {
-            lifeTimeActive = false;
-        }
-    }
+    //S?tter p? timer n?r man l?gger ut den
+
+
+
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, rangeRadius);
-    }
-}
+        if (target != null)
+        {
+            Gizmos.DrawLine(transform.position, target.transform.position);
 
+
+
+        }
+
+    }
+
+
+}
