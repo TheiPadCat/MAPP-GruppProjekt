@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
 
-public class Turret : MonoBehaviour
+public class flames : MonoBehaviour
 {
     public float fireRate;
     public float maxLifeTime;
@@ -28,15 +26,16 @@ public class Turret : MonoBehaviour
     [SerializeField] ParticleSystem ExplosionParticles;
     private float fireCoolDown;
 
+    [SerializeField] float maxDamage;
+    [SerializeField] float damageRate;
 
 
-    
 
     // Start is called before the first frame update
     void Start()
     {
-       
-       baseIsland = GameObject.Find("Island").transform;
+
+        baseIsland = GameObject.Find("Island").transform;
 
 
         scanArea = GetComponent<CircleCollider2D>();
@@ -69,7 +68,7 @@ public class Turret : MonoBehaviour
             Vector3 direction = target.transform.position - transform.position;
 
             //  transform.right = Vector3.Lerp(transform.right, direction, Time.deltaTime * turnSpeed);
-            
+
             transform.right = new Vector3(direction.x, direction.y, direction.z);
         }
 
@@ -82,10 +81,10 @@ public class Turret : MonoBehaviour
 
         fireCoolDown -= Time.deltaTime;
 
-        if(lifeTimeActive)
+        if (lifeTimeActive)
         {
             currentLifeTime -= Time.deltaTime;
-           
+
             if (currentLifeTime <= 0f)
             {
                 Destroy(transform.root.gameObject);
@@ -97,7 +96,7 @@ public class Turret : MonoBehaviour
     }
     private void FindTarget()
     {
-        if(baseIsland == null)
+        if (baseIsland == null)
         {
             return;
         }
@@ -105,7 +104,7 @@ public class Turret : MonoBehaviour
         for (int i = 1; i < targetList.Count; i++)
         {
 
-            //Siktar p� fienden n�rmast basen
+            //Siktar p? fienden n?rmast basen
             if (Vector2.Distance(target.transform.position, baseIsland.position) > Vector2.Distance(targetList[i].transform.position, baseIsland.position))
             {
                 target = targetList[i].transform;
@@ -116,18 +115,35 @@ public class Turret : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        newBullet.transform.right = transform.right;
-        sparkParticles.Emit(5);
-        smokeParticles.Emit(4);
-        ExplosionParticles.Emit(5);
+        foreach (Collider2D target in targetList)
+        {
+            if (target.CompareTag("Enemy"))
+            {
+                float distance = Vector2.Distance(target.transform.position, transform.position);
+
+                float damageMultiplier = Mathf.Clamp01((rangeRadius - distance) / rangeRadius);
+                damageMultiplier += Time.deltaTime * damageRate;
+
+                float damage = maxDamage * damageMultiplier;
+
+                //EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
+                //if (enemyHealth != null)
+                //{
+                target.GetComponent<EnemyScript>().TakeDamage(damage);
+                //    enemyHealth.TakeDamage(damage);
+                //}
+                Debug.Log("Skada enemy");
+            }
+
+        }
+
     }
 
-    //S�tter p� timer n�r man l�gger ut den
+    //S?tter p? timer n?r man l?gger ut den
 
 
-   
-    
+
+
     private void OnDrawGizmos()
     {
         if (target != null)
@@ -135,11 +151,10 @@ public class Turret : MonoBehaviour
             Gizmos.DrawLine(transform.position, target.transform.position);
 
 
-            
+
         }
 
     }
 
-    
 
 }

@@ -8,7 +8,7 @@ public class BombShatterScript : MonoBehaviour
 
 
     [SerializeField] ParticleSystem explodeParticles;
-    public int damageAmount;
+    public int damage;
     public bool canHurtEnemy = false;
     void Start()
     {
@@ -31,7 +31,7 @@ public class BombShatterScript : MonoBehaviour
         {
             if (canHurtEnemy)
             {
-                //other.gameObject.GetComponent<Health>().TakeDamage(damageAmount);
+                other.gameObject.GetComponent<EnemyScript>().TakeDamage(damage);
                 print(gameObject + "tried to do damage");
             }
     

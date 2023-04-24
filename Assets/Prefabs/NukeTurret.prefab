@@ -24,14 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917192857286634072}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1955083083664814973}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &4803251596523540295
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b9a672f19cd9b444e801098ecec05a6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3b45dcc396fc6a4ab64f7d40dce9b75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,9 +93,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1955083083664814973}
-  - component: {fileID: 1955083083664814915}
   - component: {fileID: 1955083083664814912}
   - component: {fileID: 3083124628004747804}
+  - component: {fileID: 6027430383211756567}
   m_Layer: 6
   m_Name: Turret
   m_TagString: Untagged
@@ -120,43 +120,6 @@ Transform:
   m_Father: {fileID: 1955083083738580094}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!114 &1955083083664814915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955083083664814913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdaec6ae6ed69fa4aba19095604c7f37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireRate: 1.5
-  maxLifeTime: 10
-  target: {fileID: 0}
-  contactFilter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 128
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  baseIsland: {fileID: 0}
-  rangeRadius: 12
-  bulletPrefab: {fileID: 7079678294669302919, guid: 64391b0429153cd4e96bc30b5a59c20d, type: 3}
-  turnSpeed: 100
-  sparkParticles: {fileID: 1955083083064364927}
-  smokeParticles: {fileID: 310355641}
-  ExplosionParticles: {fileID: 770983894}
-  hpSlider: {fileID: 0}
 --- !u!58 &1955083083664814912
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -185,8 +148,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e8830291d93394fa47ed0f6e8fb118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLifeTime: 10
+  maxLifeTime: 2
   hpSlider: {fileID: 4126356187623228652}
+--- !u!114 &6027430383211756567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955083083664814913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa54af1996bef864b8fb08d318b270ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionRadius: 8.29
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  damage: 10
+  explosionParticles: {fileID: 1955083083064364927}
+  smokeParticles: {fileID: 310355641}
+  fireParticles: {fileID: 1955083083064364927}
 --- !u!1 &1955083083738580092
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,7 +181,7 @@ GameObject:
   - component: {fileID: 1955083083738580094}
   - component: {fileID: 6795684646216274442}
   m_Layer: 6
-  m_Name: TurretBoat
+  m_Name: NukeTurret
   m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -508,28 +491,99 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShootParticles
       objectReference: {fileID: 0}
+    - target: {fileID: 7350085508990900421, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350085508990900423, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350085508990900423, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: ShapeModule.arc.value
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350085508990900423, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 8.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350085508990900423, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0.16
+      objectReference: {fileID: 0}
     - target: {fileID: 7350085508990900474, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016600522785091841, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016600522785091841, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: ShapeModule.arc.value
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016600522785091841, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 7.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016600522785091841, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016600522785091841, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016600522785091841, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016600522785091841, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9016600522785091854, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 9016600522785091855, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016600522785091855, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9016600523515564139, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016600523515564142, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016600523515564142, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: ShapeModule.arc.value
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016600523515564142, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 7.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016600523515564142, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016600523515564142, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 5.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
 --- !u!198 &310355641 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 9016600522785091841, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
-  m_PrefabInstance: {fileID: 9016600523021440952}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &770983894 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 9016600523515564142, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
   m_PrefabInstance: {fileID: 9016600523021440952}
   m_PrefabAsset: {fileID: 0}
 --- !u!198 &1955083083064364927 stripped

@@ -10,12 +10,12 @@ public class SnakeScript : MonoBehaviour
     public List<GameObject> trailList = new List<GameObject>();
     [SerializeField] float dampTime;
     [SerializeField] float followDistance;
-    [SerializeField] GameObject pickParticles;
+    //[SerializeField] GameObject pickParticles;
 
   
 
 
-    [SerializeField] TMP_Text boatsText;
+    //[SerializeField] TMP_Text boatsText;
     public int maxBoats;
     private int currentBoats;
 
@@ -31,7 +31,7 @@ public class SnakeScript : MonoBehaviour
     void Start()
     {
         UpdateBoatCounter();
-        pickParticles = GameObject.Find("PickParticles");
+        //pickParticles = GameObject.Find("PickParticles");
         Calibrate();
 
     }
@@ -107,37 +107,6 @@ public class SnakeScript : MonoBehaviour
 
 
 
-    private void OnDrawGizmos()
-    {
-        /*
-
-        for (int i = 0; i < trailList.Count; i++)
-        {
-            Vector3 direction;
-            Vector3 targetPosition;
-
-
-            if (i == 0)
-            {
-                direction = trailList[i].transform.position - transform.position;
-                targetPosition = transform.position + direction.normalized * followDistance;
-
-
-            }
-            else
-            {
-                direction = trailList[i].transform.position - trailList[i - 1].transform.position;
-                targetPosition = trailList[i - 1].transform.position + direction.normalized * followDistance;
-
-
-
-            }
-
-            Gizmos.DrawLine(trailList[i].transform.position, targetPosition);
-        }
-
-        */
-    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -154,7 +123,7 @@ public class SnakeScript : MonoBehaviour
                     trailList.Add(collision.gameObject);
                     Calibrate();
 
-                    //KANSKE LÄGGA TILLBAKA DET HÄR IN VETE FAN MÅSTE FIXA SÅ FLAME THROWER HAR DEN OCKSÅ
+                    //KANSKE Lï¿½GGA TILLBAKA DET Hï¿½R IN VETE FAN Mï¿½STE FIXA Sï¿½ FLAME THROWER HAR DEN OCKSï¿½
                     // collision.gameObject.GetComponentInChildren<Turret>().ToggleLifeTime(false);
                     collision.gameObject.GetComponentInChildren<TimerController>().ToggleLifeTime(false);
 
@@ -185,10 +154,10 @@ public class SnakeScript : MonoBehaviour
 
     private void PlayPickParticles(Vector3 pos)
     {
-        if(pickParticles != null)
+        //if(pickParticles != null)
         {
-  pickParticles.transform.position = pos;
-        pickParticles.GetComponent<ParticleSystem>().Emit(10);
+  //pickParticles.transform.position = pos;
+       // pickParticles.GetComponent<ParticleSystem>().Emit(10);
         }
       
     }
@@ -196,6 +165,6 @@ public class SnakeScript : MonoBehaviour
 
     public void UpdateBoatCounter()
     {
-        boatsText.text = currentBoats.ToString() + " / " + maxBoats.ToString();
+       // boatsText.text = currentBoats.ToString() + " / " + maxBoats.ToString();
     }
 }

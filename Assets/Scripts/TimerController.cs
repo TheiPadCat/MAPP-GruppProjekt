@@ -27,6 +27,10 @@ public class TimerController : MonoBehaviour
             updateHpSlider();
             if (currentLifeTime <= 0f)
             {
+                if(GetComponent<BombScript>() != null)
+                {
+                    GetComponent<BombScript>().Explode();
+                }
                 Destroy(transform.root.gameObject);
             }
 

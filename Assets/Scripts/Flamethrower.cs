@@ -4,126 +4,134 @@ using UnityEngine;
 
 public class Flamethrower : MonoBehaviour
 {
-    [SerializeField] private float range = 5f; //hur långt turret kan attackera enemy båt
-    [SerializeField] private float fireRate = 0.5f; // cooldown basic
-    [SerializeField] private float fireDuration = 3f; //säger sig självt
-    [SerializeField] private float damage = 10f; // säger sig självt
-    [SerializeField] private float damageMultiplier = 1f; // multiplier för skada som ökar med tiden fienden är i attack area
-    [SerializeField] private float areaOfEffect = 1f; // radien av attack arean för turret
-    //[SerializeField] private ParticleSystem fireParticles; // partikelsystem för najs som joel får lösa 
-    [SerializeField] private Transform noseOfTheTurret; //transform för den del av turret som skjuter elden
+    public float fireRate;
+    public float maxLifeTime;
+    private float currentLifeTime;
+    private bool lifeTimeActive;
+    private Transform target;
+    
+    [SerializeField] Transform baseIsland;
+    [SerializeField] float rangeRadius;
+    [SerializeField] float maxDamage;
+    [SerializeField] float damageRate;
+    [SerializeField] ContactFilter2D contactFilter;
 
-    private Transform target; // nuvarande fiende som är targeted av turret
-    private float lastFireTime; // när turret senast var aktiverad
-    private bool isFiring; // är flamethrower aktiv eller inte
+    private CircleCollider2D scanArea;
+    private List<Collider2D> targetList = new List<Collider2D>();
+    
 
-    [SerializeField] ParticleSystem fireParticles;
+    //[SerializeField] ParticleSystem flameParticles;
 
+    private float fireCoolDown;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        baseIsland = GameObject.Find("Island").transform;
+
+        scanArea = GetComponent<CircleCollider2D>();    
+        scanArea.radius = rangeRadius;
+
+        fireCoolDown = 0;
+
+        currentLifeTime = maxLifeTime;
+    }
+
+    // Update is called once per frame
     void Update()
     {
-        
-        if (CanFire())
-        {
-            AimAtTarget();
-            FindTarget();
+        scanArea.OverlapCollider(contactFilter, targetList);
 
-            StartCoroutine(Fire());
+        if (targetList.Count > 0)
+        {
+            FindTargets();
+        }
+
+        if (fireCoolDown <= 0f && targetList.Count > 0)
+        {
+            Attack();
+            fireCoolDown = 1f / fireRate;
+        }
+
+        fireCoolDown -= Time.deltaTime;
+
+        if (lifeTimeActive)
+        {
+            currentLifeTime -= Time.deltaTime;
+        }
+
+        if (currentLifeTime <= 0f && lifeTimeActive)
+        {
+            Destroy(transform.root.gameObject);
         }
     }
 
-    void FindTarget()
+    private void FindTargets()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, range);
-        Debug.Log("Number of colliders detected: " + colliders.Length);
-        float closestDistance = float.MaxValue;
-        Transform closestTarget = null;
-
-        foreach (Collider2D collider in colliders)
+        if (baseIsland == null)
         {
-            if (collider.gameObject.CompareTag("Enemy"))
+            return;
+        }
+        target = null;
+        float minDistance = Mathf.Infinity;
+        foreach (Collider2D collider in targetList)
+        {
+            if (collider.CompareTag("Enemy"))
             {
-                float distanceToTarget = Vector2.Distance(transform.position, collider.transform.position);
-                if (distanceToTarget < closestDistance)
+                float distance = Vector2.Distance(collider.transform.position, baseIsland.position);
+                if (distance < minDistance)
                 {
-                    closestDistance = distanceToTarget;
-                    closestTarget = collider.transform;
+                    minDistance = distance;
+                    target = collider.transform;
                 }
             }
         }
+    }
 
-        target = closestTarget;
-
-        if (target != null)
+    private void Attack()
+    {
+        foreach (Collider2D target in targetList)
         {
-            Debug.Log("Target found: " + target.gameObject.name);
+            if (target.CompareTag("Enemy"))
+            {
+                float distance = Vector2.Distance(target.transform.position, transform.position);
+
+                float damageMultiplier = Mathf.Clamp01((rangeRadius - distance) / rangeRadius);
+                damageMultiplier += Time.deltaTime * damageRate;
+
+                float damage = maxDamage * damageMultiplier;
+
+                //EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
+                //if (enemyHealth != null)
+                //{
+                //    enemyHealth.TakeDamage(damage);
+                //}
+                Debug.Log("Skada enemy");
+            }
+            
+        }
+
+        //flameParticles.Play();
+    }
+
+    // Set timer when placing the turret
+    public void ToggleLifeTime(bool toggle)
+    {
+        if (toggle == true)
+        {
+            currentLifeTime = maxLifeTime;
+            lifeTimeActive = true;
         }
         else
         {
-            Debug.Log("No target found");
+            lifeTimeActive = false;
         }
     }
 
-    void AimAtTarget()
-    {
-        if (target != null)
-        {
-            Vector3 direction = target.position - noseOfTheTurret.position;
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            noseOfTheTurret.rotation = Quaternion.RotateTowards(noseOfTheTurret.rotation, targetRotation, Time.deltaTime * 360f);
-
-
-            //transform.right = Vector2.Lerp(transform.right, direction, Time.deltaTime * 3);
-        }
-    }
-
-    bool CanFire()
-    {
-        return !isFiring && Time.time - lastFireTime >= fireRate;
-    }
-
-    IEnumerator Fire()
-    {
-        isFiring = true;
-        fireParticles.Play();
-        fireParticles.transform.rotation = noseOfTheTurret.rotation;
-
-        float timer = 0f;
-        while (timer < fireDuration && target != null)
-        {
-            Collider[] colliders = new Collider[10];
-            int numColliders = Physics.OverlapSphereNonAlloc(transform.position, areaOfEffect, colliders);
-
-            for (int i = 0; i < numColliders; i++)
-            {
-                if (colliders[i].gameObject.CompareTag("Enemy"))
-                {
-                    float damageAmount = damage * damageMultiplier * Time.deltaTime;
-                    //colliders[i].gameObject.GetComponent<Health>().TakeDamage(damageAmount); får lösa sen
-                    Debug.Log("enemy is damaged");
-                }
-            }
-
-            damageMultiplier += Time.deltaTime;
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        fireParticles.Stop();
-        isFiring = false;
-        lastFireTime = Time.time;
-        damageMultiplier = 1f;
-    }
-
-    void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, areaOfEffect);
-
-        if(target != null)
-        {
-            Gizmos.DrawLine(transform.position, target.position);
-        }
-      
+        Gizmos.DrawWireSphere(transform.position, rangeRadius);
     }
 }
 
