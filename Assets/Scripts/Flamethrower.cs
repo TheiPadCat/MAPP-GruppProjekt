@@ -8,7 +8,8 @@ public class Flamethrower : MonoBehaviour
     public float maxLifeTime;
     private float currentLifeTime;
     private bool lifeTimeActive;
-
+    private Transform target;
+    
     [SerializeField] Transform baseIsland;
     [SerializeField] float rangeRadius;
     [SerializeField] float maxDamage;
@@ -16,9 +17,9 @@ public class Flamethrower : MonoBehaviour
 
     private CircleCollider2D scanArea;
     private List<Collider2D> targetList = new List<Collider2D>();
-    private Dictionary<Collider2D, float> damageMap = new Dictionary<Collider2D, float>();
+    
 
-    [SerializeField] ParticleSystem flameParticles;
+    //[SerializeField] ParticleSystem flameParticles;
 
     private float fireCoolDown;
 
@@ -27,7 +28,7 @@ public class Flamethrower : MonoBehaviour
     {
         baseIsland = GameObject.Find("Island").transform;
 
-        scanArea = GetComponent<CircleCollider2D>();
+        scanArea = GetComponent<CircleCollider2D>();    
         scanArea.radius = rangeRadius;
 
         fireCoolDown = 0;
@@ -70,22 +71,19 @@ public class Flamethrower : MonoBehaviour
         {
             return;
         }
-
-        // Sort targets by distance to base island
-        targetList.Sort((a, b) => Vector2.Distance(a.transform.position, baseIsland.position).CompareTo(Vector2.Distance(b.transform.position, baseIsland.position)));
-
-        damageMap.Clear();
-        foreach (Collider2D target in targetList)
+        target = null;
+        float minDistance = Mathf.Infinity;
+        foreach (Collider2D collider in targetList)
         {
-            float distance = Vector2.Distance(target.transform.position, transform.position);
-            float damage = maxDamage * Mathf.Clamp01((rangeRadius - distance) / rangeRadius);
-
-            if (damageMap.ContainsKey(target))
+            if (collider.CompareTag("Enemy"))
             {
-                damage += damageMap[target];
+                float distance = Vector2.Distance(collider.transform.position, baseIsland.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    target = collider.transform;
+                }
             }
-
-            damageMap[target] = damage;
         }
     }
 
@@ -93,20 +91,26 @@ public class Flamethrower : MonoBehaviour
     {
         foreach (Collider2D target in targetList)
         {
-            float distance = Vector2.Distance(target.transform.position, transform.position);
-            float damage = damageMap[target];
-            float damageMultiplier = Mathf.Clamp01((rangeRadius - distance) / rangeRadius);
-            damageMultiplier += Time.deltaTime * damageRate;
+            if (target.CompareTag("Enemy"))
+            {
+                float distance = Vector2.Distance(target.transform.position, transform.position);
 
-            Debug.Log("skada enemy");
-            //EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
-            //if (enemyHealth != null)
-            //{
-            //   enemyHealth.TakeDamage(damage * damageMultiplier);
-            //}
+                float damageMultiplier = Mathf.Clamp01((rangeRadius - distance) / rangeRadius);
+                damageMultiplier += Time.deltaTime * damageRate;
+
+                float damage = maxDamage * damageMultiplier;
+
+                //EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
+                //if (enemyHealth != null)
+                //{
+                //    enemyHealth.TakeDamage(damage);
+                //}
+                Debug.Log("Skada enemy");
+            }
+            
         }
 
-        flameParticles.Play();
+        //flameParticles.Play();
     }
 
     // Set timer when placing the turret
