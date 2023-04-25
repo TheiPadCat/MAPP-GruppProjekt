@@ -134,7 +134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 1.5
   maxLifeTime: 10
-  target: {fileID: 0}
   contactFilter:
     useTriggers: 0
     useLayerMask: 1
@@ -156,7 +155,6 @@ MonoBehaviour:
   sparkParticles: {fileID: 1955083083064364927}
   smokeParticles: {fileID: 310355641}
   ExplosionParticles: {fileID: 770983894}
-  hpSlider: {fileID: 0}
 --- !u!58 &1955083083664814912
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -185,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e8830291d93394fa47ed0f6e8fb118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLifeTime: 10
+  maxLifeTime: 100
   hpSlider: {fileID: 4126356187623228652}
 --- !u!1 &1955083083738580092
 GameObject:

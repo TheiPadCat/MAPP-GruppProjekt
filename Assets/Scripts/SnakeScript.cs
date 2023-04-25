@@ -15,7 +15,7 @@ public class SnakeScript : MonoBehaviour
   
 
 
-    //[SerializeField] TMP_Text boatsText;
+    [SerializeField] TMP_Text boatsText;
     public int maxBoats;
     private int currentBoats;
 
@@ -165,6 +165,10 @@ public class SnakeScript : MonoBehaviour
 
     public void UpdateBoatCounter()
     {
-       // boatsText.text = currentBoats.ToString() + " / " + maxBoats.ToString();
+        if(boatsText != null)
+        {
+ boatsText.text = currentBoats.ToString() + " / " + maxBoats.ToString();
+        }
+       
     }
 }
