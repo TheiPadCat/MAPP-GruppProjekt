@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: PirateSettings
   m_EditorClassIdentifier: Assembly-CSharp::EnemyInfo
-  InitialSpawnRate: 0
-  CurrentSpawnRate: 0
+  InitialSpawnChance: 0
+  CurrentSpawnChance: 0
+  Health: 0
+  AttackDamage: 0

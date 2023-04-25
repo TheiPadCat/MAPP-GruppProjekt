@@ -1,10 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using System;
 using System.Linq;
 using System.Reflection;
+using UnityEditor;
+using UnityEngine;
 
 //Temp placement of these here for easier editing
 
@@ -47,8 +47,10 @@ public class Pirate : Enemy {
 public class EnemyInfo : ScriptableObject {
     public Type EnemyType { get; set; }
     public string EnemyTypeName { get; set; }
-    public float InitialSpawnRate;
-    public float CurrentSpawnRate;
+    public float InitialSpawnChance;
+    public float CurrentSpawnChance;
+    public float Health;
+    public float AttackDamage;
 
     public void Init() { EnemyType = Type.GetType(EnemyTypeName); }
 }
@@ -83,7 +85,7 @@ public class Spawner : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         foreach (var entry in enemyInfo) {
-            if (UnityEngine.Random.Range(0f, 1f) <= entry.Value.InitialSpawnRate) print($"{entry.Value.EnemyType.Name} Spawned!");
+            if (UnityEngine.Random.Range(0f, 1f) <= entry.Value.InitialSpawnChance) print($"{entry.Value.EnemyType.Name} Spawned!");
         }
     }
 
@@ -96,16 +98,37 @@ public class Spawner : MonoBehaviour {
 [CanEditMultipleObjects]
 public class SpawnerEditor : Editor {
 
-    private class EnemyEditorInfo {
-        public float SpawnRate;
-        public float Health;
-        public float Damage;
-    }
-
-    private Dictionary<Type, EnemyEditorInfo> enemyEditorInfo = new Dictionary<Type, EnemyEditorInfo>();
+    private Dictionary<Type, EnemyInfo> enemyInfoDict = new Dictionary<Type, EnemyInfo>();
 
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
+        DisplayResetAndLoad();
+        DisplayEnemySettings();
+    }
+
+    private void ResetSettings() {
+        enemyInfoDict.Clear();
+        if (GUILayout.Button(new GUIContent("Reset All Spawner Settings", "Deletes all current settings object for each enemy type")))
+            foreach (var enemySettings in AssetDatabase.FindAssets("", new[] { "Assets/Resources/EnemyInfo" }))
+                AssetDatabase.DeleteAsset(AssetDatabase.GUIDToAssetPath(enemySettings));
+    }
+
+    private void LoadDefaultSettings() {
+        if (GUILayout.Button(new GUIContent("Load Default Settings",
+        "Will load any default settings created for each spawnable type. " +
+        "Note: Any default settings object must be placed in Assets/DefaultSettings and contain the same name as the spawnable type")))
+            Debug.Log("Dummy");
+    }
+
+    private void DisplayResetAndLoad() {
+        GUILayout.Space(10f);
+        GUILayout.BeginHorizontal();
+        ResetSettings();
+        LoadDefaultSettings();
+        GUILayout.EndHorizontal();
+    }
+
+    private void DisplayEnemySettings() {
 
         Type enemyType = typeof(Enemy);
         Assembly assembly = Assembly.GetAssembly(enemyType);
@@ -124,13 +147,17 @@ public class SpawnerEditor : Editor {
 
                 AssetDatabase.CreateAsset(currentEnemyInfo, AssetDatabase.GenerateUniqueAssetPath($"Assets/Resources/EnemyInfo/{enemySubtype.Name}Settings.asset"));
                 AssetDatabase.SaveAssets();
-                enemyEditorInfo.Add(enemySubtype, new EnemyEditorInfo() { SpawnRate = 0f });
-            } else if (!enemyEditorInfo.ContainsKey(enemySubtype)) enemyEditorInfo.Add(enemySubtype, new EnemyEditorInfo() { SpawnRate = currentEnemyInfo.InitialSpawnRate });
-            else enemyEditorInfo[enemySubtype].SpawnRate = currentEnemyInfo.InitialSpawnRate;
+                enemyInfoDict.Add(enemySubtype, currentEnemyInfo);
+            } else if (!enemyInfoDict.ContainsKey(enemySubtype)) enemyInfoDict.Add(enemySubtype, currentEnemyInfo);
 
-            EditorGUILayout.LabelField(enemySubtype.Name);
-            enemyEditorInfo[enemySubtype].SpawnRate = EditorGUILayout.Slider("Initial Spawnrate", enemyEditorInfo[enemySubtype].SpawnRate, 0f, 1f);
-            currentEnemyInfo.InitialSpawnRate = enemyEditorInfo[enemySubtype].SpawnRate;
+            EditorGUILayout.LabelField(enemySubtype.Name, EditorStyles.boldLabel);
+            currentEnemyInfo.InitialSpawnChance = EditorGUILayout.Slider(
+                new GUIContent("Initial Spawn Chance", "A value of 0 means the enemy will never spawn, a value of 1 means it will spawn every time a roll is made by the spawner"),
+                currentEnemyInfo.InitialSpawnChance, 0f, 1f);
+            currentEnemyInfo.Health = Mathf.Clamp(EditorGUILayout.FloatField(new GUIContent("Enemy Health", "The amount of health point the enemy type has, clamped at a minimum of 1"),
+            currentEnemyInfo.Health), 1f, float.MaxValue);
+            currentEnemyInfo.AttackDamage = Mathf.Clamp(EditorGUILayout.FloatField("Attack Damage", currentEnemyInfo.AttackDamage), 0, float.MaxValue);
+            EditorGUILayout.Space(10f);
         }
     }
 }
