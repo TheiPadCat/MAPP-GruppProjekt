@@ -24,6 +24,10 @@ public class Squid : Enemy {
         throw new NotImplementedException();
     }
 
+    public void Spawn() {
+        throw new NotImplementedException();
+    }
+
     public override void TakeDamage() {
         throw new NotImplementedException();
     }
@@ -43,121 +47,48 @@ public class Pirate : Enemy {
     }
 }
 
+public interface ISpawnable {
+    // All spawnable objects need to implement the Spawn method
+    public abstract void Spawn();
 
-public class EnemyInfo : ScriptableObject {
-    public Type EnemyType { get; set; }
-    public string EnemyTypeName { get; set; }
-    public float InitialSpawnChance;
-    public float CurrentSpawnChance;
-    public float Health;
-    public float AttackDamage;
-
-    public void Init() { EnemyType = Type.GetType(EnemyTypeName); }
+    // Some spawnable objects may want to implement a Despawn method
+    public void Despawn() { }
 }
 
 public class Spawner : MonoBehaviour {
 
     public static Spawner Instance { get; private set; }
-    public delegate void enemySpawned(Type enemyType);
-    public static enemySpawned EnemySpawned; // subscribe to this event to do things when enemies spawn
-    public readonly Dictionary<Type, EnemyInfo> enemyInfo = new Dictionary<Type, EnemyInfo>();
+    public delegate void objectSpawned(Type enemyType);
+    public static objectSpawned ObjectSpawned; // subscribe to this event to do things when enemies spawn
+    public readonly Dictionary<Type, SpawnableInfo> spawnInfo = new Dictionary<Type, SpawnableInfo>();
 
     // Start is called before the first frame update
     void Start() {
         Instance ??= this;
-        LoadEnemySettings();
+        LoadSpawnerSettings();
     }
 
-    private void LoadEnemySettings() {
-        Type enemyType = typeof(Enemy);
-        Assembly assembly = Assembly.GetAssembly(enemyType);
-        var enemySubTypes = assembly.GetTypes().Where(t => t.IsSubclassOf(enemyType));
-        EnemyInfo currentEnemyInfo = null;
+    private void LoadSpawnerSettings() {
+        Type spawnableType = typeof(Spawner);
+        Assembly assembly = Assembly.GetAssembly(spawnableType);
+        var spawnableSubtypes = assembly.GetTypes().Where(t => typeof(ISpawnable).IsAssignableFrom(t) && t != typeof(ISpawnable));
+        SpawnableInfo currentSpawnableInfo = null;
 
-        foreach (var enemySubtype in enemySubTypes) {
-            currentEnemyInfo = Resources.Load($"EnemyInfo/{enemySubtype.Name}Settings") as EnemyInfo;
-            if (!currentEnemyInfo) continue;
-            enemyInfo.Add(enemySubtype, currentEnemyInfo);
-            currentEnemyInfo.Init();
+        foreach (var spawnableSubtype in spawnableSubtypes) {
+            currentSpawnableInfo = Resources.Load($"SpawnerSettings/{spawnableSubtype.Name}Settings") as SpawnableInfo;
+            if (!currentSpawnableInfo) continue;
+            spawnInfo.Add(spawnableSubtype, currentSpawnableInfo);
+            currentSpawnableInfo.Init();
         }
     }
 
     // Update is called once per frame
     void Update() {
-        foreach (var entry in enemyInfo) {
-            if (UnityEngine.Random.Range(0f, 1f) <= entry.Value.InitialSpawnChance) print($"{entry.Value.EnemyType.Name} Spawned!");
+        foreach (var entry in spawnInfo) {
+            if (UnityEngine.Random.Range(0f, 1f) <= entry.Value.InitialSpawnChance) print($"{entry.Value.SpawnableType.Name} Spawned!");
         }
     }
-
 
     private void OnDestroy() { Instance = null; }
     private void OnDisable() { Instance = null; }
-}
-
-[CustomEditor(typeof(Spawner))]
-[CanEditMultipleObjects]
-public class SpawnerEditor : Editor {
-
-    private Dictionary<Type, EnemyInfo> enemyInfoDict = new Dictionary<Type, EnemyInfo>();
-
-    public override void OnInspectorGUI() {
-        base.OnInspectorGUI();
-        DisplayResetAndLoad();
-        DisplayEnemySettings();
-    }
-
-    private void ResetSettings() {
-        enemyInfoDict.Clear();
-        if (GUILayout.Button(new GUIContent("Reset All Spawner Settings", "Deletes all current settings object for each enemy type")))
-            foreach (var enemySettings in AssetDatabase.FindAssets("", new[] { "Assets/Resources/EnemyInfo" }))
-                AssetDatabase.DeleteAsset(AssetDatabase.GUIDToAssetPath(enemySettings));
-    }
-
-    private void LoadDefaultSettings() {
-        if (GUILayout.Button(new GUIContent("Load Default Settings",
-        "Will load any default settings created for each spawnable type. " +
-        "Note: Any default settings object must be placed in Assets/DefaultSettings and contain the same name as the spawnable type")))
-            Debug.Log("Dummy");
-    }
-
-    private void DisplayResetAndLoad() {
-        GUILayout.Space(10f);
-        GUILayout.BeginHorizontal();
-        ResetSettings();
-        LoadDefaultSettings();
-        GUILayout.EndHorizontal();
-    }
-
-    private void DisplayEnemySettings() {
-
-        Type enemyType = typeof(Enemy);
-        Assembly assembly = Assembly.GetAssembly(enemyType);
-        var enemySubTypes = assembly.GetTypes().Where(t => t.IsSubclassOf(enemyType));
-
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField("Enemy Spawn Settings", EditorStyles.boldLabel);
-
-        EnemyInfo currentEnemyInfo = null;
-        foreach (var enemySubtype in enemySubTypes) {
-            currentEnemyInfo = Resources.Load($"EnemyInfo/{enemySubtype.Name}Settings") as EnemyInfo;
-            if (!currentEnemyInfo) {
-                currentEnemyInfo = ScriptableObject.CreateInstance<EnemyInfo>();
-
-                currentEnemyInfo.EnemyTypeName = enemySubtype.Name;
-
-                AssetDatabase.CreateAsset(currentEnemyInfo, AssetDatabase.GenerateUniqueAssetPath($"Assets/Resources/EnemyInfo/{enemySubtype.Name}Settings.asset"));
-                AssetDatabase.SaveAssets();
-                enemyInfoDict.Add(enemySubtype, currentEnemyInfo);
-            } else if (!enemyInfoDict.ContainsKey(enemySubtype)) enemyInfoDict.Add(enemySubtype, currentEnemyInfo);
-
-            EditorGUILayout.LabelField(enemySubtype.Name, EditorStyles.boldLabel);
-            currentEnemyInfo.InitialSpawnChance = EditorGUILayout.Slider(
-                new GUIContent("Initial Spawn Chance", "A value of 0 means the enemy will never spawn, a value of 1 means it will spawn every time a roll is made by the spawner"),
-                currentEnemyInfo.InitialSpawnChance, 0f, 1f);
-            currentEnemyInfo.Health = Mathf.Clamp(EditorGUILayout.FloatField(new GUIContent("Enemy Health", "The amount of health point the enemy type has, clamped at a minimum of 1"),
-            currentEnemyInfo.Health), 1f, float.MaxValue);
-            currentEnemyInfo.AttackDamage = Mathf.Clamp(EditorGUILayout.FloatField("Attack Damage", currentEnemyInfo.AttackDamage), 0, float.MaxValue);
-            EditorGUILayout.Space(10f);
-        }
-    }
 }
