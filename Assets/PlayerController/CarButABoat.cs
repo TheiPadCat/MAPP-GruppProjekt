@@ -14,6 +14,8 @@ public class CarButABoat : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public bool joystickMode;
+    public VirtualJoystick virtualJoystick;
 
     void Start()
     {
@@ -24,15 +26,18 @@ public class CarButABoat : MonoBehaviour
     {
         Vector2 direction;
 
-        if (usingMouseInput)
+        if (usingMouseInput && !joystickMode)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = (mousePos - rb.position).normalized;
             Vector2 speed = direction * acceleration * Vector2.Distance(mousePos, rb.position);
-
-         
             rb.AddForce(speed);
-        
+        }
+        else if (joystickMode)
+        {
+            direction = virtualJoystick.inputVector;
+            Vector2 speed = direction * acceleration;
+            rb.AddForce(speed);
         }
         else
         {
@@ -41,9 +46,6 @@ public class CarButABoat : MonoBehaviour
                 Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
                 direction = (touchPos - rb.position).normalized;
                 Vector2 speed = direction * acceleration * Vector2.Distance(touchPos, rb.position);
-
-              
-
                 rb.AddForce(speed);
             }
             else
@@ -51,10 +53,6 @@ public class CarButABoat : MonoBehaviour
                 direction = rb.velocity.normalized;
             }
         }
-
-
-
-
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -83,19 +81,11 @@ public class CarButABoat : MonoBehaviour
         Vector2 relativeForce = (rightAngleFromForward.normalized * -1.0f) * (driftForce * 10.0f);
         Debug.DrawLine((Vector3)rb.position, (Vector3)rb.GetRelativePoint(relativeForce), Color.red);
 
-
-    
         rb.AddForce(rb.GetRelativeVector(relativeForce));
-
-
-        
 
         if(rb.velocity.magnitude > maxVelocity)
         {
             rb.velocity = rb.velocity.normalized * maxVelocity;
         }
-
-
-
     }
 }
