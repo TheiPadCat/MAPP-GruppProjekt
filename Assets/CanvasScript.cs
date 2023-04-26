@@ -28,7 +28,8 @@ public class CanvasScript : MonoBehaviour
 
     public void BackToMenu()
     {
-
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
     
     public void Pause()
