@@ -59,7 +59,7 @@ public class Island : MonoBehaviour
     
     private void UpdateHealthText()
     {
-        healthText.text = health.ToString();
+        healthText.text = "HP: " + health.ToString();
     }
 
 }

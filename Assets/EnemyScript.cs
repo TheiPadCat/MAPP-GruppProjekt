@@ -31,7 +31,11 @@ public class EnemyScript : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        if(GetComponent<LootDrop>() != null)
+        {
+            GetComponent<LootDrop>().DropLoot();
+        }
+        Destroy(transform.root.gameObject);
     }
 
     public void TakeDamage(float dmg)

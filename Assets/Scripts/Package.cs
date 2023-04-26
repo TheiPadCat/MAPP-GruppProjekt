@@ -6,6 +6,7 @@ public class Package : MonoBehaviour
 {
  
     public List<GameObject> turretList = new List<GameObject>();
+   
  
 
     private int Randomize()
