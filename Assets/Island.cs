@@ -35,7 +35,7 @@ public class Island : MonoBehaviour
         {
             health -= 1;
 
-            Destroy(collision.gameObject.transform.root.gameObject);
+            //Destroy(collision.gameObject.transform.root.gameObject);
       
 
             UpdateHealthText();
