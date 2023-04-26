@@ -85,7 +85,7 @@ public class Spawner : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         foreach (var entry in spawnInfo) {
-            if (UnityEngine.Random.Range(0f, 1f) <= entry.Value.InitialSpawnChance) print($"{entry.Value.SpawnableType.Name} Spawned!");
+            if (UnityEngine.Random.Range(0f, 1f) <= entry.Value.CurrentSpawnChance) print($"{entry.Value.SpawnableType.Name} Spawned!");
         }
     }
 

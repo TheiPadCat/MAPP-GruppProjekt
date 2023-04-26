@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[CreateAssetMenu(menuName = "SpawnerSettings/SpawnableInfo")]
 public class SpawnableInfo : ScriptableObject {
     public Type SpawnableType { get; set; }
     public string TypeName { get; set; }
@@ -11,6 +12,9 @@ public class SpawnableInfo : ScriptableObject {
     public float SpawnChanceIncreasePerRound;
     public float SpawnRate;
 
-    public void Init() { SpawnableType = Type.GetType(TypeName); }
+    public void Init() {
+        SpawnableType = Type.GetType(TypeName);
+        CurrentSpawnChance = InitialSpawnChance;
+    }
 
 }
