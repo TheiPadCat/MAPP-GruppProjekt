@@ -10,6 +10,7 @@ public class TemporarySpawner : MonoBehaviour
     public GameObject island;
     private float currentTime;
     public List<GameObject> gameObjects = new List<GameObject>();
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,7 @@ public class TemporarySpawner : MonoBehaviour
         else
         {
             Spawn();
-            currentTime = Random.Range(3, 8);
+            currentTime = Random.Range(1, 4);
         }
     }
 
