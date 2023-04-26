@@ -39,8 +39,14 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
         }
     }
 
-    public void Die() {
-        Destroy(gameObject);
+
+    private void Die()
+    {
+        if(GetComponent<LootDrop>() != null)
+        {
+            GetComponent<LootDrop>().DropLoot();
+        }
+        Destroy(transform.root.gameObject);
     }
 
     public void TakeDamage(float dmg) {
