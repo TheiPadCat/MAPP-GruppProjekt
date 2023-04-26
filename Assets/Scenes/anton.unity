@@ -314,6 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 2421930585921709494, guid: ef81063a1d55429418e8f43fd78f926c, type: 3}
   island: {fileID: 480930605}
+  gameObjects: []
 --- !u!4 &182002792
 Transform:
   m_ObjectHideFlags: 0
@@ -5596,6 +5597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 2421930585921709494, guid: ef81063a1d55429418e8f43fd78f926c, type: 3}
   island: {fileID: 480930605}
+  gameObjects: []
 --- !u!4 &403943816
 Transform:
   m_ObjectHideFlags: 0
@@ -6634,6 +6636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 2421930585921709494, guid: ef81063a1d55429418e8f43fd78f926c, type: 3}
   island: {fileID: 480930605}
+  gameObjects: []
 --- !u!4 &1391963080
 Transform:
   m_ObjectHideFlags: 0
@@ -7619,6 +7622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 2421930585921709494, guid: ef81063a1d55429418e8f43fd78f926c, type: 3}
   island: {fileID: 480930605}
+  gameObjects: []
 --- !u!4 &1660396617
 Transform:
   m_ObjectHideFlags: 0
@@ -7919,6 +7923,14 @@ PrefabInstance:
       propertyPath: boatsText
       value: 
       objectReference: {fileID: 839251402}
+    - target: {fileID: 376096387, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
+      propertyPath: joystickMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 376096387, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
+      propertyPath: usingMouseInput
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 376096387, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
       propertyPath: virtualJoystick
       value: 
