@@ -23,6 +23,7 @@ public class Island : MonoBehaviour {
         if (collision.gameObject.CompareTag("Enemy")) {
             health -= 1;
 
+            collision.gameObject.GetComponent<EnemyScript>().Die();
             //Destroy(collision.gameObject.transform.root.gameObject);
 
             UpdateHealthText();
@@ -31,7 +32,10 @@ public class Island : MonoBehaviour {
     }
 
 
-    public void LoseGame() { GameOverPanel.SetActive(true); }
+    public void LoseGame() { GameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+   
     private void UpdateHealthText() { healthText.text = "Base HP: " + health.ToString(); }
     private void OnDestroy() { Instance = null; }
     private void OnEnable() { Instance ??= this; }
