@@ -11,6 +11,7 @@ public class SpawnableInfo : ScriptableObject {
     public float CurrentSpawnChance { get; set; }
     public float SpawnChanceIncreasePerRound;
     public float SpawnRate;
+    private float currentSpawnRate;
     public int NumberToAppearFirstRound, StartRound, EndRound;
     public int NumberToAppearThisRound { get; set; }
     public GameObject prefab;
@@ -38,7 +39,7 @@ public class SpawnableInfo : ScriptableObject {
                 spawnable.Spawn();
                 activeInstances++;
             }
-            yield return new WaitForSecondsRealtime(SpawnRate);
+            yield return new WaitForSecondsRealtime(currentSpawnRate);
         }
     }
 
@@ -46,6 +47,7 @@ public class SpawnableInfo : ScriptableObject {
         RoundManager.RoundBegin += OnNewRound;
         RoundManager.RoundEnd += OnRoundEnd;
         activeInstances = 0;
+        currentSpawnRate = SpawnRate;
 
         SpawnableType = Type.GetType(TypeName);
         CurrentSpawnChance = InitialSpawnChance;
@@ -65,6 +67,7 @@ public class SpawnableInfo : ScriptableObject {
 
         CurrentSpawnChance = Mathf.Clamp(InitialSpawnChance * multiplier, InitialSpawnChance * 0.25f, InitialSpawnChance * 1.75f);
         NumberToAppearThisRound = (int)(NumberToAppearFirstRound * multiplier);
+        currentSpawnRate = Mathf.Clamp(SpawnRate * Mathf.Pow(1f + (SpawnChanceIncreasePerRound * -1), roundNumber + 1 - (StartRound - 1)), SpawnRate * 0.25f, SpawnRate * 1.75f);
     }
 
 }
