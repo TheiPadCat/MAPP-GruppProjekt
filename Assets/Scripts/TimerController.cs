@@ -13,7 +13,7 @@ public class TimerController : MonoBehaviour
     public Slider hpSlider;
     void Start()
     {
-       // hpSlider = transform.parent.GetComponentInChildren<Slider>();
+        // hpSlider = transform.parent.GetComponentInChildren<Slider>();
         hpSlider.maxValue = maxLifeTime;
         hpSlider.gameObject.SetActive(false);
     }
@@ -27,7 +27,7 @@ public class TimerController : MonoBehaviour
             updateHpSlider();
             if (currentLifeTime <= 0f)
             {
-                if(GetComponent<BombScript>() != null)
+                if (GetComponent<BombScript>() != null)
                 {
                     GetComponent<BombScript>().Explode();
                 }

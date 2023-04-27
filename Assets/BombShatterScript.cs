@@ -23,7 +23,7 @@ public class BombShatterScript : MonoBehaviour
         
     }
 
-    //Bomben sprängs efter några sekunder
+    //Bomben sprï¿½ngs efter nï¿½gra sekunder
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
@@ -31,7 +31,7 @@ public class BombShatterScript : MonoBehaviour
         {
             if (canHurtEnemy)
             {
-                other.gameObject.GetComponent<EnemyScript>().TakeDamage(damage);
+                other.gameObject.GetComponent<IEnemy>().TakeDamage(damage);
                 print(gameObject + "tried to do damage");
             }
     

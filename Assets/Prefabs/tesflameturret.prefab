@@ -154,10 +154,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7402449201145823845}
-  - component: {fileID: 7402449201145823835}
   - component: {fileID: 7402449201145823832}
   - component: {fileID: 6292202006835071748}
-  - component: {fileID: 6292202006835071750}
   - component: {fileID: 6292202006835071751}
   m_Layer: 6
   m_Name: Turret
@@ -183,41 +181,6 @@ Transform:
   m_Father: {fileID: 7402449200950130022}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!114 &7402449201145823835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7402449201145823833}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdaec6ae6ed69fa4aba19095604c7f37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireRate: 1.5
-  maxLifeTime: 10
-  contactFilter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 128
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  baseIsland: {fileID: 0}
-  rangeRadius: 12
-  bulletPrefab: {fileID: 7079678294669302919, guid: 64391b0429153cd4e96bc30b5a59c20d, type: 3}
-  turnSpeed: 100
-  sparkParticles: {fileID: 7402449202693930599}
-  smokeParticles: {fileID: 9050847533263427489}
-  ExplosionParticles: {fileID: 9050847534060730062}
 --- !u!58 &7402449201145823832
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -248,38 +211,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLifeTime: 10
   hpSlider: {fileID: 4960946951170831860}
---- !u!114 &6292202006835071750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7402449201145823833}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a814cccb4befa46afa71ae4fbabaa72e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireRate: 0
-  maxLifeTime: 0
-  baseIsland: {fileID: 0}
-  rangeRadius: 0
-  maxDamage: 0
-  damageRate: 0
-  contactFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 128
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
 --- !u!114 &6292202006835071751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,7 +322,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b9a672f19cd9b444e801098ecec05a6c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -473,21 +404,6 @@ PrefabInstance:
 --- !u!4 &4123844404004327417 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4143488839278586201, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
-  m_PrefabInstance: {fileID: 52485769559271072}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &7402449202693930599 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7350085508990900423, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
-  m_PrefabInstance: {fileID: 52485769559271072}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &9050847533263427489 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 9016600522785091841, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
-  m_PrefabInstance: {fileID: 52485769559271072}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &9050847534060730062 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 9016600523515564142, guid: cd99fc954f01be546a9aaf383d20d62a, type: 3}
   m_PrefabInstance: {fileID: 52485769559271072}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8556309895977301438
