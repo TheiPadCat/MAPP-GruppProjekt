@@ -102,8 +102,8 @@ public class SpawnerEditor : Editor {
                 currentSpawnInfo.InitialSpawnChance, 0f, 1f);
 
             currentSpawnInfo.SpawnChanceIncreasePerRound =
-                EditorGUILayout.Slider(new GUIContent("Spawn chance increase per round", "The number of percent the initial spawn chance should be multiplied by with every round"),
-                    currentSpawnInfo.SpawnChanceIncreasePerRound, 0f, 1f);
+                EditorGUILayout.Slider(new GUIContent("Spawn chance in- or decrease per round", "The number of percent the initial spawn chance should be multiplied by with every round"),
+                    currentSpawnInfo.SpawnChanceIncreasePerRound, -1f, 1f);
 
             EditorGUILayout.BeginHorizontal();
             currentSpawnInfo.SpawnRate =
@@ -120,6 +120,17 @@ public class SpawnerEditor : Editor {
                 Debug.LogWarning($"\"{currentSpawnInfo.prefab.name}\" cannot be assigned to a spawnable of type {spawnableType.Name}, it, or its children does not have a script of that type attached!");
                 currentSpawnInfo.prefab = null;
             }
+
+            currentSpawnInfo.NumberToAppearFirstRound =
+                Mathf.Clamp(EditorGUILayout.IntField(new GUIContent("Number on initial round", "The number of the spawnable type to appear on it's first round. Must be at least one" +
+                ". This number will incerase with the percentage set for spawn chance increase"),
+                currentSpawnInfo.NumberToAppearFirstRound), 1, int.MaxValue);
+
+            currentSpawnInfo.StartRound = Mathf.Clamp(EditorGUILayout.IntField(new GUIContent("Appears first on round", "The round number that the spawnable will start spawning on"),
+            currentSpawnInfo.StartRound), 1, int.MaxValue);
+
+            currentSpawnInfo.EndRound = Mathf.Clamp(EditorGUILayout.IntField(new GUIContent("Stops appearing on round", "The round the spawnable type stops spawning on, leave at 0 for never"),
+            currentSpawnInfo.EndRound), 0, int.MaxValue);
 
             EditorGUILayout.Space(10f);
             AssetDatabase.SaveAssets();

@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385ef82bd9b44984a92443c42ed92161, type: 3}
   m_Name: PackageSettings
   m_EditorClassIdentifier: 
-  InitialSpawnChance: 0.2
-  SpawnChanceIncreasePerRound: 0.2
+  TypeName: 
+  InitialSpawnChance: 0.6
+  SpawnChanceIncreasePerRound: -0.08
   SpawnRate: 5
+  NumberToAppearFirstRound: 25
+  StartRound: 1
+  EndRound: 0
   prefab: {fileID: 6779903945079463481, guid: d357feaa0df8cd04ba7ea8023c10c66f, type: 3}

@@ -11,7 +11,7 @@ public interface ISpawnable {
     public abstract void Spawn();
 
     // Some spawnable objects may want to implement a Despawn method
-    public void Despawn() { }
+    public virtual void Despawn() { }
 }
 
 public class Spawner : MonoBehaviour {
@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour {
     public static Spawner Instance { get; private set; }
     public delegate void objectSpawned(Type enemyType);
     public static objectSpawned ObjectSpawned; // subscribe to this event to do things when enemies spawn
-    public readonly Dictionary<Type, SpawnableInfo> spawnInfo = new Dictionary<Type, SpawnableInfo>();
+    public readonly Dictionary<Type, SpawnableInfo> SpawnInfo = new Dictionary<Type, SpawnableInfo>();
 
 
     // Start is called before the first frame update
@@ -35,9 +35,9 @@ public class Spawner : MonoBehaviour {
         SpawnableInfo currentSpawnableInfo = null;
 
         foreach (var spawnableSubtype in spawnableSubtypes) {
-            currentSpawnableInfo = Resources.Load($"SpawnerSettings/Current/{spawnableSubtype.Name}Settings") as SpawnableInfo;
+            currentSpawnableInfo = Resources.Load<SpawnableInfo>($"SpawnerSettings/Current/{spawnableSubtype.Name}Settings");
             if (!currentSpawnableInfo) continue;
-            spawnInfo.Add(spawnableSubtype, currentSpawnableInfo);
+            SpawnInfo.Add(spawnableSubtype, currentSpawnableInfo);
             currentSpawnableInfo.Init();
         }
     }

@@ -6,43 +6,65 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SpawnerSettings/SpawnableInfo")]
 public class SpawnableInfo : ScriptableObject {
     public Type SpawnableType { get; set; }
-    public string TypeName { get; set; }
+    [HideInInspector] public string TypeName;
     public float InitialSpawnChance;
     public float CurrentSpawnChance { get; set; }
     public float SpawnChanceIncreasePerRound;
     public float SpawnRate;
+    public int NumberToAppearFirstRound, StartRound, EndRound;
+    public int NumberToAppearThisRound { get; set; }
     public GameObject prefab;
     private ISpawnable spawnable;
+    private int activeInstances, roundNumber;
+    private Coroutine instantiator;
+    private Vector3 spawnPos;
+    private string[] layerNames = new string[] { "Wall", "Player" };
 
     private IEnumerator Instantiator() {
+
         while (true) {
-            if (UnityEngine.Random.Range(0f, 1f) <= CurrentSpawnChance) {
-                GameObject temp = Instantiate(prefab) as GameObject;
-                //Spawner.ObjectSpawned.Invoke(SpawnableType);
+            roundNumber = RoundManager.Instance.RoundNumber;
+            if (roundNumber >= StartRound && (roundNumber <= EndRound || EndRound == 0) &&
+                activeInstances < NumberToAppearThisRound && UnityEngine.Random.Range(0f, 1f) <= CurrentSpawnChance) {
+
+                // ensures stuff doesn't spawn in walls
+                // TODO, add option to change size of random area. Make spawning more dynamic than random
+                spawnPos = new Vector3(UnityEngine.Random.Range(-60, 60), UnityEngine.Random.Range(-60, 60), 0);
+                while (Physics2D.OverlapBox(spawnPos, Vector2.one, 0f, LayerMask.GetMask(layerNames)) != null)
+                    spawnPos = new Vector3(UnityEngine.Random.Range(-60, 60), UnityEngine.Random.Range(-60, 60), 0);
+
+                GameObject temp = Instantiate(prefab, spawnPos, Quaternion.identity) as GameObject;
+                if (Spawner.ObjectSpawned != null) Spawner.ObjectSpawned.Invoke(SpawnableType);
                 spawnable.Spawn();
+                activeInstances++;
             }
             yield return new WaitForSecondsRealtime(SpawnRate);
         }
     }
 
     public void Init() {
-        // subscribe to new and end round events
+        RoundManager.RoundBegin += OnNewRound;
+        RoundManager.RoundEnd += OnRoundEnd;
+        activeInstances = 0;
+
         SpawnableType = Type.GetType(TypeName);
         CurrentSpawnChance = InitialSpawnChance;
-        if (prefab){
+        NumberToAppearThisRound = NumberToAppearFirstRound;
+        if (prefab) {
             spawnable = prefab.GetComponent<ISpawnable>();
-            if(spawnable == null) spawnable = prefab.GetComponentInChildren<ISpawnable>();
-        } 
-        OnNewRound(1);
+            if (spawnable == null) spawnable = prefab.transform.root.GetComponentInChildren<ISpawnable>();
+        }
     }
 
-    private void OnNewRound(int roundNumber) {
-        Spawner.Instance.StartCoroutine(Instantiator());
-        CurrentSpawnChance = InitialSpawnChance * Mathf.Pow(1f + SpawnChanceIncreasePerRound, roundNumber);
-    }
+    private void OnNewRound(int roundNumber) { instantiator = Spawner.Instance.StartCoroutine(Instantiator()); }
 
-    private void OnRoundEnd() {
-        Spawner.Instance.StopCoroutine(Instantiator());
+    private void OnRoundEnd(int roundNumber) {
+        activeInstances = 0;
+        Spawner.Instance.StopCoroutine(instantiator);
+        float multiplier = Mathf.Pow(1f + SpawnChanceIncreasePerRound, roundNumber + 1 - (StartRound - 1));
+
+        CurrentSpawnChance = Mathf.Clamp(InitialSpawnChance * multiplier, InitialSpawnChance * 0.25f, InitialSpawnChance * 1.75f);
+        NumberToAppearThisRound = (int)(NumberToAppearFirstRound * multiplier);
     }
 
 }

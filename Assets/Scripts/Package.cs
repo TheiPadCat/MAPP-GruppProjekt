@@ -21,4 +21,6 @@ public class Package : MonoBehaviour, ISpawnable {
     public void Spawn() {
         // spawn animations, or anything else that we want to happen on spawn go here
     }
+
+    public void Despawn() { Destroy(gameObject); print("Package despawned!"); }
 }
