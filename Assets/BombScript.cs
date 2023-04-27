@@ -32,7 +32,7 @@ public class BombScript : MonoBehaviour
         {
          
             Debug.Log("TAKE DAMGAGE");
-            collider.GetComponent<EnemyScript>().TakeDamage(damage);
+            collider.GetComponent<IEnemy>().TakeDamage(damage);
         }
         explosionParticles.Emit(20);
         smokeParticles.Emit(20);
