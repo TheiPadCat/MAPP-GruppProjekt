@@ -16,6 +16,7 @@ public class CarButABoat : MonoBehaviour
 
     public bool joystickMode;
     public VirtualJoystick virtualJoystick;
+    private Vector2 lastInputDirection = Vector2.up;
 
     void Start()
     {
@@ -35,9 +36,10 @@ public class CarButABoat : MonoBehaviour
         }
         else if (joystickMode)
         {
-            direction = virtualJoystick.inputVector;
+            direction = virtualJoystick.inputVector.normalized;
             Vector2 speed = direction * acceleration;
             rb.AddForce(speed);
+            
         }
         else
         {
