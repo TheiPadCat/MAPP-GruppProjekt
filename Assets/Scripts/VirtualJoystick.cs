@@ -70,7 +70,7 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 
     public float GetSteeringAngle()
     {
-        Vector2 forward = new Vector2(0.0f, 1.0f);
+        Vector2 forward = Quaternion.Euler(0, 0, transform.eulerAngles.z) * new Vector2(0.0f, 1.0f);
         Vector2 inputDir = new Vector2(inputVector.x, inputVector.y);
         float angle = Vector2.SignedAngle(inputDir, forward) * -1;
         float maxAngle = Mathf.Clamp(angle, -maxSteeringAngle, maxSteeringAngle);
