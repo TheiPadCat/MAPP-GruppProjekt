@@ -10,7 +10,7 @@ public class Island : MonoBehaviour {
     [SerializeField] GameObject GameOverPanel;
     [SerializeField] TMP_Text healthText;
     public int maxHealth;
-    private int health;
+    public int health;
     public static Island Instance;
 
     void Start() {

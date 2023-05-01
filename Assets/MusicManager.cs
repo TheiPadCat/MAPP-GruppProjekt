@@ -5,6 +5,7 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
     public AudioClip backgrunsMusik;
+    public Island baseIsland; 
     public List<AudioClip> musikLager;
     public float baseLowHealth = 0.25f;
     public float checkHealth = 0.5f;
@@ -17,7 +18,7 @@ public class MusicManager : MonoBehaviour
     private int rundorSedanLastLager = 0;
     private float nextCheckTime = 0f;
     private float basTempo = 1.0f;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,38 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Time.time >= nextCheckTime)
+        {
+            nextCheckTime = Time.time + checkHealth;
+            CheckBaseHealth();
+        }
+    }
+
+    void CheckBaseHealth()
+    {
+        float baseHealth = baseIsland.health;
+        int önskatLagerIndex = Mathf.FloorToInt(baseHealth / baseLowHealth) * lagerIncreasePerRunda;
+
+        if(önskatLagerIndex > nuvarandeLagerIndex && önskatLagerIndex < musikLager.Count)
+        {
+            nuvarandeLagerIndex = önskatLagerIndex;
+            audioSource.clip = musikLager[nuvarandeLagerIndex];
+            audioSource.Play();
+        }
+
+        rundorSedanLastLager++;
+
+        if(rundorSedanLastLager >= lagerIntervall)
+        {
+            rundorSedanLastLager = 0;
+            if(nuvarandeLagerIndex < musikLager.Count - 1)
+            {
+                nuvarandeLagerIndex++;
+                audioSource.clip = musikLager[nuvarandeLagerIndex];
+                audioSource.Play();
+            }
+        }
+
+
     }
 }

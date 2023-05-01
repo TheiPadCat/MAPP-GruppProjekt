@@ -36,10 +36,12 @@ public class CarButABoat : MonoBehaviour
         }
         else if (joystickMode)
         {
+
             direction = virtualJoystick.inputVector.normalized;
             Vector2 speed = direction * acceleration;
             rb.AddForce(speed);
             
+
         }
         else
         {
@@ -49,6 +51,7 @@ public class CarButABoat : MonoBehaviour
                 direction = (touchPos - rb.position).normalized;
                 Vector2 speed = direction * acceleration * Vector2.Distance(touchPos, rb.position);
                 rb.AddForce(speed);
+               
             }
             else
             {
@@ -61,7 +64,7 @@ public class CarButABoat : MonoBehaviour
             rb.velocity += rb.velocity.normalized * dashForce;
         }
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg -90;
         Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
         rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, steering));
 

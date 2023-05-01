@@ -12,11 +12,13 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     public Vector2 inputVector;
     private Rigidbody2D rb;
 
-
+    [SerializeField] Transform trans;
+    private Quaternion lastRotation;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        trans = GameObject.Find("Player").transform;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -35,6 +37,7 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
             float factor = Mathf.Clamp01(distanceFromCenter / maxDistance);
             Debug.Log(factor);
             inputVector = new Vector2(localPosition.x, localPosition.y) * factor;
+            lastRotation = trans.transform.rotation;
 
             UpdateJoystickHandlePosition();
         }
@@ -49,6 +52,7 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     {
         inputVector.Normalize();
         inputVector = Vector2.zero;
+        trans.transform.rotation = lastRotation;
         UpdateJoystickHandlePosition();
         
     }
@@ -74,7 +78,7 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
         Vector2 inputDir = new Vector2(inputVector.x, inputVector.y);
         float angle = Vector2.SignedAngle(inputDir, forward) * -1;
         float maxAngle = Mathf.Clamp(angle, -maxSteeringAngle, maxSteeringAngle);
-        return maxAngle / maxSteeringAngle;
+        return maxAngle / maxSteeringAngle; 
     }
 
     public float GetDriftForce()
