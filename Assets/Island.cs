@@ -15,7 +15,7 @@ public class Island : MonoBehaviour {
 
     void Start() {
         Instance ??= this;
-        health = maxHealth;
+        health = PlayerPrefs.GetInt("BaseHealth", maxHealth);
         UpdateHealthText();
     }
 
@@ -31,6 +31,11 @@ public class Island : MonoBehaviour {
         }
     }
 
+    public void EndRound()
+    {
+        PlayerPrefs.SetInt("BaseHealth", health);
+        PlayerPrefs.Save();
+    }
 
     public void LoseGame() { GameOverPanel.SetActive(true);
         Time.timeScale = 0f;
