@@ -24,7 +24,7 @@ public class Island : MonoBehaviour {
             health -= 1;
 
             collision.gameObject.GetComponent<EnemyScript>().Die();
-            Debug.Log("DK ODODODODODO");
+           
             //Destroy(collision.gameObject.transform.root.gameObject);
 
             UpdateHealthText();

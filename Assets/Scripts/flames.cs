@@ -23,12 +23,13 @@ public class flames : MonoBehaviour
     private CircleCollider2D scanArea;
     private List<Collider2D> targetList = new List<Collider2D>();
     [SerializeField] ParticleSystem fireParticles;
+    [SerializeField] ParticleSystem smokeParticles;
     private float fireCoolDown;
 
     [SerializeField] float maxDamage;
     [SerializeField] float damageRate;
 
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -88,6 +89,7 @@ public class flames : MonoBehaviour
             if (fireParticles.isPlaying)
             {
                 fireParticles.Stop();
+                smokeParticles.Stop();
             }
         }
 
@@ -129,6 +131,7 @@ public class flames : MonoBehaviour
     {
         if (!fireParticles.isPlaying)
         {
+            smokeParticles.Play();
             fireParticles.Play();
         }
 

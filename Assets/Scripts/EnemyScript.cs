@@ -14,6 +14,7 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
     [SerializeField] float maxHealth;
     private float currentHealth;
     private LootDrop drop;
+    [SerializeField] ParticleSystem spawnParticles;
     // Start is called before the first frame update
     void Start() {
         currentHealth = maxHealth;
@@ -28,7 +29,9 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
     // Is called by the Spawner script on spawn
     public void Spawn() {
         // this could probs be used for spawn animations, events etc (if we want any)
+        spawnParticles.Play();
         transform.root.GetComponent<AIDestinationSetter>().target = Island.Instance.transform;
+
     }
 
     // temp
@@ -51,7 +54,7 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
         currentHealth -= dmg;
         if (currentHealth <= 0) Die();
 
-        Debug.Log("damage");
+      
 
         if (GetComponent<DamageEffects>() != null)
         {

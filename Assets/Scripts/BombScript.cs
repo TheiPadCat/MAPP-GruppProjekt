@@ -10,6 +10,8 @@ public class BombScript : MonoBehaviour
     [SerializeField] ParticleSystem explosionParticles;
     [SerializeField] ParticleSystem smokeParticles;
     [SerializeField] ParticleSystem fireParticles;
+    [SerializeField] ParticleSystem waveParticles;
+    [SerializeField] ParticleSystem flashParticles;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,12 +36,16 @@ public class BombScript : MonoBehaviour
             Debug.Log("TAKE DAMGAGE");
             collider.GetComponent<IEnemy>().TakeDamage(damage);
         }
-        explosionParticles.Emit(20);
-        smokeParticles.Emit(20);
-        fireParticles.Emit(20);
+        explosionParticles.Play();
+        smokeParticles.Play();
+        fireParticles.Play();
+        waveParticles.Play();
+        flashParticles.Play();
         explosionParticles.transform.parent = null;
         smokeParticles.transform.parent = null;
         fireParticles.transform.parent = null;
+        waveParticles.transform.parent = null;
+        flashParticles.transform.parent = null;
     }
 
     private void OnDrawGizmos()
