@@ -11,12 +11,13 @@ public class DamageEffects : MonoBehaviour
     private Material material;
     private Coroutine flashCoroutine;
 
-
+    
    
 
     private void Start()
     {
-        material = GetComponent<SpriteRenderer>().material;
+       
+        material = GetComponentInChildren<SpriteRenderer>().material;
     }
 
 
@@ -24,7 +25,7 @@ public class DamageEffects : MonoBehaviour
 
     public void PlayFlash()
     {
-
+         
         flashCoroutine = StartCoroutine(Flashing());
         
 
