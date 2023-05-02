@@ -21,6 +21,7 @@ public class CarButABoat : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     void FixedUpdate()
@@ -64,9 +65,17 @@ public class CarButABoat : MonoBehaviour
             rb.velocity += rb.velocity.normalized * dashForce;
         }
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg -90;
-        Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
-        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, steering));
+        if (virtualJoystick.isDragged)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+            rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, steering));
+        }
+        else
+        {
+            direction = rb.velocity.normalized;
+        }
+
 
         Vector2 forward = new Vector2(0.0f, 0.5f);
         float steeringRightAngle;

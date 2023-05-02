@@ -64,6 +64,26 @@ public class MusicManager : MonoBehaviour
             }
         }
 
+        if (baseHealth < baseLowHealth)
+        {
+            audioSource.pitch = basTempo * lagerIncreasePerRunda;
 
+            if(nuvarandeLagerIndex < musikLager.Count - 1)
+            {
+                nuvarandeLagerIndex++;
+                audioSource.clip = musikLager[nuvarandeLagerIndex];
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            audioSource.pitch = basTempo;
+        }
+
+    }
+
+    float GetBaseHealt()
+    {
+        return baseIsland.health;
     }
 }

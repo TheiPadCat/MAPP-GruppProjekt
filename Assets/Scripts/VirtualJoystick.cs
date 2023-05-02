@@ -15,6 +15,8 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     [SerializeField] Transform trans;
     private Quaternion lastRotation;
 
+    public bool isDragged = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,6 +28,7 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
         Vector2 localPosition;
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(joystickBackground.rectTransform, eventData.position, eventData.pressEventCamera, out localPosition))
         {
+            isDragged = true;
             localPosition.x /= joystickBackground.rectTransform.sizeDelta.x;
             localPosition.y /= joystickBackground.rectTransform.sizeDelta.y;
 
@@ -50,6 +53,7 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        isDragged = false;
         inputVector.Normalize();
         inputVector = Vector2.zero;
         trans.transform.rotation = lastRotation;
