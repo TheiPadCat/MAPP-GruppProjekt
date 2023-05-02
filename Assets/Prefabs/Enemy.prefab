@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 2421930586554035463}
   - component: {fileID: 6714222788982109448}
   - component: {fileID: 6885516718882121991}
+  - component: {fileID: 8712004894047740791}
   m_Layer: 7
   m_Name: mushroom-red
   m_TagString: Enemy
@@ -259,7 +260,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: d91adea079a2bb14eafa420a93b38ed2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -281,7 +282,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e3a8cc2ec6c2a3f4db83802f0408a335, type: 3}
-  m_Color: {r: 1, g: 0.38113207, b: 0.38113207, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -341,3 +342,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0.20049787, y: 0.34631371}
   m_Size: {x: 6.183103, y: 6.183103}
   m_Direction: 0
+--- !u!114 &8712004894047740791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2421930586554035486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16eabf25ab4779248be09f8c81ecc976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  lerpSpeed: 2
