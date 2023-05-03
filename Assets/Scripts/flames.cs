@@ -85,12 +85,10 @@ public class flames : MonoBehaviour
         if(target == null)
         {
 
-           
-            if (fireParticles.isPlaying)
-            {
+         
                 fireParticles.Stop();
                 smokeParticles.Stop();
-            }
+            
         }
 
         fireCoolDown -= Time.deltaTime;
@@ -129,11 +127,10 @@ public class flames : MonoBehaviour
 
     private void Shoot()
     {
-        if (!fireParticles.isPlaying)
-        {
+      
             smokeParticles.Play();
             fireParticles.Play();
-        }
+        
 
         foreach (Collider2D target in targetList)
         {

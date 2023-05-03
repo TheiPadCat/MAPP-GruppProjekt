@@ -94,11 +94,11 @@ public class CarButABoat : MonoBehaviour
         {
           if(relativeForce.x < 0)
             {
-                driftParticlesRight.Emit(15);
+                driftParticlesRight.Emit(1);
             }
           else
             {
-                driftParticlesLeft.Emit(15);
+                driftParticlesLeft.Emit(1);
                
             }
          
@@ -118,7 +118,7 @@ public class CarButABoat : MonoBehaviour
         float percent = rb.velocity.magnitude / maxVelocity;
         if(rb.velocity.magnitude > 5)
         {
-            rippleParticles.Emit(5);
+            rippleParticles.Emit(1);
             frontSplashParticles.Emit(5);
             rippleParticles.startSpeed = 10 * percent;
             frontSplashParticles.startSpeed = 10 * percent;

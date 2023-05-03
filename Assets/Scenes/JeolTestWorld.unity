@@ -366,7 +366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &152484509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6100,6 +6100,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6916961522420100412, guid: e6086d0727616e34cb6faec09366af57, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6916961522420100415, guid: e6086d0727616e34cb6faec09366af57, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -7484,7 +7488,7 @@ MeshCollider:
   m_GameObject: {fileID: 1522062774}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -7547,7 +7551,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1522062774}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 8.8}
+  m_LocalPosition: {x: -0.7, y: 0, z: 69.68}
   m_LocalScale: {x: 18.1, y: 18.1, z: 18.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -7744,6 +7748,10 @@ PrefabInstance:
     - target: {fileID: 6282073730398014061, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282073730995601869, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
+      propertyPath: volumeLayer.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 6282073730995601870, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
       propertyPath: m_RootOrder
@@ -8698,6 +8706,10 @@ PrefabInstance:
       value: 0.10579821
       objectReference: {fileID: 0}
     - target: {fileID: 5838258168825358688, guid: 2713ed13bbe33494abb3ea8c97a25421, type: 3}
+      propertyPath: volume
+      value: 
+      objectReference: {fileID: 1116427492}
+    - target: {fileID: 5838258168825358688, guid: 2713ed13bbe33494abb3ea8c97a25421, type: 3}
       propertyPath: maxHealth
       value: 20
       objectReference: {fileID: 0}
@@ -8824,7 +8836,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 925574112844379086, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -15.39978
+      value: -15.400024
       objectReference: {fileID: 0}
     - target: {fileID: 2190273658936474827, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
       propertyPath: m_AnchoredPosition.x
