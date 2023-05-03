@@ -7,6 +7,7 @@ public class DamageEffects : MonoBehaviour
 
     [SerializeField] private Color flashColor;
     [SerializeField] private float lerpSpeed = 2f;
+ 
 
     private Material material;
     private Coroutine flashCoroutine;

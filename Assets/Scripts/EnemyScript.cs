@@ -15,6 +15,9 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
     private float currentHealth;
     private LootDrop drop;
     [SerializeField] ParticleSystem spawnParticles;
+
+    [SerializeField] private ParticleSystem deathSplat;
+    [SerializeField] private ParticleSystem deathStain;
     // Start is called before the first frame update
     void Start() {
         currentHealth = maxHealth;
@@ -45,6 +48,11 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
 
 
     public void Die() {
+        deathSplat.transform.parent = null;
+        deathStain.transform.parent = null;
+        deathSplat.Play();
+        deathStain.Play();
+        
         if (drop) drop.DropLoot();
         Destroy(transform.root.gameObject);
         IEnemy.Death.Invoke(GetType());

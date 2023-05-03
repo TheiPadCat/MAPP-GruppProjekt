@@ -21,7 +21,8 @@ public class CarButABoat : MonoBehaviour
     [SerializeField] int driftThreshhold;
     [SerializeField] ParticleSystem driftParticlesLeft;
     [SerializeField] ParticleSystem driftParticlesRight;
-    [SerializeField] ParticleSystem splashParticles;
+    [SerializeField] ParticleSystem rippleParticles;
+    [SerializeField] ParticleSystem frontSplashParticles;
 
 
     void Start()
@@ -114,13 +115,18 @@ public class CarButABoat : MonoBehaviour
     }
     private void Update()
     {
-        if(rb.velocity.magnitude > 1)
+        float percent = rb.velocity.magnitude / maxVelocity;
+        if(rb.velocity.magnitude > 5)
         {
-            splashParticles.Emit((int)rb.velocity.magnitude / 2);
+            rippleParticles.Emit(5);
+            frontSplashParticles.Emit(5);
+            rippleParticles.startSpeed = 10 * percent;
+            frontSplashParticles.startSpeed = 10 * percent;
+            frontSplashParticles.startLifetime = (float)0.5 * percent;
         }
-        else
-        {
-           // splashParticles.Stop();
-        }
+      
+
+      
+      
     }
 }
