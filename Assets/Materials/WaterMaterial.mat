@@ -62,11 +62,11 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _Density: 39.36
-    - _Power: 3.75
+    - _Density: 80
+    - _Power: 4
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Speed: 0.6
+    - _Speed: 1
     m_Colors:
     - _Color: {r: 0.124724075, g: 0.8584906, b: 0.53504634, a: 0}
     - _LightColor: {r: 0.2072801, g: 0.7449167, b: 0.8018868, a: 0}

@@ -186,6 +186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretList:
   - {fileID: 1955083083738580092, guid: a4fd38dadd8c04b4abab4c98f344b43e, type: 3}
+  - {fileID: 1955083083738580092, guid: 43aef259bbd420442a10a342e6ef5842, type: 3}
+  - {fileID: 7402449200950130020, guid: 05eb5c3ceec18f24ca05b231b027127b, type: 3}
 --- !u!61 &5912148646550545172
 BoxCollider2D:
   m_ObjectHideFlags: 0

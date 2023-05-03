@@ -11,11 +11,18 @@ public class CarButABoat : MonoBehaviour
     public float dashForce = 5f;
 
     [SerializeField] float maxVelocity;
+    
 
     private Rigidbody2D rb;
 
     public bool joystickMode;
     public VirtualJoystick virtualJoystick;
+
+    [SerializeField] int driftThreshhold;
+    [SerializeField] ParticleSystem driftParticlesLeft;
+    [SerializeField] ParticleSystem driftParticlesRight;
+    [SerializeField] ParticleSystem splashParticles;
+
 
     void Start()
     {
@@ -80,12 +87,40 @@ public class CarButABoat : MonoBehaviour
         float driftForce = Vector2.Dot(rb.velocity, rb.GetRelativeVector(rightAngleFromForward.normalized));
         Vector2 relativeForce = (rightAngleFromForward.normalized * -1.0f) * (driftForce * 10.0f);
         Debug.DrawLine((Vector3)rb.position, (Vector3)rb.GetRelativePoint(relativeForce), Color.red);
+        
+
+        if(relativeForce.magnitude > driftThreshhold)
+        {
+          if(relativeForce.x < 0)
+            {
+                driftParticlesRight.Emit(15);
+            }
+          else
+            {
+                driftParticlesLeft.Emit(15);
+               
+            }
+         
+          
+        }
+        
 
         rb.AddForce(rb.GetRelativeVector(relativeForce));
 
         if(rb.velocity.magnitude > maxVelocity)
         {
             rb.velocity = rb.velocity.normalized * maxVelocity;
+        }
+    }
+    private void Update()
+    {
+        if(rb.velocity.magnitude > 1)
+        {
+            splashParticles.Emit((int)rb.velocity.magnitude / 2);
+        }
+        else
+        {
+           // splashParticles.Stop();
         }
     }
 }

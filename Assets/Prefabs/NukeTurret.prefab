@@ -20066,7 +20066,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.97084314, b: 0.91886795, a: 1}
+      maxColor: {r: 0.099430345, g: 0.40579942, b: 0.9245283, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -24086,13 +24086,13 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   CustomDataModule:
     enabled: 0
-    mode0: 0
+    mode0: 2
     vectorComponentCount0: 4
     color0:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.19216013, g: 1, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -24671,7 +24671,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dcdc77a2793d05748a5a1ca633c29a92, type: 2}
+  - {fileID: 2100000, guid: 461c42d01f47f04429ef4de4ba30badd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24732,6 +24732,10 @@ PrefabInstance:
     - target: {fileID: 803065034417199057, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
       propertyPath: m_Name
       value: TurretCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 803065034417199068, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 803065034417199070, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
       propertyPath: m_Pivot.x

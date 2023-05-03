@@ -152,7 +152,7 @@ public class flames : MonoBehaviour
                 target.GetComponent<IEnemy>().TakeDamage(damage);
                 //    enemyHealth.TakeDamage(damage);
                 //}
-                Debug.Log("Skada enemy");
+                //Debug.Log("Skada enemy");
             }
 
         }
