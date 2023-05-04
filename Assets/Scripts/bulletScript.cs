@@ -26,7 +26,11 @@ public class bulletScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.GetComponent<EnemyScript>().TakeDamage(dmg);
+            collision.GetComponent<IEnemy>().TakeDamage(dmg);
+            Destroy(gameObject);
+        }
+        if(collision.gameObject.CompareTag("Border"))
+        {
             Destroy(gameObject);
         }
     }
