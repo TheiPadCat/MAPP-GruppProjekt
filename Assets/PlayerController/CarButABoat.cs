@@ -113,6 +113,14 @@ public class CarButABoat : MonoBehaviour
             rb.velocity = rb.velocity.normalized * maxVelocity;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            rb.velocity = rb.velocity.normalized * maxVelocity;
+        }
+    }
     private void Update()
     {
         float percent = rb.velocity.magnitude / maxVelocity;
