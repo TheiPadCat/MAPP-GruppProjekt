@@ -42,7 +42,8 @@ public class BombShatterScript : MonoBehaviour
     public void Explode()
     {
         canHurtEnemy = true;
-        explodeParticles.Emit(39);
+        explodeParticles.Emit(15);
+        explodeParticles.transform.parent = null;
     }
 
 

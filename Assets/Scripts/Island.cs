@@ -14,10 +14,12 @@ public class Island : MonoBehaviour {
     private int health;
     public static Island Instance;
 
-   public Volume volume;
+    public Volume volume;
     private ChromaticAberration chromaticAberration;
-     
+
     ChromaticAberration postProcessChromaticAberration;
+
+    [SerializeField] ParticleSystem damageParticles;
 
     void Start() {
         volume.profile.TryGet(out chromaticAberration);
@@ -39,6 +41,7 @@ public class Island : MonoBehaviour {
             chromaticAberration.intensity.value += 0.1f;
             // globalVolume.GetComponent<ChromaticAberration>().intensity = (health / maxHealth)
 
+            damageParticles.Emit(80);
             UpdateHealthText();
             if (health <= 0) LoseGame();
         }
