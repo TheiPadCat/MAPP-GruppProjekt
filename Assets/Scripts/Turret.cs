@@ -66,12 +66,17 @@ public class Turret : MonoBehaviour
 
         if (target != null)
         {
+            
+          
+
+
             Vector3 direction = target.transform.position - transform.position;
 
             //  transform.right = Vector3.Lerp(transform.right, direction, Time.deltaTime * turnSpeed);
             
             transform.right = new Vector3(direction.x, direction.y, direction.z);
         }
+       
 
         if (fireCoolDown <= 0f && target != null)
         {
@@ -118,9 +123,12 @@ public class Turret : MonoBehaviour
     {
         GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         newBullet.transform.right = transform.right;
+      
+        
         sparkParticles.Emit(5);
         smokeParticles.Emit(4);
         ExplosionParticles.Emit(5);
+        
     }
 
     //S�tter p� timer n�r man l�gger ut den

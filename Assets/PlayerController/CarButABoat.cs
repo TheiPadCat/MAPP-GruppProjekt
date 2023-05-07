@@ -11,11 +11,19 @@ public class CarButABoat : MonoBehaviour
     public float dashForce = 5f;
 
     [SerializeField] float maxVelocity;
+    
 
     private Rigidbody2D rb;
 
     public bool joystickMode;
     public VirtualJoystick virtualJoystick;
+
+    [SerializeField] int driftThreshhold;
+    [SerializeField] ParticleSystem driftParticlesLeft;
+    [SerializeField] ParticleSystem driftParticlesRight;
+    [SerializeField] ParticleSystem rippleParticles;
+    [SerializeField] ParticleSystem frontSplashParticles;
+
 
     void Start()
     {
@@ -80,6 +88,23 @@ public class CarButABoat : MonoBehaviour
         float driftForce = Vector2.Dot(rb.velocity, rb.GetRelativeVector(rightAngleFromForward.normalized));
         Vector2 relativeForce = (rightAngleFromForward.normalized * -1.0f) * (driftForce * 10.0f);
         Debug.DrawLine((Vector3)rb.position, (Vector3)rb.GetRelativePoint(relativeForce), Color.red);
+        
+
+        if(relativeForce.magnitude > driftThreshhold)
+        {
+          if(relativeForce.x < 0)
+            {
+                driftParticlesRight.Emit(1);
+            }
+          else
+            {
+                driftParticlesLeft.Emit(1);
+               
+            }
+         
+          
+        }
+        
 
         rb.AddForce(rb.GetRelativeVector(relativeForce));
 
@@ -87,5 +112,29 @@ public class CarButABoat : MonoBehaviour
         {
             rb.velocity = rb.velocity.normalized * maxVelocity;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            rb.velocity = rb.velocity.normalized * maxVelocity;
+        }
+    }
+    private void Update()
+    {
+        float percent = rb.velocity.magnitude / maxVelocity;
+        if(rb.velocity.magnitude > 5)
+        {
+            rippleParticles.Emit(1);
+            frontSplashParticles.Emit(5);
+            rippleParticles.startSpeed = 10 * percent;
+            frontSplashParticles.startSpeed = 10 * percent;
+            frontSplashParticles.startLifetime = (float)0.5 * percent;
+        }
+      
+
+      
+      
     }
 }

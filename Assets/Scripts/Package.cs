@@ -5,7 +5,7 @@ using UnityEngine;
 public class Package : MonoBehaviour, ISpawnable {
 
     public List<GameObject> turretList = new List<GameObject>();
-
+    [SerializeField] ParticleSystem pickupParticle;
 
     private int Randomize() {
         return Random.Range(0, turretList.Count);
@@ -14,7 +14,8 @@ public class Package : MonoBehaviour, ISpawnable {
 
     public GameObject Unpack() {
         GameObject newTurret = Instantiate(turretList[Randomize()], transform.position, Quaternion.identity);
-
+        pickupParticle.transform.parent = null;
+        pickupParticle.Play();
         return newTurret;
     }
 
