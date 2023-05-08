@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GlowMaterial
+  m_Name: FireMAT
   m_Shader: {fileID: -6465566751694194690, guid: 3879d7226c6425648b31948b1dfbda79, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -52,7 +52,7 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     m_Colors:
-    - _Color: {r: 11.984314, g: 3.7019608, b: 6.8392158, a: 1}
+    - _Color: {r: 4.0326085, g: 11.984314, b: 3.7019603, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

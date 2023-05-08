@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f3b45dcc396fc6a4ab64f7d40dce9b75, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3db480d5cc74d7248b0d34f96ecf678f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -113,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 7079678294669302919}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.018, y: 0.015, z: 0}
-  m_LocalScale: {x: 0.536, y: 0.53, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7784400339016139102}
@@ -141,7 +141,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: fa61f1a95a97835499a399cfc3937b34, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -186,9 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletVelocity: 70
-  shatterForce: 2
+  shatterForce: 5
   shatterTime: 1
-  direction: {x: 0, y: 0, z: 0}
   dmg: 1
   explosivePrefab: {fileID: 7079678294669302919, guid: ea3f79b5353f9dc4c9f0c90d6f010473, type: 3}
   bulletLayer:
@@ -197,6 +196,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  hasInstantiated: 0
+  direction: {x: 0, y: 0, z: 0}
 --- !u!50 &-795398051198555031
 Rigidbody2D:
   serializedVersion: 4
