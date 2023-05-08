@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class flames : MonoBehaviour
@@ -13,17 +14,15 @@ public class flames : MonoBehaviour
     [SerializeField] ContactFilter2D contactFilter;
     [SerializeField] Transform baseIsland;
     [SerializeField] float rangeRadius;
-    [SerializeField] GameObject bulletPrefab;
+ 
 
     [SerializeField] float turnSpeed;
-
+    
 
 
     private CircleCollider2D scanArea;
     private List<Collider2D> targetList = new List<Collider2D>();
-    [SerializeField] ParticleSystem sparkParticles;
-    [SerializeField] ParticleSystem smokeParticles;
-    [SerializeField] ParticleSystem ExplosionParticles;
+    [SerializeField] ParticleSystem fireParticles;
     private float fireCoolDown;
 
     [SerializeField] float maxDamage;
@@ -71,12 +70,25 @@ public class flames : MonoBehaviour
 
             transform.right = new Vector3(direction.x, direction.y, direction.z);
         }
-
+        
         if (fireCoolDown <= 0f && target != null)
         {
             Shoot();
+           
 
             fireCoolDown = 1f / fireRate;
+        }
+        
+      
+
+        if(target == null)
+        {
+
+           
+            if (fireParticles.isPlaying)
+            {
+                fireParticles.Stop();
+            }
         }
 
         fireCoolDown -= Time.deltaTime;
@@ -115,6 +127,11 @@ public class flames : MonoBehaviour
 
     private void Shoot()
     {
+        if (!fireParticles.isPlaying)
+        {
+            fireParticles.Play();
+        }
+
         foreach (Collider2D target in targetList)
         {
             if (target.CompareTag("Enemy"))
@@ -136,7 +153,7 @@ public class flames : MonoBehaviour
             }
 
         }
-
+        
     }
 
     //S?tter p? timer n?r man l?gger ut den

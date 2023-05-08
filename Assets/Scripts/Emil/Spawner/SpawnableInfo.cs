@@ -31,7 +31,7 @@ public class SpawnableInfo : ScriptableObject {
                 // ensures stuff doesn't spawn in walls
                 // TODO, add option to change size of random area. Make spawning more dynamic than random
                 spawnPos = new Vector3(UnityEngine.Random.Range(-60, 60), UnityEngine.Random.Range(-60, 60), 0);
-                while (Physics2D.OverlapBox(spawnPos, /*Vector2.one*/ new Vector2(6,6), 0f, LayerMask.GetMask(layerNames)) != null)
+                while (Physics2D.OverlapBox(spawnPos, Vector2.one, 0f, LayerMask.GetMask(layerNames)) != null)
                     spawnPos = new Vector3(UnityEngine.Random.Range(-60, 60), UnityEngine.Random.Range(-60, 60), 0);
                 
                 GameObject temp = Instantiate(prefab, spawnPos, Quaternion.identity) as GameObject;

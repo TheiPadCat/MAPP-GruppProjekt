@@ -29,6 +29,10 @@ public class bulletScript : MonoBehaviour
             collision.GetComponent<IEnemy>().TakeDamage(dmg);
             Destroy(gameObject);
         }
+        if(collision.gameObject.CompareTag("Border"))
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

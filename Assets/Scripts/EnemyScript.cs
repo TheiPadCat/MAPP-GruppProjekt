@@ -50,5 +50,13 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
     public void TakeDamage(float dmg) {
         currentHealth -= dmg;
         if (currentHealth <= 0) Die();
+
+        Debug.Log("damage");
+
+        if (GetComponent<DamageEffects>() != null)
+        {
+            GetComponent<DamageEffects>().PlayFlash();
+        }
+       
     }
 }

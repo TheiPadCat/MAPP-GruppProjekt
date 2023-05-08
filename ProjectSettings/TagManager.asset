@@ -8,6 +8,7 @@ TagManager:
   - Turret
   - Supply
   - Bullet
+  - Border
   layers:
   - Default
   - TransparentFX
