@@ -1,127 +1,97 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
-using UnityEngine.UIElements;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
+using UnityEngine.SocialPlatforms;
+using System.ComponentModel;
+using Unity.VisualScripting;
+using UnityEngine.Assertions;
 
-public class ExplosiveBulletScript: MonoBehaviour
+public class ExplosiveBulletScript : MonoBehaviour
 {
     [SerializeField] float bulletVelocity;
     [SerializeField] private float shatterForce = 20f;
     [SerializeField] private int shatterTime = 1;
-  
-    private bool hasInstantiated;
-
-    private Transform target;
+    [SerializeField] private int dmg = 0;
+    [SerializeField] private GameObject explosivePrefab;
+    [SerializeField] private LayerMask bulletLayer;
+    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private bool hasInstantiated = false;
+   
     public Vector3 direction;
-    public int dmg;
 
-   [SerializeField] GameObject explosivePrefab;
-
-    [SerializeField] LayerMask bulletLayer;
-    [SerializeField] LayerMask playerLayer;
-
-
-    GameObject bomb1;
-    GameObject bomb2;
-    GameObject bomb3;
-    GameObject bomb4;
-
-    
-
-
-    private LayerMask test;
-
-    private GameObject bomb;
-
-
-    void Start()
+    private void Start()
     {
-        //Detta borde flyttas till en manager
         Physics2D.IgnoreLayerCollision(6, 8);
-
-       
         GetComponent<Rigidbody2D>().velocity = transform.right * bulletVelocity;
-
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision) /// TO DO: FIXA METODER / LOOPAR IST FÖR BA DUMPA KOD
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (!hasInstantiated && collision.gameObject.CompareTag("Enemy"))
         {
-            collision.GetComponent<IEnemy>().TakeDamage(dmg);
+            collision.GetComponent<IEnemy>()?.TakeDamage(dmg);
             Vector3 spawnPosition = collision.transform.position;
 
-            if (!hasInstantiated) //Kontrollera att vi inte spawnar för många instanser
+            // Instantiate 4 bombs
+
+            GameObject[] bombs = new GameObject[4];
+            for (int i = 0; i < bombs.Length; i++)
             {
-                //Skapa instanser av 4 bomber
-
-                GameObject[] bombList = new GameObject[4];
-                for (int i = 0; i< bombList.Length; i++)
-                {
-                    bombList[i] = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
-
-                }
-
-                hasInstantiated = true;
-
-                //Stänga av komponenter i bullet så det inte syns
-                DisableChildren();
-
-                //Stanna bullet
-                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0) ;
-                
-                
-
-                //Hämta alla rigidbody för bomberna
-                Rigidbody2D[] bombRbList = new Rigidbody2D[bombList.Length];
-                for (int i = 0; i< bombRbList.Length; i++)
-                {
-                    bombRbList[i] = bombList[i].GetComponent<Rigidbody2D>();
-
-                }
-
-                //Skjuta alla bomber åt varsitt håll
-                bombRbList[0].AddForce(new Vector3(shatterForce, 0) * shatterForce, ForceMode2D.Impulse);
-                bombRbList[1].AddForce(new Vector3(0, shatterForce) * shatterForce, ForceMode2D.Impulse);
-                bombRbList[2].AddForce(new Vector3(-shatterForce, 0) * shatterForce, ForceMode2D.Impulse);
-                bombRbList[3].AddForce(new Vector3(0, -shatterForce) * shatterForce, ForceMode2D.Impulse);
-
-                //Spränga bomberna
-                for (int i = 0; i < bombList.Length; i++)
-                {
-                    StartCoroutine(shatterAfterTime(bombList[i]));
-
-                }
-
-    
-           
+                bombs[i] = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
             }
 
-          
-        } 
+            // Make the main bomb stop moving & hide it 
+            BombStopAndHide();
+
+
+            //Store the forces to be applied to the bombs
+            Vector2[] forces = new Vector2[] { Vector2.right, Vector2.up, Vector2.left, Vector2.down }; // Same as the one i used before with y and x values of 1 and 0 etc, but this is more readable.
+
+            //Shoot the smaller bombs in different directiuons
+            for (int i = 0; i < bombs.Length; i++)
+            {
+                Rigidbody2D bombRb = bombs[i].GetComponent<Rigidbody2D>();
+                Vector2 force = forces[i] * shatterForce;
+                bombRb.AddForce(force, ForceMode2D.Impulse);
+            }
+
+            // Explode bombs 
+            for (int i = 0; i < bombs.Length; i++)
+            {
+                StartCoroutine(ExplodeAfterTime(bombs[i]));
+            }
+
+            hasInstantiated = true;
+        }
     }
-
-    IEnumerator shatterAfterTime(GameObject bombToExplode)
+    private IEnumerator ExplodeAfterTime(GameObject bombToExplode)
     {
+        //Wait before shatter
         yield return new WaitForSeconds(shatterTime);
-      
-        bombToExplode.GetComponent<BombShatterScript>().Explode();
 
-        yield return new WaitForSeconds(0.3f);
+        //Explode the bomb
+        bombToExplode?.GetComponent<BombShatterScript>()?.Explode(); //"Unity objects should not use null propagation" ?
+
+        //Wait so it can do damage before getting destroyed
+                yield return new WaitForSeconds(0.3f);
         Destroy(bombToExplode);
         Destroy(gameObject);
-        
     }
 
-
-    private void DisableChildren()
+   private void BombStopAndHide()
     {
+        if (TryGetComponent<Rigidbody2D>(out var rigidbody2D)) //UNT0026 "GetComponent allocates even if no component is found" så körde "potential fixes".
+        {
+            rigidbody2D.velocity = Vector2.zero;
+        }
+        //Hide the main bomb (including disabling all of its children objects)
         foreach (Transform child in transform)
+        {
             child.gameObject.SetActive(false);
+        }
     }
    
-
-    
-
 }
