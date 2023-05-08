@@ -29,6 +29,11 @@ public class LoadManager : MonoBehaviour
             PlayerPrefs.SetFloat(releasedTurretNyckel + "PosX", releasedTurret.transform.position.x);
             PlayerPrefs.SetFloat(releasedTurretNyckel + "PosY", releasedTurret.transform.position.y);
         }
+        //spara player boat position
+        CarButABoat carButABoat = FindObjectOfType<CarButABoat>();
+        PlayerPrefs.SetFloat("CarButABoatPosX", carButABoat.transform.position.x);
+        PlayerPrefs.SetFloat("CarButABoatPosY", carButABoat.transform.position.y);
+
     }
 
     
@@ -56,5 +61,11 @@ public class LoadManager : MonoBehaviour
             float posY = PlayerPrefs.GetFloat(releasedTurretNyckel + "PosY");
             GameObject releasedTurret = Instantiate(Resources.Load<GameObject>("TurretPrefab"), new Vector2(posX, posY), Quaternion.identity);
         }
+
+        //ladda main båtens position
+        CarButABoat carButABoat = FindObjectOfType<CarButABoat>();
+        float carButABoatPosX = PlayerPrefs.GetFloat("CarButABoatPosX");
+        float carButABoatPosY = PlayerPrefs.GetFloat("CarButABoatPosY");
+        carButABoat.transform.position = new Vector2(carButABoatPosX, carButABoatPosY);
     }
 }

@@ -6539,6 +6539,28 @@ Transform:
   m_Father: {fileID: 480930609}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1658427619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6282073730591028850, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
+  m_PrefabInstance: {fileID: 1684644214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1658427624
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658427619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &1684644214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6557,6 +6579,14 @@ PrefabInstance:
     - target: {fileID: 6282073730398014061, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282073730995601869, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
+      propertyPath: m_ShowToolkit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282073730995601869, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
+      propertyPath: m_ShowCustomSorter
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6282073730995601870, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
       propertyPath: m_RootOrder
@@ -6605,6 +6635,22 @@ PrefabInstance:
     - target: {fileID: 6282073730995601871, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
       propertyPath: m_Dithering
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282073730995601873, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282073730995601873, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
+      propertyPath: far clip plane
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282073730995601873, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
+      propertyPath: near clip plane
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282073730995601873, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
+      propertyPath: orthographic size
+      value: 12.55
       objectReference: {fileID: 0}
     - target: {fileID: 6282073730995601873, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
       propertyPath: m_CullingMask.m_Bits
