@@ -28,6 +28,10 @@ public class Island : MonoBehaviour {
             //Destroy(collision.gameObject.transform.root.gameObject);
 
             UpdateHealthText();
+            if (health % 5 == 0)
+            {
+                CinemachineCameraShake.Instance.ShakeCamera(5f, .1f);
+            }
             if (health <= 0) LoseGame();
         }
     }
