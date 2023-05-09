@@ -11,7 +11,7 @@ public class Island : MonoBehaviour {
     [SerializeField] GameObject GameOverPanel;
     [SerializeField] TMP_Text healthText;
     public int maxHealth;
-    private int health;
+    public int health;
     public static Island Instance;
 
     public Volume volume;
@@ -24,7 +24,7 @@ public class Island : MonoBehaviour {
     void Start() {
         volume.profile.TryGet(out chromaticAberration);
         Instance ??= this;
-        health = maxHealth;
+        health = PlayerPrefs.GetInt("BaseHealth", maxHealth);
         UpdateHealthText();
 
          
@@ -43,10 +43,19 @@ public class Island : MonoBehaviour {
 
             damageParticles.Emit(80);
             UpdateHealthText();
+            if (health % 5 == 0)
+            {
+                CinemachineCameraShake.Instance.ShakeCamera(5f, .1f);
+            }
             if (health <= 0) LoseGame();
         }
     }
 
+    public void EndRound()
+    {
+        PlayerPrefs.SetInt("BaseHealth", health);
+        PlayerPrefs.Save();
+    }
 
     public void LoseGame() { GameOverPanel.SetActive(true);
         Time.timeScale = 0f;
