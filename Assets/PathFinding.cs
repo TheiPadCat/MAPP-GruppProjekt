@@ -34,8 +34,13 @@ public class PathFinding : MonoBehaviour
         {
 
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, direction);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime); 
-            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            float angle = Quaternion.Angle(transform.rotation, toRotation);
+            float t = Mathf.Clamp01(angle / 180f); // interpolate faster when angle is smaller
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 0.2f);
+            //t* rotationSpeed *Time.fixedDeltaTime
+            //Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, direction);
+            //transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime); 
+            //transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
       
         Debug.Log(canMove);
