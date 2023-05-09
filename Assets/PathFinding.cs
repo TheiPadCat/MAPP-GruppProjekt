@@ -25,13 +25,6 @@ public class PathFinding : MonoBehaviour
         rigidbod = GetComponent<Rigidbody2D>();
     }
 
-    private void UpdateDirection()
-    {
-        if (canMove)
-        {
-            direction = (island.position - transform.position).normalized;
-        }
-    }
     private void FixedUpdate()
     {
         if (Vector2.Distance(island.position, transform.position) <= maxDistanceToIsland)
@@ -41,16 +34,40 @@ public class PathFinding : MonoBehaviour
         switch (canMove)
         {
             case true:
+
                 UpdateDirection();
                 AvoidObstacles();
                 MoveTowardsMiddle();
                 break;
             case false:
-                rigidbod.bodyType = RigidbodyType2D.Static;
+
+                MakeStatic();
+
                 break;
         }
 
     }
+    private void MoveInDirection(Vector2 lfDirection)
+    {
+        direction = Vector2.Lerp(direction, lfDirection, lerpSize).normalized;
+    }
+
+    private void UpdateDirection()
+    {
+        direction = (island.position - transform.position).normalized;
+    }
+    private void MakeStatic()
+    {
+        rigidbod.bodyType = RigidbodyType2D.Static;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, colliderSize);
+    }
+
+
 
     private void MoveTowardsMiddle()
     {
@@ -60,6 +77,7 @@ public class PathFinding : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 0.005f);
         rigidbod.velocity = direction * speed;
     }
+
     private void AvoidObstacles()
     {
         rockCollider = Physics2D.OverlapCircle(transform.position + direction, colliderSize, rockLayerMask);
@@ -85,16 +103,8 @@ public class PathFinding : MonoBehaviour
         direction.Normalize();
     }
 
-  private void MoveInDirection(Vector2 lfDirection)
-    {
-        direction = Vector2.Lerp(direction, lfDirection, lerpSize).normalized;
-    }
+  
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, colliderSize);
-    }
 }
 
 
