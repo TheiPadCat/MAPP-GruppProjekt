@@ -8,6 +8,7 @@ public class SnakeScript : MonoBehaviour
 
 
     public List<GameObject> trailList = new List<GameObject>();
+    public List<GameObject> releasedBoats = new List<GameObject>();
     [SerializeField] float dampTime;
     [SerializeField] float followDistance;
     //[SerializeField] GameObject pickParticles;
@@ -76,7 +77,11 @@ public class SnakeScript : MonoBehaviour
             trailList[i].transform.right = direction;
             trailList[i].transform.position = Vector3.SmoothDamp(trailList[i].transform.position, targetPosition, ref boatVelocity[i], dampTime);
 
-
+            //spara positionen av släppta båtar
+            for(int j = 0; i < releasedBoats.Count; i++)
+            {
+                 Vector2 pos = releasedBoats[i].transform.position;
+            }
         }
     }
 
@@ -84,9 +89,11 @@ public class SnakeScript : MonoBehaviour
     {
         if (trailList.Count > 0)
         {
-           //trailList[trailList.Count - 1].GetComponentInChildren<Turret>().ToggleLifeTime(true);
+            //trailList[trailList.Count - 1].GetComponentInChildren<Turret>().ToggleLifeTime(true);
+            GameObject releasedBoat = trailList[trailList.Count - 1];
             trailList[trailList.Count - 1].GetComponentInChildren<TimerController>().ToggleLifeTime(true);
-            trailList.Remove(trailList[trailList.Count - 1]);
+            trailList.Remove(releasedBoat);
+            releasedBoats.Add(releasedBoat);
             currentBoats--;
 
             UpdateBoatCounter();
