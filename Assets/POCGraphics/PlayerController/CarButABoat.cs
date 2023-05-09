@@ -17,6 +17,7 @@ public class CarButABoat : MonoBehaviour
 
     public bool joystickMode;
     public VirtualJoystick virtualJoystick;
+    private Vector2 lastInputDirection = Vector2.up;
 
     [SerializeField] int driftThreshhold;
     [SerializeField] ParticleSystem driftParticlesLeft;
@@ -28,6 +29,7 @@ public class CarButABoat : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     void FixedUpdate()
@@ -43,9 +45,12 @@ public class CarButABoat : MonoBehaviour
         }
         else if (joystickMode)
         {
-            direction = virtualJoystick.inputVector;
+
+            direction = virtualJoystick.inputVector.normalized;
             Vector2 speed = direction * acceleration;
             rb.AddForce(speed);
+            
+
         }
         else
         {
@@ -55,6 +60,7 @@ public class CarButABoat : MonoBehaviour
                 direction = (touchPos - rb.position).normalized;
                 Vector2 speed = direction * acceleration * Vector2.Distance(touchPos, rb.position);
                 rb.AddForce(speed);
+               
             }
             else
             {
@@ -67,9 +73,17 @@ public class CarButABoat : MonoBehaviour
             rb.velocity += rb.velocity.normalized * dashForce;
         }
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-        Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
-        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, steering));
+        if (virtualJoystick.isDragged)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+            rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, steering));
+        }
+        else
+        {
+            direction = rb.velocity.normalized;
+        }
+
 
         Vector2 forward = new Vector2(0.0f, 0.5f);
         float steeringRightAngle;
