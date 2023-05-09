@@ -1,62 +1,68 @@
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-using static TreeEditor.TreeEditorHelper;
-using static UnityEditor.FilePathAttribute;
 
 public class PathFinding : MonoBehaviour
 {
-    [SerializeField] Transform island;
-    List<Transform> path;
-    LayerMask rockLayerMask;
-    public float speed = 5.0f;
+    [SerializeField] private Transform island;
+    [SerializeField] private int maxDistanceToIsland;
+    [SerializeField] private float speed = 5.0f;
+
     private Vector3 direction;
-    Collider2D rockCollider;
-    [SerializeField] int maxDistanceToIsland;
+    private Collider2D rockCollider;
     private bool canMove = true;
     private Rigidbody2D rigidbod;
-    float colliderSize = 5f;
-    float lerpSize = 2;
-    [SerializeField] private float rotationSpeed = 2f;
+    private float colliderSize = 10f;
+    private float lerpSize = 10;
+    private LayerMask rockLayerMask;
+
     private void Start()
     {
+        rockLayerMask = LayerMask.GetMask("Obstacle");
         speed = 5f;
         rigidbod = GetComponent<Rigidbody2D>();
-        direction = (island.transform.position - transform.position).normalized;
     }
-    void FixedUpdate()
+
+    private void UpdateDirection()
     {
-
-        if (direction != Vector3.zero)
-        {
-
-            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, direction);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime); 
-            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-        }
-      
-        Debug.Log(canMove);
-
-        if (Vector2.Distance(island.transform.position, transform.position) <= maxDistanceToIsland)
-        {
-            canMove = false;    
-        }
-
         if (canMove)
         {
-            direction = (island.transform.position - transform.position).normalized;
+            direction = (island.position - transform.position).normalized;
         }
-        
-
-        if (canMove)
+    }
+    private void FixedUpdate()
+    {
+        if (Vector2.Distance(island.position, transform.position) <= maxDistanceToIsland)
         {
-            //MoveTowardsMiddle(); 
+            canMove = false;
+        }
+        switch (canMove)
+        {
+            case true:
+                UpdateDirection();
+                AvoidObstacles();
+                MoveTowardsMiddle();
+                break;
+            case false:
+                rigidbod.bodyType = RigidbodyType2D.Static;
+                break;
         }
 
-        rockCollider = Physics2D.OverlapCircle(transform.position + direction, colliderSize, LayerMask.GetMask("Obstacle"));
+    }
+
+    private void MoveTowardsMiddle()
+    {
+        Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, direction);
+        float angle = Quaternion.Angle(transform.rotation, toRotation);
+        float t = Mathf.Clamp01(angle / 180f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 0.005f);
+        rigidbod.velocity = direction * speed;
+    }
+    private void AvoidObstacles()
+    {
+        rockCollider = Physics2D.OverlapCircle(transform.position + direction, colliderSize, rockLayerMask);
 
         if (rockCollider != null)
         {
@@ -68,47 +74,27 @@ public class PathFinding : MonoBehaviour
 
             if (canMoveLeft)
             {
-                direction = Vector2.Lerp(direction, leftDirection, lerpSize).normalized;
-                // direction = leftDirection;
-
-                Debug.Log(leftDirection);
-                Debug.Log("Trying to move left");
+                MoveInDirection(leftDirection);
             }
             else if (canMoveRight)
             {
-                direction = Vector2.Lerp(direction, rightDirection, lerpSize).normalized;
-                //direction = rightDirection;
-                Debug.Log(rightDirection);
-                Debug.Log("Trying to move right");
+                MoveInDirection(rightDirection);
             }
-            else
-            {
-              //  Destroy(gameObject);
-            }
-
-            direction.Normalize();
         }
 
-
-        if (canMove)
-        {
-            rigidbod.velocity = direction * speed;
-        }
-        if (!canMove)
-        {
-            rigidbod.bodyType = RigidbodyType2D.Static;
-        }
+        direction.Normalize();
     }
 
+  private void MoveInDirection(Vector2 lfDirection)
+    {
+        direction = Vector2.Lerp(direction, lfDirection, lerpSize).normalized;
+    }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, colliderSize);
     }
-
- 
 }
-    
 
 
