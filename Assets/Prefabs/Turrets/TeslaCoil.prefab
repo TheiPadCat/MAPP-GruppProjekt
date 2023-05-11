@@ -133,9 +133,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.87
+  m_Radius: 6.704579
 --- !u!114 &3083124628004747804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   electricityParticles: {fileID: 0}
+  damage: 0.1
+  fireRate: 3
 --- !u!1 &1955083083738580092
 GameObject:
   m_ObjectHideFlags: 0
