@@ -35,9 +35,9 @@ public class ExplosiveBulletScript : MonoBehaviour
             collision.GetComponent<IEnemy>()?.TakeDamage(dmg);
             Vector3 spawnPosition = collision.transform.position;
 
-            // Instantiate 4 bombs
-
+            //Instantiate 4 bombs
             GameObject[] bombs = new GameObject[4];
+
             for (int i = 0; i < bombs.Length; i++)
             {
                 bombs[i] = Instantiate(explosivePrefab, spawnPosition, Quaternion.identity);
@@ -45,7 +45,6 @@ public class ExplosiveBulletScript : MonoBehaviour
 
             // Make the main bomb stop moving & hide it 
             BombStopAndHide();
-
 
             //Store the forces to be applied to the bombs
             Vector2[] forces = new Vector2[] { Vector2.right, Vector2.up, Vector2.left, Vector2.down }; // Same as the one i used before with y and x values of 1 and 0 etc, but this is more readable.
@@ -64,7 +63,6 @@ public class ExplosiveBulletScript : MonoBehaviour
             {
                 StartCoroutine(ExplodeAfterTime(bombs[i]));
             }
-
             hasInstantiated = true;
         }
     }
@@ -77,7 +75,8 @@ public class ExplosiveBulletScript : MonoBehaviour
         bombToExplode?.GetComponent<BombShatterScript>()?.Explode(); //"Unity objects should not use null propagation" ?
         
         //Wait so it can do damage before getting destroyed
-                yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.3f);
+
         Destroy(bombToExplode);
         Destroy(gameObject);
     }
@@ -94,5 +93,4 @@ public class ExplosiveBulletScript : MonoBehaviour
             child.gameObject.SetActive(false);
         }
     }
-   
 }

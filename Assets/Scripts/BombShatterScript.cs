@@ -13,7 +13,7 @@ public class BombShatterScript : MonoBehaviour
         {
             other.GetComponent<IEnemy>()?.TakeDamage(damage); // vem vet om detta någonsin kommer hända, men man kan aldrig vara säker ; ) så la till en null check ändå
             canHurtEnemy = false;
-        }
+        } 
     }
     public void Explode()
     {
@@ -21,4 +21,5 @@ public class BombShatterScript : MonoBehaviour
         explodeParticles.Emit(15);
         explodeParticles.transform.parent = null;
     }
+
 }

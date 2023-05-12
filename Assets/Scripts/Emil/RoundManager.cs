@@ -10,7 +10,7 @@ public class RoundManager : MonoBehaviour {
     public static roundEnd RoundEnd;
     public static roundBegin RoundBegin;
     public static RoundManager Instance;
-    public int RoundNumber { get; private set; }
+    public int RoundNumber { get; set; }
     public int KillsRequired { get; private set; }
     public int KillsThisRound { get; private set; }
     private class KillInfo { public int NeededKills, PerformedKills; }
