@@ -55,7 +55,6 @@ public class ExplosiveBulletScript : MonoBehaviour
                 Rigidbody2D bombRb = bombs[i].GetComponent<Rigidbody2D>();
                 Vector2 force = forces[i] * shatterForce;
                 bombRb.AddForce(force, ForceMode2D.Impulse);
-                bombRb.AddTorque(10, ForceMode2D.Impulse);
             }
 
             // Explode bombs 
@@ -63,6 +62,7 @@ public class ExplosiveBulletScript : MonoBehaviour
             {
                 StartCoroutine(ExplodeAfterTime(bombs[i]));
             }
+
             hasInstantiated = true;
         }
     }
@@ -72,8 +72,8 @@ public class ExplosiveBulletScript : MonoBehaviour
         yield return new WaitForSeconds(shatterTime);
 
         //Explode the bomb
-        bombToExplode?.GetComponent<BombShatterScript>()?.Explode(); //"Unity objects should not use null propagation" ?
-        
+        bombToExplode.GetComponent<BombShatterScript>()?.Explode(); //"Unity objects should not use null propagation" ?
+
         //Wait so it can do damage before getting destroyed
         yield return new WaitForSeconds(0.3f);
 
