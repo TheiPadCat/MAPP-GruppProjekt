@@ -27,8 +27,16 @@ public class DamageEffects : MonoBehaviour
     public void PlayFlash()
     {
          
-        flashCoroutine = StartCoroutine(Flashing());
+
+
+        //FICK EN NULLREF EXCEPTION HÄR NÅGON GÅNG FIXA SÅ DET INTE SKER
+  flashCoroutine = StartCoroutine(Flashing());
         
+      
+    
+        
+
+
 
     }
     

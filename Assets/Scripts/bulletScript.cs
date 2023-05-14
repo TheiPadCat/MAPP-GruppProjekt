@@ -8,6 +8,7 @@ public class bulletScript : MonoBehaviour
     private Transform target;
     public Vector3 direction;
     public int dmg;
+    public bool piercing;
 
 
     
@@ -24,11 +25,16 @@ public class bulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            collision.GetComponent<IEnemy>().TakeDamage(dmg);
-            Destroy(gameObject);
+     
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                collision.GetComponent<IEnemy>().TakeDamage(dmg);
+            if (piercing == false)
+            {
+                Destroy(gameObject);
+            }
         }
+       
         if(collision.gameObject.CompareTag("Border"))
         {
             Destroy(gameObject);

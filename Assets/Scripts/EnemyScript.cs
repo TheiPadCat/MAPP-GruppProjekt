@@ -54,7 +54,7 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
         deathTest.transform.parent = null;
         deathSplat.Play();
         deathStain.Play();
-        deathTest.Play();
+        deathTest.Play(); 
         
         if (drop) drop.DropLoot();
         Destroy(transform.root.gameObject);

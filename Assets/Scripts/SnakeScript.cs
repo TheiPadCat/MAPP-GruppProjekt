@@ -123,7 +123,7 @@ public class SnakeScript : MonoBehaviour
 
             if (collision.gameObject.CompareTag("Turret"))
             {
-                Debug.Log("pick up");
+                //Debug.Log("pick up");
 
                 if (!trailList.Contains(collision.gameObject))
                 {

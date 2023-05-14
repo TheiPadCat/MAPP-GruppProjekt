@@ -34,6 +34,10 @@ public class LoadManager : MonoBehaviour
         PlayerPrefs.SetFloat("CarButABoatPosX", carButABoat.transform.position.x);
         PlayerPrefs.SetFloat("CarButABoatPosY", carButABoat.transform.position.y);
 
+        //spara antal rundor
+        PlayerPrefs.SetInt("CurrentRound", RoundManager.Instance.RoundNumber);
+       
+
     }
 
     
@@ -67,5 +71,8 @@ public class LoadManager : MonoBehaviour
         float carButABoatPosX = PlayerPrefs.GetFloat("CarButABoatPosX");
         float carButABoatPosY = PlayerPrefs.GetFloat("CarButABoatPosY");
         carButABoat.transform.position = new Vector2(carButABoatPosX, carButABoatPosY);
+
+        //ladda antal rundor
+        RoundManager.Instance.RoundNumber = PlayerPrefs.GetInt("CurrentRound");
     }
 }

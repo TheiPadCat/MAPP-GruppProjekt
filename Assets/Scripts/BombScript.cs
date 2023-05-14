@@ -32,6 +32,7 @@ public class BombScript : MonoBehaviour
         Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, explosionRadius, enemyLayer);
         foreach(Collider2D collider in collider2Ds)
         {
+
          
             Debug.Log("TAKE DAMGAGE");
             collider.GetComponent<IEnemy>().TakeDamage(damage);
