@@ -17,8 +17,6 @@ public class ExplosiveTurretScript : MonoBehaviour
 
     [SerializeField] float turnSpeed;
 
-
-
     private CircleCollider2D scanArea;
     private List<Collider2D> targetList = new List<Collider2D>();
     [SerializeField] ParticleSystem sparkParticles;
@@ -28,48 +26,38 @@ public class ExplosiveTurretScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
-
-
-
         scanArea = GetComponent<CircleCollider2D>();
         scanArea.radius = rangeRadius;
 
         fireCoolDown = 0;
-
         currentLifeTime = maxLifeTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-
         scanArea.OverlapCollider(contactFilter, targetList);
 
         if (targetList.Count > 0)
         {
             FindTarget();
-
         }
+
         else
         {
             target = null;
         }
-
 
         if (target != null)
         {
             Vector3 direction = target.transform.position - transform.position;
             //   transform.right = direction;
             transform.right = Vector3.Lerp(transform.right, direction, Time.deltaTime * turnSpeed);
-           
-
         }
 
         if (fireCoolDown <= 0f && target != null)
         {
             Shoot();
-
             fireCoolDown = 1f / fireRate;
         }
 
@@ -91,7 +79,6 @@ public class ExplosiveTurretScript : MonoBehaviour
         target = targetList[0].transform;
         for (int i = 1; i < targetList.Count; i++)
         {
-
             //Siktar på fienden närmast basen
             if (Vector2.Distance(target.transform.position, baseIsland.position) > Vector2.Distance(targetList[i].transform.position, baseIsland.position))
             {

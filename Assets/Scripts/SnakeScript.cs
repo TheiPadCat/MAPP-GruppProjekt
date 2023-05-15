@@ -8,6 +8,7 @@ public class SnakeScript : MonoBehaviour
 
 
     public List<GameObject> trailList = new List<GameObject>();
+    public List<GameObject> releasedBoats = new List<GameObject>();
     [SerializeField] float dampTime;
     [SerializeField] float followDistance;
     //[SerializeField] GameObject pickParticles;
@@ -15,7 +16,7 @@ public class SnakeScript : MonoBehaviour
   
 
 
-    //[SerializeField] TMP_Text boatsText;
+    [SerializeField] TMP_Text boatsText;
     public int maxBoats;
     private int currentBoats;
 
@@ -76,7 +77,15 @@ public class SnakeScript : MonoBehaviour
             trailList[i].transform.right = direction;
             trailList[i].transform.position = Vector3.SmoothDamp(trailList[i].transform.position, targetPosition, ref boatVelocity[i], dampTime);
 
-
+            //spara positionen av släppta båtar
+            for(int j = 0; i < releasedBoats.Count; i++)
+            {
+                if(releasedBoats[i] != null )
+                {
+                    Vector2 pos = releasedBoats[i].transform.position;
+                }
+          
+            }
         }
     }
 
@@ -84,9 +93,11 @@ public class SnakeScript : MonoBehaviour
     {
         if (trailList.Count > 0)
         {
-           //trailList[trailList.Count - 1].GetComponentInChildren<Turret>().ToggleLifeTime(true);
+            //trailList[trailList.Count - 1].GetComponentInChildren<Turret>().ToggleLifeTime(true);
+            GameObject releasedBoat = trailList[trailList.Count - 1];
             trailList[trailList.Count - 1].GetComponentInChildren<TimerController>().ToggleLifeTime(true);
-            trailList.Remove(trailList[trailList.Count - 1]);
+            trailList.Remove(releasedBoat);
+            releasedBoats.Add(releasedBoat);
             currentBoats--;
 
             UpdateBoatCounter();
@@ -116,7 +127,7 @@ public class SnakeScript : MonoBehaviour
 
             if (collision.gameObject.CompareTag("Turret"))
             {
-                Debug.Log("pick up");
+                //Debug.Log("pick up");
 
                 if (!trailList.Contains(collision.gameObject))
                 {
@@ -165,6 +176,10 @@ public class SnakeScript : MonoBehaviour
 
     public void UpdateBoatCounter()
     {
-       // boatsText.text = currentBoats.ToString() + " / " + maxBoats.ToString();
+        if(boatsText != null)
+        {
+ boatsText.text = currentBoats.ToString() + " / " + maxBoats.ToString();
+        }
+       
     }
 }
