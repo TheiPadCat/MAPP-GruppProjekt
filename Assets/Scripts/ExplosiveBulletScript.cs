@@ -75,7 +75,9 @@ public class ExplosiveBulletScript : MonoBehaviour
         bombToExplode.GetComponent<BombShatterScript>()?.Explode(); //"Unity objects should not use null propagation" ?
 
         //Wait so it can do damage before getting destroyed
-        yield return new WaitForSeconds(0.3f);
+
+        //KOMMENTERADE UT DEN HÄR FÖR ATT DEN SKA FÖRSVINNA SAMTIDIGT SOM EFFECTER SPELAR /JEOL
+        //yield return new WaitForSeconds(0.3f);
 
         Destroy(bombToExplode);
         Destroy(gameObject);
