@@ -37,6 +37,7 @@ public class BombScript : MonoBehaviour
             Debug.Log("TAKE DAMGAGE");
             collider.GetComponent<IEnemy>().TakeDamage(damage);
         }
+        CinemachineCameraShake.Instance.ShakeCamera(5f, .1f);
         explosionParticles.Play();
         smokeParticles.Play();
         fireParticles.Play();

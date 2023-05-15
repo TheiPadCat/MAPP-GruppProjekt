@@ -8,14 +8,17 @@ public class EndOfRoundUI : MonoBehaviour {
     [SerializeField] private Button nextRoundBtn;
     [SerializeField] private Image panelImg;
     [SerializeField] TextMeshProUGUI endOfRoundText, roundAndKillText;
+  
     // Start is called before the first frame update
     void Start() {
+ 
         nextRoundBtn.onClick.AddListener(delegate { RoundManager.RoundBegin.Invoke(RoundManager.Instance.RoundNumber); Time.timeScale = 1; });
         RoundManager.RoundEnd += OnRoundEnd;
         RoundManager.RoundBegin += OnRoundStart;
     }
 
     private void Update() {
+     
         roundAndKillText.text = $"Round: {RoundManager.Instance.RoundNumber} \nKills: {RoundManager.Instance.KillsThisRound} / {RoundManager.Instance.KillsRequired}";
     }
 

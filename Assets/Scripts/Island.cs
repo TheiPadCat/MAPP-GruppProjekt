@@ -43,10 +43,14 @@ public class Island : MonoBehaviour {
 
             damageParticles.Emit(80);
             UpdateHealthText();
-            if (health % 5 == 0)
+
+            CinemachineCameraShake.Instance.ShakeCamera(10f, .2f);
+            //om basens nuvarande health modulo 5 är noll aka var femte minus i health och om basen inte har maxhealth
+            /*
+            if (health % 5 == 0 && health != maxHealth) 
             {
                 CinemachineCameraShake.Instance.ShakeCamera(5f, .1f);
-            }
+            }**/
             if (health <= 0) LoseGame();
         }
     }
