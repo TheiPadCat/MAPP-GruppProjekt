@@ -80,7 +80,11 @@ public class SnakeScript : MonoBehaviour
             //spara positionen av släppta båtar
             for(int j = 0; i < releasedBoats.Count; i++)
             {
-                 Vector2 pos = releasedBoats[i].transform.position;
+                if(releasedBoats[i] != null )
+                {
+                    Vector2 pos = releasedBoats[i].transform.position;
+                }
+          
             }
         }
     }
