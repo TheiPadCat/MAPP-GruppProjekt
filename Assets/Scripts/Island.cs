@@ -43,7 +43,7 @@ public class Island : MonoBehaviour {
 
             damageParticles.Emit(80);
             UpdateHealthText();
-            if (health % 5 == 0)
+            if (health % 5 == 0 && health != maxHealth) 
             {
                 CinemachineCameraShake.Instance.ShakeCamera(5f, .1f);
             }

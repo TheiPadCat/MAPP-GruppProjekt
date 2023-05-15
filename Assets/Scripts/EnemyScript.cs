@@ -34,7 +34,7 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
     public void Spawn() {
         // this could probs be used for spawn animations, events etc (if we want any)
         spawnParticles.Play();
-        transform.root.GetComponent<AIDestinationSetter>().target = Island.Instance.transform;
+        //transform.root.GetComponent<AIDestinationSetter>().target = Island.Instance.transform;
 
     }
 

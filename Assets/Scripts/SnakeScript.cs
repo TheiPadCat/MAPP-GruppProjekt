@@ -77,11 +77,15 @@ public class SnakeScript : MonoBehaviour
             trailList[i].transform.right = direction;
             trailList[i].transform.position = Vector3.SmoothDamp(trailList[i].transform.position, targetPosition, ref boatVelocity[i], dampTime);
 
-            //spara positionen av släppta båtar
-            for(int j = 0; i < releasedBoats.Count; i++)
+            if(releasedBoats == null)
             {
-                 Vector2 pos = releasedBoats[i].transform.position;
+                //spara positionen av släppta båtar
+                for (int j = 0; i < releasedBoats.Count; i++)
+                {
+                    Vector2 pos = releasedBoats[i].transform.position;
+                }
             }
+           
         }
     }
 
