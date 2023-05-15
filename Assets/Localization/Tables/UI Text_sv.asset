@@ -40,7 +40,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20555489992704
-    m_Localized: "\xC5h nej! Du f\xF6rlorade!"
+    m_Localized: Game over
     m_Metadata:
       m_Items: []
   - m_Id: 21109435916288

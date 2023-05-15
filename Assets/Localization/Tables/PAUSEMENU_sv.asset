@@ -16,12 +16,14 @@ MonoBehaviour:
     m_Code: sv
   m_SharedData: {fileID: 11400000, guid: f81d2d59519bb13479dbe19cba0086f1, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 4585992986121469957
   m_TableData:
   - m_Id: 7171072000
-    m_Localized: Basens HP
+    m_Localized: 'Basens HP:'
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 4585992986121469957
   - m_Id: 919121813504
     m_Localized: Pausa
     m_Metadata:
@@ -48,4 +50,8 @@ MonoBehaviour:
       m_Items: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4585992986121469957
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00e06dab01000000

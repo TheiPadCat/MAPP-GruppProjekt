@@ -32,11 +32,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 16421676244992
-    m_Localized: ABANDONAR
+    m_Localized: SALIR
     m_Metadata:
       m_Items: []
   - m_Id: 20555489992704
-    m_Localized: "\r\xA1Oh, no! \xA1Perdiste!"
+    m_Localized: "\r\xA1Oh, no! \xA1Game Over!"
     m_Metadata:
       m_Items: []
   - m_Id: 21109435916288
