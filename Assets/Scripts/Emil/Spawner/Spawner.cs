@@ -19,7 +19,8 @@ public class Spawner : MonoBehaviour {
     public static Spawner Instance { get; private set; }
     public delegate void objectSpawned(Type enemyType);
     public static objectSpawned ObjectSpawned; // subscribe to this event to do things when enemies spawn
-    public readonly Dictionary<Type, SpawnableInfo> SpawnInfo = new Dictionary<Type, SpawnableInfo>();
+    public readonly Dictionary<Type, List<SpawnableInfo>> SpawnInfoByType = new Dictionary<Type, List<SpawnableInfo>>();
+    public readonly HashSet<SpawnableInfo> spawnInfoRaw = new HashSet<SpawnableInfo>();
 
 
     // Start is called before the first frame update
@@ -35,11 +36,20 @@ public class Spawner : MonoBehaviour {
         SpawnableInfo currentSpawnableInfo = null;
 
         foreach (var spawnableSubtype in spawnableSubtypes) {
-            currentSpawnableInfo = Resources.Load<SpawnableInfo>($"SpawnerSettings/Current/{spawnableSubtype.Name}Settings");
+            currentSpawnableInfo = Resources.Load<SpawnableInfo>($"SpawnerSettings/Current/{spawnableSubtype.Name}0Settings");
             if (!currentSpawnableInfo) continue;
-            SpawnInfo.Add(spawnableSubtype, currentSpawnableInfo);
-            currentSpawnableInfo.Init();
+            int index = 1;
+            while (currentSpawnableInfo != null) {
+                if (!SpawnInfoByType.ContainsKey(spawnableSubtype)) SpawnInfoByType.Add(spawnableSubtype, new List<SpawnableInfo>());
+                SpawnInfoByType[spawnableSubtype].Add(currentSpawnableInfo);
+                spawnInfoRaw.Add(currentSpawnableInfo);
+                currentSpawnableInfo.Init();
+                currentSpawnableInfo = Resources.Load<SpawnableInfo>($"SpawnerSettings/Current/{spawnableSubtype.Name}{index}Settings");
+                index++;
+            }
+
         }
+
     }
 
     private void OnDestroy() { Instance = null; }

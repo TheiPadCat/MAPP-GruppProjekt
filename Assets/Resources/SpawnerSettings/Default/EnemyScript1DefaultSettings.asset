@@ -19,4 +19,4 @@ MonoBehaviour:
   NumberToAppearFirstRound: 8
   StartRound: 1
   EndRound: 0
-  prefab: {fileID: 2421930585921709494, guid: de82ab0294764f946901e1fb1ecc984b, type: 3}
+  prefab: {fileID: 2421930585921709494, guid: 1b892dcc1221bcc4aa072cb8a2da0ff0, type: 3}

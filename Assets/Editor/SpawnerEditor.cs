@@ -144,9 +144,6 @@ public class SpawnerEditor : Editor {
         foreach (var spawnableType in spawnableTypes) {
             for (int i = 0; !infoDict.ContainsKey(spawnableType.Name) ? i < 1 : i < infoDict[spawnableType.Name].Count; i++) {
 
-                // Check if already loaded to avoid loading from resources again
-                // if (infoDict.ContainsKey(spawnableType.Name)) try { currentSpawnInfo = infoDict[spawnableType.Name]; } catch { }
-
                 // If not, check if settings object exists in resources
                 if (!currentSpawnInfo) {
                     currentSpawnInfo = Resources.Load($"SpawnerSettings/Current/{spawnableType.Name}{i}Settings") as SpawnableInfo;
@@ -161,6 +158,9 @@ public class SpawnerEditor : Editor {
                     currentSpawnInfo =
                          CreateAndAddSettingsObject(spawnableType, infoDict.ContainsKey(spawnableType.Name) ? i + 1 : i, infoDict.ContainsKey(spawnableType.Name));
                 }
+
+                // have to do this here in case it's not created via the method above
+                currentSpawnInfo.TypeName = spawnableType.Name;
 
                 if (i == 0) EditorGUILayout.LabelField(spawnableType.Name, EditorStyles.whiteLargeLabel);
                 else EditorGUILayout.LabelField($"{spawnableType.Name} variant {i}", EditorStyles.boldLabel);
