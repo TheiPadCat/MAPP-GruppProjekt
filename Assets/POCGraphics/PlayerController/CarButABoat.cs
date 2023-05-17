@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CarButABoat : MonoBehaviour
 {
+    public void SetAcceleration(float value) { acceleration = value; }
+    public void SetSteering(float value) { steering = value; }
+    public void SetMaxVelocity(float value) { maxVelocity = value; }
+    public void SetDriftThreshold(int value) { driftThreshhold = value; }
     public float acceleration;
     public float steering;
     public bool usingMouseInput = true;
