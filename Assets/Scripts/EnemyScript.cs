@@ -44,8 +44,10 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) { // this is a bit OP
-        if (collision.gameObject.CompareTag("Player")) Die();
+      //  if (collision.gameObject.CompareTag("Player")) TakeDamage(collision.gameObject.GetComponent<CarButABoat>().dmg);
     }
+
+
 
 
     public void Die() {

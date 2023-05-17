@@ -8,10 +8,11 @@ public class CarButABoat : MonoBehaviour
     public void SetSteering(float value) { steering = value; }
     public void SetMaxVelocity(float value) { maxVelocity = value; }
     public void SetDriftThreshold(int value) { driftThreshhold = value; }
+    public void SetDmg(int value) { dmg = value; }
     public float acceleration;
     public float steering;
     public bool usingMouseInput = true;
-
+    public float dmg;
     public float dashForce = 5f;
 
     [SerializeField] float maxVelocity;
@@ -131,14 +132,14 @@ public class CarButABoat : MonoBehaviour
             rb.velocity = rb.velocity.normalized * maxVelocity;
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             rb.velocity = rb.velocity.normalized * maxVelocity;
         }
     }
+   
     private void Update()
     {
         float percent = rb.velocity.magnitude / maxVelocity;

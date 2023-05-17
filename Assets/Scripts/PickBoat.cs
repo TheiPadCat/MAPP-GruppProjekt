@@ -28,7 +28,7 @@ public class PickBoat : MonoBehaviour
 
     private void Start()
     {
-        //SetBoatType(boatType);
+       // SetBoatType(BoatType.Boat1);
     }
 
     public void SetBoat1()
@@ -48,20 +48,21 @@ public class PickBoat : MonoBehaviour
 
     public void SetBoatType(BoatType type)
     {
-
+       
         GetComponent<CanvasScript>().ToggleCharacterSelect();
         boatType = type;
-        Debug.Log("SWAP");
+        
         switch (type)
         {
             case BoatType.Boat1:
-                Debug.Log("BOAT1");
+             
                 player.GetComponent<SpriteRenderer>().sprite = boatSprite1;
                 carButABoat.SetAcceleration(25);
                 carButABoat.SetSteering(5);
-                carButABoat.SetMaxVelocity(20);
+                carButABoat.SetMaxVelocity(25);
                 carButABoat.SetDriftThreshold(35);
-                snakeScript.SetMaxBoats(6);
+                snakeScript.SetMaxBoats(3);
+                player.transform.localScale = Vector3.one;
                 break;
 
             case BoatType.Boat2:
@@ -71,6 +72,7 @@ public class PickBoat : MonoBehaviour
                 carButABoat.SetMaxVelocity(15);
                 carButABoat.SetDriftThreshold(35);
                 snakeScript.SetMaxBoats(12);
+                player.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 break;
 
             case BoatType.Boat3:
@@ -80,6 +82,7 @@ public class PickBoat : MonoBehaviour
                 carButABoat.SetMaxVelocity(30);
                 carButABoat.SetDriftThreshold(35);
                 snakeScript.SetMaxBoats(8);
+                player.transform.localScale = Vector3.one;
                 break;
         }
     }

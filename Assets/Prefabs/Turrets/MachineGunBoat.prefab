@@ -19702,7 +19702,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1955083083738580094}
   - component: {fileID: 6795684646216274442}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: MachineGunBoat
   m_TagString: Turret
   m_Icon: {fileID: 0}

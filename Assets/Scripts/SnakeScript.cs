@@ -56,9 +56,13 @@ public class SnakeScript : MonoBehaviour
         Debug.Log("SET MAX BOATS");
         if(value < trailList.Count)
         {
-            for(int i = trailList.Count; i <= value; i--)
+           
+            Debug.Log("TOO  MANY BOATS");
+            int a = trailList.Count;
+            for(int i = value; i < a; i++)
             {
-               // ReleaseBoat();
+                Debug.Log("RELEASE KRAKEN");
+                ReleaseBoat();
             }
         }
         maxBoats = value; 
@@ -90,6 +94,7 @@ public class SnakeScript : MonoBehaviour
             trailList[i].transform.right = direction;
             trailList[i].transform.position = Vector3.SmoothDamp(trailList[i].transform.position, targetPosition, ref boatVelocity[i], dampTime);
 
+         /*
             //spara positionen av släppta båtar
             for(int j = 0; i < releasedBoats.Count; i++)
             {
@@ -99,6 +104,7 @@ public class SnakeScript : MonoBehaviour
                 }
           
             }
+         */
         }
     }
 
