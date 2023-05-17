@@ -6179,7 +6179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &582148605
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6563,7 +6563,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &668177419
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7754,7 +7754,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 639317cdeeecd79429d234fd8bf25dc3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 798d657a9fa3a7b4193f29e147e67be9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8117,7 +8117,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 376096386, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
   m_PrefabInstance: {fileID: 1989692784}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1238260989}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d46dc10d46156c4e94bdc26cfec0cb3, type: 3}
@@ -8221,7 +8221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1116427492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8571,6 +8571,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef81063a1d55429418e8f43fd78f926c, type: 3}
+--- !u!1 &1238260989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2467837900458656109, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
+  m_PrefabInstance: {fileID: 1989692784}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1255819678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8739,9 +8744,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boatType: 0
   boatSprite1: {fileID: 21300000, guid: 639317cdeeecd79429d234fd8bf25dc3, type: 3}
-  boatSprite2: {fileID: 21300000, guid: c3391480e08d2af4ebb28a6edf3b32f3, type: 3}
+  boatSprite2: {fileID: 21300000, guid: 798d657a9fa3a7b4193f29e147e67be9, type: 3}
   boatSprite3: {fileID: 21300000, guid: 2957da4ed28ce994ca4f1da77e5b3412, type: 3}
-  playerSprite: {fileID: 1727826048}
+  player: {fileID: 1238260989}
 --- !u!1001 &1348197543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10274,7 +10279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c3391480e08d2af4ebb28a6edf3b32f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 798d657a9fa3a7b4193f29e147e67be9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10360,11 +10365,6 @@ PrefabInstance:
 --- !u!4 &1727826043 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2467837900458656105, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
-  m_PrefabInstance: {fileID: 1989692784}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &1727826048 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 2467837900458656106, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
   m_PrefabInstance: {fileID: 1989692784}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1727958717

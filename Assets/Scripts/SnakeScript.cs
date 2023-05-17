@@ -6,7 +6,7 @@ using UnityEngine;
 public class SnakeScript : MonoBehaviour
 {
 
-    public void SetMaxBoats(int value) { maxBoats = value; }
+ 
     public List<GameObject> trailList = new List<GameObject>();
     public List<GameObject> releasedBoats = new List<GameObject>();
     [SerializeField] float dampTime;
@@ -51,7 +51,20 @@ public class SnakeScript : MonoBehaviour
 
 
     }
-
+    public void SetMaxBoats(int value) 
+    {
+        Debug.Log("SET MAX BOATS");
+        if(value < trailList.Count)
+        {
+            for(int i = trailList.Count; i <= value; i--)
+            {
+               // ReleaseBoat();
+            }
+        }
+        maxBoats = value; 
+        UpdateBoatCounter(); 
+    
+    }
 
     private void FixedUpdate()
     {
