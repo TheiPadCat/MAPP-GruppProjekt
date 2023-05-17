@@ -200,6 +200,8 @@ public class SpawnerEditor : Editor {
                 currentSpawnInfo.EndRound = Mathf.Clamp(EditorGUILayout.IntField(new GUIContent("Stops appearing on round", "The round the spawnable type stops spawning on, leave at 0 for never"),
                 currentSpawnInfo.EndRound), 0, int.MaxValue);
 
+                currentSpawnInfo.spawnArea = EditorGUILayout.Vector2Field(new GUIContent("Spawn area min & max", "These values should represent in which sub-square of the map square the spawnable should spawn. For example -60, 60"), currentSpawnInfo.spawnArea);
+
                 bool shouldDisplay = i == infoDict[spawnableType.Name].Count - 1 && i != 0;
 
                 EditorGUILayout.BeginHorizontal();
