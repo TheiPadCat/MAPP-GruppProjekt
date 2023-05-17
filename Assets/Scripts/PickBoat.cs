@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PickBoat : MonoBehaviour
@@ -20,6 +21,8 @@ public class PickBoat : MonoBehaviour
     [SerializeField] Sprite boatSprite3;
     [SerializeField] GameObject player;
 
+
+    private bool justStarted;
     private void Awake()
     {
         carButABoat = player.GetComponent<CarButABoat>();
@@ -28,7 +31,8 @@ public class PickBoat : MonoBehaviour
 
     private void Start()
     {
-       // SetBoatType(BoatType.Boat1);
+       SetBoatType(BoatType.Boat1);
+        justStarted = true;
     }
 
     public void SetBoat1()
@@ -48,8 +52,11 @@ public class PickBoat : MonoBehaviour
 
     public void SetBoatType(BoatType type)
     {
-       
-        GetComponent<CanvasScript>().ToggleCharacterSelect();
+       if(justStarted)
+        {
+            GetComponent<CanvasScript>().ToggleCharacterSelect();
+        }
+      
         boatType = type;
         
         switch (type)
@@ -62,6 +69,7 @@ public class PickBoat : MonoBehaviour
                 carButABoat.SetMaxVelocity(25);
                 carButABoat.SetDriftThreshold(35);
                 snakeScript.SetMaxBoats(3);
+                carButABoat.SetDmg(1);
                 player.transform.localScale = Vector3.one;
                 break;
 
@@ -72,6 +80,7 @@ public class PickBoat : MonoBehaviour
                 carButABoat.SetMaxVelocity(15);
                 carButABoat.SetDriftThreshold(35);
                 snakeScript.SetMaxBoats(12);
+                carButABoat.SetDmg(3);
                 player.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 break;
 
@@ -82,6 +91,7 @@ public class PickBoat : MonoBehaviour
                 carButABoat.SetMaxVelocity(30);
                 carButABoat.SetDriftThreshold(35);
                 snakeScript.SetMaxBoats(8);
+                carButABoat.SetDmg(6);
                 player.transform.localScale = Vector3.one;
                 break;
         }
