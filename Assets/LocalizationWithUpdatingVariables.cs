@@ -13,11 +13,9 @@ public class LocalizationWithUpdatingVariables : MonoBehaviour
     public string baseHp;
     private GameObject island;
  
-
-
     void Start()
     {
-        island = GameObject.FindWithTag("Island");
+        island = GameObject.FindGameObjectWithTag("Island");
 
         // Kunde inte bara slänga in baseHp, pga det måste vara av typen objekt. Skapade en lista istället. "Cannot implicitly convert type 'string' to 'System.Collections.Generic.IList<object>"
         localStringHp.Arguments = new List<object> { baseHp };
