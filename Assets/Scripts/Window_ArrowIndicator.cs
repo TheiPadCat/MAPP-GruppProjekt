@@ -22,5 +22,8 @@ public class Window_ : MonoBehaviour
         Vector3 direction = (toPos - fromPos).normalized;
         float angle = UtilsClass.GetAngleFromVector(direction);
         poinerRectTransform.localEulerAngles = new Vector3(0, 0, angle);
+
+        Vector3 targetPosScreenPoint = Camera.main.WorldToScreenPoint(targetPosition);
+        bool isOffScren; //fortsätt här när du kommer hem! 
     }
 }
