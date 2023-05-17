@@ -24,6 +24,8 @@ public class Window_ : MonoBehaviour
         poinerRectTransform.localEulerAngles = new Vector3(0, 0, angle);
 
         Vector3 targetPosScreenPoint = Camera.main.WorldToScreenPoint(targetPosition);
-        bool isOffScren; //fortsätt här när du kommer hem! 
+        bool isOffScreen = targetPosScreenPoint.x <= 0 || targetPosScreenPoint.x >= Screen.width || targetPosScreenPoint.y <= 0 || targetPosScreenPoint.y >= Screen.height;
+        Debug.Log(isOffScreen + " " + targetPosScreenPoint);
+
     }
 }
