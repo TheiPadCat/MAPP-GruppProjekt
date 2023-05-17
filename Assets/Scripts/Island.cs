@@ -21,6 +21,8 @@ public class Island : MonoBehaviour {
 
     [SerializeField] ParticleSystem damageParticles;
 
+    [SerializeField] GameObject changeCharacterButton;
+
     void Start() {
         volume.profile.TryGet(out chromaticAberration);
         Instance ??= this;
@@ -52,6 +54,22 @@ public class Island : MonoBehaviour {
                 CinemachineCameraShake.Instance.ShakeCamera(5f, .1f);
             }**/
             if (health <= 0) LoseGame();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            changeCharacterButton.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            changeCharacterButton.SetActive(false);
         }
     }
 

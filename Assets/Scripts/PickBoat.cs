@@ -15,6 +15,10 @@ public class PickBoat : MonoBehaviour
 
     private CarButABoat carButABoat;
     private SnakeScript snakeScript;
+    [SerializeField] Sprite boatSprite1;
+    [SerializeField] Sprite boatSprite2;
+    [SerializeField] Sprite boatSprite3;
+    [SerializeField] SpriteRenderer playerSprite;
 
     private void Awake()
     {
@@ -27,6 +31,20 @@ public class PickBoat : MonoBehaviour
         SetBoatType(boatType);
     }
 
+    public void SetBoat1()
+    {
+        SetBoatType(BoatType.Boat1);
+    }
+    public void SetBoat2()
+    {
+        SetBoatType(BoatType.Boat2);
+    }
+
+    public void SetBoat3()
+    {
+        SetBoatType(BoatType.Boat3);
+    }
+
     public void SetBoatType(BoatType type)
     {
         boatType = type;
@@ -34,6 +52,7 @@ public class PickBoat : MonoBehaviour
         switch (type)
         {
             case BoatType.Boat1:
+                playerSprite.sprite = boatSprite1;
                 carButABoat.SetAcceleration(2);
                 carButABoat.SetSteering(2);
                 carButABoat.SetMaxVelocity(5);
@@ -42,6 +61,7 @@ public class PickBoat : MonoBehaviour
                 break;
 
             case BoatType.Boat2:
+                playerSprite.sprite = boatSprite2;
                 carButABoat.SetAcceleration(5);
                 carButABoat.SetSteering(5);
                 carButABoat.SetMaxVelocity(7);
@@ -50,6 +70,7 @@ public class PickBoat : MonoBehaviour
                 break;
 
             case BoatType.Boat3:
+                playerSprite.sprite = boatSprite2;
                 carButABoat.SetAcceleration(4);
                 carButABoat.SetSteering(8);
                 carButABoat.SetMaxVelocity(7);
