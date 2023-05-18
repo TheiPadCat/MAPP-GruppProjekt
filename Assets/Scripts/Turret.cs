@@ -122,7 +122,7 @@ public class Turret : MonoBehaviour
 
     private void Shoot()
     {
-        audio.pitch = Random.Range(0.5f, 1.5f);
+        audio.pitch = Random.Range(0.8f, 1f);
         audio.Play();
         GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         newBullet.transform.right = transform.right;

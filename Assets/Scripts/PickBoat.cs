@@ -9,7 +9,8 @@ public class PickBoat : MonoBehaviour
     {
         Boat1,  // snabbare färre turrets 
         Boat2,  // seg stor många turrets
-        Boat3  // seg rotation snabb
+        Boat3,  // seg rotation snabb
+        Boat4
     }
        
     public BoatType boatType;
@@ -19,6 +20,7 @@ public class PickBoat : MonoBehaviour
     [SerializeField] Sprite boatSprite1;
     [SerializeField] Sprite boatSprite2;
     [SerializeField] Sprite boatSprite3;
+    [SerializeField] Sprite boatSprite4;
     [SerializeField] GameObject player;
 
 
@@ -50,6 +52,12 @@ public class PickBoat : MonoBehaviour
        
     }
 
+    public void SetBoat4()
+    {
+        SetBoatType(BoatType.Boat4);
+
+    }
+
     public void SetBoatType(BoatType type)
     {
        if(justStarted)
@@ -68,30 +76,41 @@ public class PickBoat : MonoBehaviour
                 carButABoat.SetSteering(5);
                 carButABoat.SetMaxVelocity(25);
                 carButABoat.SetDriftThreshold(35);
-                snakeScript.SetMaxBoats(3);
-                carButABoat.SetDmg(1);
+                snakeScript.SetMaxBoats(6);
+                carButABoat.SetDmg(3);
                 player.transform.localScale = Vector3.one;
                 break;
 
             case BoatType.Boat2:
                 player.GetComponent<SpriteRenderer>().sprite = boatSprite2;
                 carButABoat.SetAcceleration(18);
-                carButABoat.SetSteering(5);
-                carButABoat.SetMaxVelocity(15);
+                carButABoat.SetSteering(3);
+                carButABoat.SetMaxVelocity(20);
                 carButABoat.SetDriftThreshold(35);
                 snakeScript.SetMaxBoats(12);
-                carButABoat.SetDmg(3);
+                carButABoat.SetDmg(4);
                 player.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 break;
 
             case BoatType.Boat3:
                 player.GetComponent<SpriteRenderer>().sprite = boatSprite3;
-                carButABoat.SetAcceleration(30);
-                carButABoat.SetSteering(2);
-                carButABoat.SetMaxVelocity(30);
+                carButABoat.SetAcceleration(28);
+                carButABoat.SetSteering(3);
+                carButABoat.SetMaxVelocity(50);
                 carButABoat.SetDriftThreshold(35);
-                snakeScript.SetMaxBoats(8);
-                carButABoat.SetDmg(6);
+                snakeScript.SetMaxBoats(5);
+                carButABoat.SetDmg(7);
+                player.transform.localScale = Vector3.one;
+                break;
+
+            case BoatType.Boat4:
+                player.GetComponent<SpriteRenderer>().sprite = boatSprite4;
+                carButABoat.SetAcceleration(100);
+                carButABoat.SetSteering(10);
+                carButABoat.SetMaxVelocity(40);
+                carButABoat.SetDriftThreshold(35);
+                snakeScript.SetMaxBoats(3);
+                carButABoat.SetDmg(1);
                 player.transform.localScale = Vector3.one;
                 break;
         }
