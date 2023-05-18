@@ -16,8 +16,7 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: ce800f42e49265d4e88f720b7639081e, type: 2}
   m_Metadata:
-    m_Items:
-    - rid: 8787170836179845120
+    m_Items: []
   m_TableData:
   - m_Id: 67644547072
     m_Localized: Hello
@@ -42,12 +41,7 @@ MonoBehaviour:
   - m_Id: 21109435916288
     m_Localized: Round {roundNumber} Cleared!
     m_Metadata:
-      m_Items:
-      - rid: 8787170836179845120
+      m_Items: []
   references:
     version: 2
-    RefIds:
-    - rid: 8787170836179845120
-      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
-      data:
-        m_Entries: 00e06dec32130000
+    RefIds: []
