@@ -10097,7 +10097,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 1
   maxLifeTime: 10
-  target: {fileID: 0}
   contactFilter:
     useTriggers: 0
     useLayerMask: 1
@@ -10146,7 +10145,7 @@ GameObject:
   - component: {fileID: 1955083083738580094}
   - component: {fileID: 6795684646216274442}
   m_Layer: 0
-  m_Name: ExplosiveTurret
+  m_Name: (OUTDATED)ExplosiveTurret
   m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
