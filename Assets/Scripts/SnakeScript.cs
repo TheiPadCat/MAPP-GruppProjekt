@@ -6,7 +6,7 @@ using UnityEngine;
 public class SnakeScript : MonoBehaviour
 {
 
-
+    public void SetMaxBoats(int value) { maxBoats = value; }
     public List<GameObject> trailList = new List<GameObject>();
     public List<GameObject> releasedBoats = new List<GameObject>();
     [SerializeField] float dampTime;
@@ -78,7 +78,7 @@ public class SnakeScript : MonoBehaviour
             trailList[i].transform.position = Vector3.SmoothDamp(trailList[i].transform.position, targetPosition, ref boatVelocity[i], dampTime);
 
             //spara positionen av släppta båtar
-            for(int j = 0; i < releasedBoats.Count; i++)
+            for(int j = 0; j < releasedBoats.Count; j++)
             {
                 if(releasedBoats[i] != null )
                 {
@@ -140,7 +140,7 @@ public class SnakeScript : MonoBehaviour
 
                     PlayPickParticles(collision.transform.position);
                     AddBoat();
-
+                    releasedBoats.Remove(collision.gameObject);
 
                 }
 
