@@ -8,6 +8,7 @@ using UnityEngine.Localization;
 
 public class LocalizationWithUpdatingVariables : MonoBehaviour
 {
+    /*
     [SerializeField] private LocalizedString localStringHp;
     [SerializeField] private TextMeshProUGUI textComponent;
     public string baseHp;
@@ -43,5 +44,6 @@ public class LocalizationWithUpdatingVariables : MonoBehaviour
     {
         localStringHp.StringChanged -= UpdateHpText;
     }
+    */
 }
 
