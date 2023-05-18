@@ -7,6 +7,11 @@ public class BombShatterScript : MonoBehaviour
 
     private bool canHurtEnemy = false;
 
+    private void Start()
+    {
+        GetComponent<Rigidbody2D>().AddTorque(500);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (canHurtEnemy && other.CompareTag("Enemy"))
