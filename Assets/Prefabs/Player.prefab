@@ -5010,7 +5010,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 798d657a9fa3a7b4193f29e147e67be9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4b070cdbe62008d43be8cd3793737467, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5075,6 +5075,7 @@ MonoBehaviour:
   acceleration: 25
   steering: 5
   usingMouseInput: 0
+  dmg: 0
   dashForce: 5
   maxVelocity: 20
   joystickMode: 1

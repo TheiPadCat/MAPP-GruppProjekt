@@ -118,6 +118,10 @@ public class SnakeScript : MonoBehaviour
             trailList.Remove(releasedBoat);
             releasedBoats.Add(releasedBoat);
             currentBoats--;
+            if( releasedBoat.GetComponentInChildren<BombScript>() != null )
+            {
+                releasedBoat.GetComponentInChildren<BombScript>().Charge();
+            }
 
             UpdateBoatCounter();
         }

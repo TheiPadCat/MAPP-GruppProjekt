@@ -12,6 +12,7 @@ public class BombScript : MonoBehaviour
     [SerializeField] ParticleSystem fireParticles;
     [SerializeField] ParticleSystem waveParticles;
     [SerializeField] ParticleSystem flashParticles;
+    [SerializeField] ParticleSystem suckoMode;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,10 @@ public class BombScript : MonoBehaviour
         
     }
 
-
+    public void Charge()
+    {
+        suckoMode.Play();
+    }
 
     public void Explode()
     {
