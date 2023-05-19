@@ -19691,7 +19691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e8830291d93394fa47ed0f6e8fb118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLifeTime: 100
+  maxLifeTime: 50
   hpSlider: {fileID: 4126356187623228652}
 --- !u!82 &5439688816938080014
 AudioSource:
@@ -19700,7 +19700,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1955083083664814913}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: afb7a503764f4734cbf024b779b6a3ad, type: 3}

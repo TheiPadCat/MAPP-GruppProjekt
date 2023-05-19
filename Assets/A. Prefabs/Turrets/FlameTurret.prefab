@@ -5090,7 +5090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e8830291d93394fa47ed0f6e8fb118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLifeTime: 10
+  maxLifeTime: 50
   hpSlider: {fileID: 4960946951170831860}
 --- !u!114 &6292202006835071751
 MonoBehaviour:
@@ -5126,7 +5126,7 @@ MonoBehaviour:
   fireParticles: {fileID: 3526317348559193633}
   smokeParticles: {fileID: 9050847533263427489}
   maxDamage: 5
-  damageRate: 1
+  damageRate: 0.5
 --- !u!1 &7421982068233526080
 GameObject:
   m_ObjectHideFlags: 0
