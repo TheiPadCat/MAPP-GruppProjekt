@@ -9,6 +9,7 @@ TagManager:
   - Supply
   - Bullet
   - Border
+  - Island
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - Pickup
   - Minimap
   - Obstacle
-  - 
-  - 
+  - EnemyCollision
+  - Turret
   - 
   - Wall
   - 

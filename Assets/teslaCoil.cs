@@ -44,7 +44,8 @@ public class teslaCoil : MonoBehaviour
            List<Collider2D> tempList = new List<Collider2D>(enemiesInRange);
             foreach (Collider2D enemy in tempList)
          {
-                if(enemy != null)
+               
+                if (enemy.GetComponentInChildren<IEnemy>() != null)
                 {
                     enemy.GetComponentInChildren<IEnemy>().TakeDamage(damage);
 
@@ -59,15 +60,17 @@ public class teslaCoil : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision  )
     {
-        if(collision.gameObject.CompareTag("Enemy"))
+        if(collision.gameObject.CompareTag("Enemy") && !collision.isTrigger)
         {
+       
+
             enemiesInRange.Add(collision);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && !collision.isTrigger)
         {
             enemiesInRange.Remove(collision);
         }

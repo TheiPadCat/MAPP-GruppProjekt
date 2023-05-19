@@ -5,7 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-
+using JetBrains.Annotations;
 
 public class Island : MonoBehaviour {
     [SerializeField] GameObject GameOverPanel;
@@ -13,6 +13,7 @@ public class Island : MonoBehaviour {
     public int maxHealth;
     public int health;
     public static Island Instance;
+
 
     public Volume volume;
     private ChromaticAberration chromaticAberration;
@@ -27,8 +28,8 @@ public class Island : MonoBehaviour {
         volume.profile.TryGet(out chromaticAberration);
         Instance ??= this;
         health = PlayerPrefs.GetInt("BaseHealth", maxHealth);
-        UpdateHealthText();
-
+      
+        
          
     }
 
@@ -36,6 +37,8 @@ public class Island : MonoBehaviour {
         if (collision.gameObject.CompareTag("Enemy")) {
             health -= 1;
 
+            //Literally en rad kod som gör att mobilen vibrerar, inte anpassad till olika mobiler men vi får testa och se om det blir whack med vissa //Lova : )
+            Handheld.Vibrate();
             collision.gameObject.GetComponent<EnemyScript>().Die();
 
             //Destroy(collision.gameObject.transform.root.gameObject);
@@ -44,7 +47,7 @@ public class Island : MonoBehaviour {
             // globalVolume.GetComponent<ChromaticAberration>().intensity = (health / maxHealth)
 
             damageParticles.Emit(80);
-            UpdateHealthText();
+          //  UpdateHealthText();
 
             CinemachineCameraShake.Instance.ShakeCamera(10f, .2f);
             //om basens nuvarande health modulo 5 är noll aka var femte minus i health och om basen inte har maxhealth
@@ -82,8 +85,12 @@ public class Island : MonoBehaviour {
     public void LoseGame() { GameOverPanel.SetActive(true);
         Time.timeScale = 0f;
     }
-   
-    private void UpdateHealthText() { healthText.text = "Base HP: " + health.ToString(); }
+    public string GetCurrentHealthAsString()
+    {
+        return health.ToString();
+    }
+
+    // private void UpdateHealthText() {  }
     private void OnDestroy() { Instance = null; }
     private void OnEnable() { Instance ??= this; }
     private void OnDisable() { Instance = null; }
