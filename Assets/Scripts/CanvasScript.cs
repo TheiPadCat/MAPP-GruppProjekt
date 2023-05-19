@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class CanvasScript : MonoBehaviour
 {
     [SerializeField] GameObject pausePanel;
+    [SerializeField] GameObject characterPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +45,21 @@ public class CanvasScript : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void ToggleCharacterSelect()
+    {
+        if(characterPanel.active == true)
+        {
+            characterPanel.SetActive(false);
+            Time.timeScale = 1;
+        }
+        else
+        {
+            characterPanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+
+    }
+    
 
     /*
     public void TogglePause(bool toggle)

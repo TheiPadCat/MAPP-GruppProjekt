@@ -4975,7 +4975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7402449200950130022}
   - component: {fileID: 2581704768163455762}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: FlameTurret
   m_TagString: Turret
   m_Icon: {fileID: 0}

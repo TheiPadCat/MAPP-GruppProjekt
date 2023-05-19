@@ -14,22 +14,22 @@ public class RoundManager : MonoBehaviour {
     public int KillsRequired { get; private set; }
     public int KillsThisRound { get; private set; }
     private class KillInfo { public int NeededKills, PerformedKills; }
-    private Dictionary<Type, KillInfo> killsThisRoundByType = new Dictionary<Type, KillInfo>();
+    private Dictionary<SpawnableInfo, KillInfo> killsThisRoundByType = new Dictionary<SpawnableInfo, KillInfo>();
 
 
     // Start is called before the first frame update
     void Start() {
         Instance ??= this;
 
-        foreach (var spawnableType in Spawner.Instance.SpawnInfo.Keys)
-            if (typeof(IEnemy).IsAssignableFrom(spawnableType))
-                killsThisRoundByType.Add(spawnableType, new KillInfo() { NeededKills = Spawner.Instance.SpawnInfo[spawnableType].NumberToAppearThisRound, PerformedKills = 0 });
-
+        foreach (var spawnInfo in Spawner.Instance.spawnInfoRaw) {
+            if (typeof(IEnemy).IsAssignableFrom(Type.GetType(spawnInfo.TypeName)))
+                killsThisRoundByType.Add(spawnInfo, new KillInfo() { NeededKills = spawnInfo.NumberToAppearThisRound, PerformedKills = 0 });
+        }
 
         RoundNumber = 1;
         RoundBegin += OnRoundBegin; // after the invoke so it doesn't run twice unecessarily
         RoundEnd += OnRoundEnd;
-        IEnemy.Death += OnEnemyDeath; 
+        IEnemy.Death += OnEnemyDeath;
         RoundBegin.Invoke(RoundNumber);
     }
 
@@ -38,9 +38,14 @@ public class RoundManager : MonoBehaviour {
         return true;
     }
 
-    private void OnEnemyDeath(Type enemyType) {
-        killsThisRoundByType[enemyType].PerformedKills++;
-        KillsThisRound++;
+    private void OnEnemyDeath(Type enemyType, GameObject prefab) {
+        // this is very ugly, but I don't see any other way of doing it with the current system
+        foreach (var entry in killsThisRoundByType) {
+            if (prefab.name == $"{entry.Key.prefab.name}(Clone)") {
+                entry.Value.PerformedKills++;
+                KillsThisRound++;
+            }
+        }
         if (IsRoundOver()) {
             RoundEnd.Invoke(RoundNumber);
             RoundNumber++;
@@ -52,7 +57,7 @@ public class RoundManager : MonoBehaviour {
         KillsRequired = 0;
         foreach (var enemyType in killsThisRoundByType) {
             enemyType.Value.PerformedKills = 0;
-            enemyType.Value.NeededKills = Spawner.Instance.SpawnInfo[enemyType.Key].NumberToAppearThisRound;
+            enemyType.Value.NeededKills = enemyType.Key.NumberToAppearThisRound;
             KillsRequired += enemyType.Value.NeededKills;
         }
     }

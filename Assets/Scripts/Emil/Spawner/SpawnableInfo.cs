@@ -15,6 +15,7 @@ public class SpawnableInfo : ScriptableObject {
     public int NumberToAppearFirstRound, StartRound, EndRound;
     public int NumberToAppearThisRound { get; set; }
     public GameObject prefab;
+    public Vector2 spawnArea;
     private ISpawnable spawnable;
     private int activeInstances, roundNumber;
     private Coroutine instantiator;
@@ -30,10 +31,10 @@ public class SpawnableInfo : ScriptableObject {
 
                 // ensures stuff doesn't spawn in walls
                 // TODO, add option to change size of random area. Make spawning more dynamic than random
-                spawnPos = new Vector3(UnityEngine.Random.Range(-60, 60), UnityEngine.Random.Range(-60, 60), 0);
+                spawnPos = new Vector3(UnityEngine.Random.Range(spawnArea.x, spawnArea.y), UnityEngine.Random.Range(spawnArea.x, spawnArea.y), 0);
                 while (Physics2D.OverlapBox(spawnPos, Vector2.one, 0f, LayerMask.GetMask(layerNames)) != null)
-                    spawnPos = new Vector3(UnityEngine.Random.Range(-60, 60), UnityEngine.Random.Range(-60, 60), 0);
-                
+                    spawnPos = new Vector3(UnityEngine.Random.Range(spawnArea.x, spawnArea.y), UnityEngine.Random.Range(spawnArea.x, spawnArea.y), 0);
+
                 GameObject temp = Instantiate(prefab, spawnPos, Quaternion.identity) as GameObject;
                 if (Spawner.ObjectSpawned != null) Spawner.ObjectSpawned.Invoke(SpawnableType);
                 spawnable.Spawn();

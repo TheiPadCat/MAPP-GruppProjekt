@@ -27,7 +27,7 @@ public class Turret : MonoBehaviour
     [SerializeField] ParticleSystem smokeParticles;
     [SerializeField] ParticleSystem ExplosionParticles;
     private float fireCoolDown;
-
+    private AudioSource audio;
 
 
     
@@ -35,6 +35,7 @@ public class Turret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audio = GetComponent<AudioSource>();
        
        baseIsland = GameObject.Find("Island").transform;
 
@@ -121,6 +122,13 @@ public class Turret : MonoBehaviour
 
     private void Shoot()
     {
+        if(audio != null)
+        {
+            audio.pitch = Random.Range(0.8f, 1f);
+            audio.Play();
+
+        }
+   
         GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         newBullet.transform.right = transform.right;
       
