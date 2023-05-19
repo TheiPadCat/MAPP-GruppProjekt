@@ -38,7 +38,7 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
             
             float maxDistance = 0.5f;
             float factor = Mathf.Clamp01(distanceFromCenter / maxDistance);
-            Debug.Log(factor);
+           // Debug.Log(factor);
             inputVector = new Vector2(localPosition.x, localPosition.y) * factor;
             lastRotation = trans.transform.rotation;
 

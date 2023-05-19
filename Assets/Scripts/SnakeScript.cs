@@ -6,7 +6,7 @@ using UnityEngine;
 public class SnakeScript : MonoBehaviour
 {
 
-    public void SetMaxBoats(int value) { maxBoats = value; }
+ 
     public List<GameObject> trailList = new List<GameObject>();
     public List<GameObject> releasedBoats = new List<GameObject>();
     [SerializeField] float dampTime;
@@ -51,7 +51,24 @@ public class SnakeScript : MonoBehaviour
 
 
     }
-
+    public void SetMaxBoats(int value) 
+    {
+        Debug.Log("SET MAX BOATS");
+        if(value < trailList.Count)
+        {
+           
+            Debug.Log("TOO  MANY BOATS");
+            int a = trailList.Count;
+            for(int i = value; i < a; i++)
+            {
+                Debug.Log("RELEASE KRAKEN");
+                ReleaseBoat();
+            }
+        }
+        maxBoats = value; 
+        UpdateBoatCounter(); 
+    
+    }
 
     private void FixedUpdate()
     {
@@ -77,6 +94,7 @@ public class SnakeScript : MonoBehaviour
             trailList[i].transform.right = direction;
             trailList[i].transform.position = Vector3.SmoothDamp(trailList[i].transform.position, targetPosition, ref boatVelocity[i], dampTime);
 
+         /*
             //spara positionen av släppta båtar
             for(int j = 0; j < releasedBoats.Count; j++)
             {
@@ -86,6 +104,7 @@ public class SnakeScript : MonoBehaviour
                 }
           
             }
+         */
         }
     }
 
@@ -99,6 +118,10 @@ public class SnakeScript : MonoBehaviour
             trailList.Remove(releasedBoat);
             releasedBoats.Add(releasedBoat);
             currentBoats--;
+            if( releasedBoat.GetComponentInChildren<BombScript>() != null )
+            {
+                releasedBoat.GetComponentInChildren<BombScript>().Charge();
+            }
 
             UpdateBoatCounter();
         }

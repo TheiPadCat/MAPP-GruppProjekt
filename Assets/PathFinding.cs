@@ -23,6 +23,7 @@ public class PathFinding : MonoBehaviour
         rockLayerMask = LayerMask.GetMask("Obstacle");
         speed = 5f;
         rigidbod = GetComponent<Rigidbody2D>();
+        island = Island.Instance.transform;
     }
 
     private void FixedUpdate()

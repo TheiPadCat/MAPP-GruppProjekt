@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Pathfinding;
+using UnityEngine;
 
 /* 
 TODO:
@@ -44,33 +44,35 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) { // this is a bit OP
-        if (collision.gameObject.CompareTag("Player")) Die();
+      //  if (collision.gameObject.CompareTag("Player")) TakeDamage(collision.gameObject.GetComponent<CarButABoat>().dmg);
     }
 
 
+
+
     public void Die() {
+        IEnemy.Death.Invoke(GetType(), transform.root.gameObject);
+
         deathSplat.transform.parent = null;
         deathStain.transform.parent = null;
         deathTest.transform.parent = null;
         deathSplat.Play();
         deathStain.Play();
-        deathTest.Play(); 
-        
+        deathTest.Play();
+
         if (drop) drop.DropLoot();
         Destroy(transform.root.gameObject);
-        IEnemy.Death.Invoke(GetType());
     }
 
     public void TakeDamage(float dmg) {
         currentHealth -= dmg;
         if (currentHealth <= 0) Die();
 
-      
 
-        if (GetComponent<DamageEffects>() != null)
-        {
+
+        if (GetComponent<DamageEffects>() != null) {
             GetComponent<DamageEffects>().PlayFlash();
         }
-       
+
     }
 }

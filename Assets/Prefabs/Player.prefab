@@ -5010,7 +5010,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 639317cdeeecd79429d234fd8bf25dc3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a7df0b08dbbc7c640857b1b7776a12ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5055,6 +5055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trailList: []
+  releasedBoats: []
   dampTime: 0.1
   followDistance: 1.5
   boatsText: {fileID: 0}
@@ -5074,6 +5075,7 @@ MonoBehaviour:
   acceleration: 25
   steering: 5
   usingMouseInput: 0
+  dmg: 0
   dashForce: 5
   maxVelocity: 20
   joystickMode: 1

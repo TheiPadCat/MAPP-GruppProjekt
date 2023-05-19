@@ -23,7 +23,7 @@ public class CinemachineCameraShake : MonoBehaviour
 
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
         shakeTimer = time;
-        Debug.Log("Nu skakar det :)");
+        //Debug.Log("Nu skakar det :)");
     }
     
     private void Update()

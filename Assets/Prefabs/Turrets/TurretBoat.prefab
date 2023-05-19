@@ -135,7 +135,7 @@ MonoBehaviour:
   fireRate: 1.5
   maxLifeTime: 10
   contactFilter:
-    useTriggers: 0
+    useTriggers: 1
     useLayerMask: 1
     useDepth: 0
     useOutsideDepth: 0
@@ -195,7 +195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1955083083738580094}
   - component: {fileID: 6795684646216274442}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: TurretBoat
   m_TagString: Turret
   m_Icon: {fileID: 0}

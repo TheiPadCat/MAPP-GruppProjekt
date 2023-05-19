@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1955083083664814912}
   - component: {fileID: 3083124628004747804}
   - component: {fileID: 3701498154873363221}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1955083083738580094}
   - component: {fileID: 6795684646216274442}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: TeslaCoil
   m_TagString: Turret
   m_Icon: {fileID: 0}
