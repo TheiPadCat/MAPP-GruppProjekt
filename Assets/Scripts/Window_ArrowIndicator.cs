@@ -5,7 +5,7 @@ using CodeMonkey.Utils;
 
 public class Window_ArrowIndicator : MonoBehaviour
 {
-    [SerializeField] Camera uiCamera;
+    //[SerializeField] Camera uiCamera;
     private Vector3 targetPosition;
     private RectTransform poinerRectTransform;
 
@@ -49,14 +49,14 @@ public class Window_ArrowIndicator : MonoBehaviour
                 cappedTargetScreenPos.y = Screen.height - borderSize;
             }
 
-            Vector3 pointerWorldPosition = uiCamera.ScreenToWorldPoint(cappedTargetScreenPos);
+            Vector3 pointerWorldPosition = Camera.main.ScreenToWorldPoint(cappedTargetScreenPos);
             poinerRectTransform.position = pointerWorldPosition;
             poinerRectTransform.localPosition = new Vector3(poinerRectTransform.localPosition.x, poinerRectTransform.localPosition.y, 0f);
 
         }
         else
         {
-            Vector3 pointerWorldPos = uiCamera.ScreenToWorldPoint(targetPosScreenPoint);
+            Vector3 pointerWorldPos = Camera.main.ScreenToWorldPoint(targetPosScreenPoint);
             poinerRectTransform.position = pointerWorldPos;
             poinerRectTransform.localPosition = new Vector3(poinerRectTransform.localPosition.x, poinerRectTransform.localPosition.y, 0f);
         }
