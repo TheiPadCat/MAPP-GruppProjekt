@@ -153,7 +153,7 @@ public class SnakeScript : MonoBehaviour
                 //Debug.Log("pick up");
 
 
-                /*
+                
                 if (!trailList.Contains(collision.gameObject))
                 {
                     trailList.Add(collision.gameObject);
@@ -169,7 +169,7 @@ public class SnakeScript : MonoBehaviour
 
                 }
 
-                */
+                
 
             }
 
