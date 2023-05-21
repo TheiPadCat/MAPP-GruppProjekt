@@ -5061,10 +5061,6 @@ MonoBehaviour:
   turretList:
   - {fileID: 1955083083738580092, guid: a4fd38dadd8c04b4abab4c98f344b43e, type: 3}
   - {fileID: 1955083083738580092, guid: 43aef259bbd420442a10a342e6ef5842, type: 3}
-  - {fileID: 7402449200950130020, guid: 05eb5c3ceec18f24ca05b231b027127b, type: 3}
-  - {fileID: 1955083083738580092, guid: e1cddb59dba76a5469874a49b57b73c4, type: 3}
-  - {fileID: 1955083083738580092, guid: a02b92c61e530fd42bebe6ea1173f381, type: 3}
-  - {fileID: 1955083083738580092, guid: f8df220cec6f84940bff7cb1bfb37858, type: 3}
   pickupParticle: {fileID: 7151947441431243252}
 --- !u!61 &5912148646550545172
 BoxCollider2D:
