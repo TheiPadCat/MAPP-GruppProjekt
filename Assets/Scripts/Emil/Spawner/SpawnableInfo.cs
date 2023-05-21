@@ -36,6 +36,7 @@ public class SpawnableInfo : ScriptableObject {
                     spawnPos = new Vector3(UnityEngine.Random.Range(spawnArea.x, spawnArea.y), UnityEngine.Random.Range(spawnArea.x, spawnArea.y), 0);
 
                 GameObject temp = Instantiate(prefab, spawnPos, Quaternion.identity) as GameObject;
+                temp.name = prefab.name + "(Clone)";
                 if (Spawner.ObjectSpawned != null) Spawner.ObjectSpawned.Invoke(SpawnableType);
                 spawnable.Spawn();
                 activeInstances++;
