@@ -56,8 +56,9 @@ public class BombScript : MonoBehaviour
 
             Debug.Log("TAKE DAMGAGE");
             collider.GetComponent<IEnemy>().TakeDamage(damage);
-            Destroy(transform.root.gameObject);
+           
         }
+        Destroy(transform.root.gameObject);
     }
 
     private void OnDrawGizmos()
