@@ -30,6 +30,7 @@ public class TimerController : MonoBehaviour
                 if (GetComponent<BombScript>() != null)
                 {
                     GetComponent<BombScript>().Explode();
+                    return;
                 }
                 Destroy(transform.root.gameObject);
             }
