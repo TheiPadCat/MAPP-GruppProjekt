@@ -33,7 +33,14 @@ public class LeaderboardManager : MonoBehaviour
         AddEntry(newEntry);
         UpdateUI();
     }
+    public void ClearLeaderboard()
+    {
+        // Clear the list of leaderboard entries
+        leaderboardEntries.Clear();
 
+        // Save the (now empty) leaderboard
+        SaveLeaderboard();
+    }
     public void AddTestEntry()
     {
         AddNewEntry("Player", UnityEngine.Random.Range(1, 1000));

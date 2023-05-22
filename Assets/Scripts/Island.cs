@@ -13,6 +13,9 @@ public class Island : MonoBehaviour {
     public int maxHealth;
     public int health;
     public static Island Instance;
+    public string playerName;
+
+    public LeaderboardManager leaderBoardManager;
 
     public Volume volume;
     private ChromaticAberration chromaticAberration;
@@ -62,6 +65,7 @@ public class Island : MonoBehaviour {
     }
 
     public void LoseGame() { GameOverPanel.SetActive(true);
+        leaderBoardManager.AddNewEntry(playerName, RoundManager.Instance.RoundNumber);
         Time.timeScale = 0f;
     }
    
