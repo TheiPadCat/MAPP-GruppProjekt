@@ -17,6 +17,7 @@ public class Package : MonoBehaviour, ISpawnable {
         pickupParticle.transform.parent = null;
         pickupParticle.Play();
         return newTurret;
+       
     }
 
     public void Spawn() {

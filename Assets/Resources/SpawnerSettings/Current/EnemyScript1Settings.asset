@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385ef82bd9b44984a92443c42ed92161, type: 3}
   m_Name: EnemyScript1Settings
   m_EditorClassIdentifier: 
-  TypeName: 
-  InitialSpawnChance: 0.5
-  SpawnChanceIncreasePerRound: 0.15
-  SpawnRate: 2
-  NumberToAppearFirstRound: 8
-  StartRound: 1
+  TypeName: EnemyScript
+  InitialSpawnChance: 0
+  SpawnChanceIncreasePerRound: 0
+  SpawnRate: 0
+  NumberToAppearFirstRound: 0
+  StartRound: 0
   EndRound: 0
-  prefab: {fileID: 2421930585921709494, guid: 7a5f3719baf85924797978ac2d92f263, type: 3}
-  spawnArea: {x: -60, y: 60}
+  prefab: {fileID: 0}
+  spawnArea: {x: 0, y: 0}
