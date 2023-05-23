@@ -30,6 +30,7 @@ public class TimerController : MonoBehaviour
                 if (GetComponent<BombScript>() != null)
                 {
                     GetComponent<BombScript>().Explode();
+                    return;
                 }
                 Destroy(transform.root.gameObject);
             }
@@ -55,8 +56,8 @@ public class TimerController : MonoBehaviour
     public void updateHpSlider()
     {
         hpSlider.value = currentLifeTime;
-        hpSlider.transform.position = transform.position + 1 * Vector3.up;
-        hpSlider.gameObject.transform.right = Vector3.right;
+       // hpSlider.transform.position = transform.position + 1 * Vector3.up;
+       // hpSlider.gameObject.transform.right = Vector3.right;
 
     }
 }

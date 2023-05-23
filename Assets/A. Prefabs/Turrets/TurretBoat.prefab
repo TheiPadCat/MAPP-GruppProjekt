@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e8830291d93394fa47ed0f6e8fb118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLifeTime: 100
+  maxLifeTime: 50
   hpSlider: {fileID: 4126356187623228652}
 --- !u!1 &1955083083738580092
 GameObject:
@@ -341,10 +341,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurretCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 803065034417199068, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 803065034417199070, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -375,11 +371,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 803065034417199070, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 803065034417199070, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 803065034417199070, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
       propertyPath: m_LocalPosition.x
