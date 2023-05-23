@@ -16,6 +16,30 @@ public class SpawnerEditor : Editor {
 
     private void OnEnable() {
         EditorApplication.update += OnEditorUpdate;
+        EditorApplication.playModeStateChanged += OnPlayModeChanged;
+        LoadDictData();
+    }
+    private void OnDisable() {
+        EditorApplication.update -= OnEditorUpdate;
+        EditorApplication.playModeStateChanged -= OnPlayModeChanged;
+        SaveDictData();
+    }
+
+    private void OnPlayModeChanged(PlayModeStateChange stateChange) {
+        switch (stateChange) {
+            case PlayModeStateChange.EnteredPlayMode:
+            case PlayModeStateChange.ExitingPlayMode:
+                LoadDictData();
+                break;
+            case PlayModeStateChange.ExitingEditMode:
+                SaveDictData();
+                break;
+        }
+        /* if (stateChange == PlayModeStateChange.ExitingPlayMode || stateChange == PlayModeStateChange.EnteredPlayMode)
+            LoadDictData(); */
+    }
+
+    private void LoadDictData() {
         DictionaryData data = Resources.Load("SpawnerSettings/DictData/CurrentDictData") as DictionaryData;
         infoDict = new Dictionary<string, HashSet<SpawnableInfo>>();
         if (data) {
@@ -23,8 +47,8 @@ public class SpawnerEditor : Editor {
             foreach (var entry in data.data) infoDict.Add(entry.Key, new HashSet<SpawnableInfo>(entry.Value));
         }
     }
-    private void OnDisable() {
-        EditorApplication.update -= OnEditorUpdate;
+
+    private void SaveDictData() {
         DictionaryData data = Resources.Load("SpawnerSettings/DictData/CurrentDictData.asset") as DictionaryData;
         if (!data) {
             data = ScriptableObject.CreateInstance<DictionaryData>();
@@ -50,14 +74,19 @@ public class SpawnerEditor : Editor {
         DisplaySpawnableSettings();
     }
 
-    private void ResetSettings(bool fromScript = false) {
-        if (GUILayout.Button(new GUIContent("Reset All Spawner Settings", "Deletes all current settings object for each enemy type")) || fromScript) {
-            infoDict.Clear();
-            foreach (var enemySettings in AssetDatabase.FindAssets("", new[] { "Assets/Resources/SpawnerSettings/Current" }))
-                AssetDatabase.DeleteAsset(AssetDatabase.GUIDToAssetPath(enemySettings));
+    private void ResetSettingsGUI() {
+        if (GUILayout.Button(new GUIContent("Reset All Spawner Settings", "Deletes all current settings object for each enemy type")))
+            ResetSettings(true);
 
-            AssetDatabase.DeleteAsset("Assets/Resources/SpawnerSettings/DictData/CurrentDictData.asset");
-        }
+
+    }
+
+    private void ResetSettings(bool deleteDict = false) {
+        if (infoDict != null) infoDict.Clear();
+        foreach (var enemySettings in AssetDatabase.FindAssets("", new[] { "Assets/Resources/SpawnerSettings/Current" }))
+            AssetDatabase.DeleteAsset(AssetDatabase.GUIDToAssetPath(enemySettings));
+
+        if (deleteDict) AssetDatabase.DeleteAsset("Assets/Resources/SpawnerSettings/DictData/CurrentDictData.asset");
     }
 
     private void LoadDefualtSettingsActual() {
@@ -98,7 +127,7 @@ public class SpawnerEditor : Editor {
     private void DisplayResetAndLoad() {
         GUILayout.Space(10f);
         GUILayout.BeginHorizontal();
-        ResetSettings();
+        ResetSettingsGUI();
         LoadDefaultSettings();
         GUILayout.EndHorizontal();
     }
