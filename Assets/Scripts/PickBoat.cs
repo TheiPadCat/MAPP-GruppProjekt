@@ -105,9 +105,9 @@ public class PickBoat : MonoBehaviour
 
             case BoatType.Boat4:
                 player.GetComponent<SpriteRenderer>().sprite = boatSprite4;
-                carButABoat.SetAcceleration(100);
+                carButABoat.SetAcceleration(85);
                 carButABoat.SetSteering(10);
-                carButABoat.SetMaxVelocity(40);
+                carButABoat.SetMaxVelocity(35);
                 carButABoat.SetDriftThreshold(35);
                 snakeScript.SetMaxBoats(3);
                 carButABoat.SetDmg(1);

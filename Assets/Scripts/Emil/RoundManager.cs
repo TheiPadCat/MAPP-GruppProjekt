@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RoundManager : MonoBehaviour {
 
@@ -34,8 +35,18 @@ public class RoundManager : MonoBehaviour {
     }
 
     private bool IsRoundOver() {
-        foreach (var enemyType in killsThisRoundByType.Values) if (enemyType.NeededKills != enemyType.PerformedKills) return false;
+        //Ändrade till detta för att lösa bugg med rundorna
+        if(KillsThisRound < KillsRequired)
+        {
+            return false;
+        }
         return true;
+
+        //Old version
+        /*
+        foreach (var enemyType in killsThisRoundByType.Values) if (enemyType.NeededKills > enemyType.PerformedKills) return false;
+        return true;
+        */
     }
 
     private void OnEnemyDeath(Type enemyType, GameObject prefab) {

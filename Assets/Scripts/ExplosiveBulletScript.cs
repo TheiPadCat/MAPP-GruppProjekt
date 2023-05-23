@@ -85,6 +85,7 @@ public class ExplosiveBulletScript : MonoBehaviour
 
    private void BombStopAndHide()
     {
+        GetComponent<SpriteRenderer>().enabled = false;
         if (TryGetComponent<Rigidbody2D>(out var rigidbody2D)) //UNT0026 "GetComponent allocates even if no component is found" så körde "potential fixes".
         {
             rigidbody2D.velocity = Vector2.zero;

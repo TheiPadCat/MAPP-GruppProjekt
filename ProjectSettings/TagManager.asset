@@ -9,6 +9,7 @@ TagManager:
   - Supply
   - Bullet
   - Border
+  - Island
   layers:
   - Default
   - TransparentFX

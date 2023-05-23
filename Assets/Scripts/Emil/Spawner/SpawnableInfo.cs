@@ -36,6 +36,7 @@ public class SpawnableInfo : ScriptableObject {
                     spawnPos = new Vector3(UnityEngine.Random.Range(spawnArea.x, spawnArea.y), UnityEngine.Random.Range(spawnArea.x, spawnArea.y), 0);
 
                 GameObject temp = Instantiate(prefab, spawnPos, Quaternion.identity) as GameObject;
+                temp.name = prefab.name + "(Clone)";
                 if (Spawner.ObjectSpawned != null) Spawner.ObjectSpawned.Invoke(SpawnableType);
                 spawnable.Spawn();
                 activeInstances++;
@@ -52,7 +53,7 @@ public class SpawnableInfo : ScriptableObject {
 
         SpawnableType = Type.GetType(TypeName);
         CurrentSpawnChance = InitialSpawnChance;
-        NumberToAppearThisRound = NumberToAppearFirstRound;
+        NumberToAppearThisRound = StartRound == 1 ? NumberToAppearFirstRound : 0;
         if (prefab) {
             spawnable = prefab.GetComponent<ISpawnable>();
             if (spawnable == null) spawnable = prefab.transform.root.GetComponentInChildren<ISpawnable>();
@@ -67,7 +68,7 @@ public class SpawnableInfo : ScriptableObject {
         float multiplier = Mathf.Pow(1f + SpawnChanceIncreasePerRound, roundNumber + 1 - (StartRound - 1));
 
         CurrentSpawnChance = Mathf.Clamp(InitialSpawnChance * multiplier, InitialSpawnChance * 0.25f, InitialSpawnChance * 1.75f);
-        NumberToAppearThisRound = (int)(NumberToAppearFirstRound * multiplier);
+        NumberToAppearThisRound = StartRound < roundNumber + 1 ? (int)(NumberToAppearFirstRound * multiplier) : NumberToAppearFirstRound;
         currentSpawnRate = Mathf.Clamp(SpawnRate * Mathf.Pow(1f + (SpawnChanceIncreasePerRound * -1), roundNumber + 1 - (StartRound - 1)), SpawnRate * 0.25f, SpawnRate * 1.75f);
     }
 

@@ -16,22 +16,24 @@ MonoBehaviour:
     m_Code: es
   m_SharedData: {fileID: 11400000, guid: f81d2d59519bb13479dbe19cba0086f1, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 4585992986121469958
   m_TableData:
   - m_Id: 7171072000
-    m_Localized: La Base HP
+    m_Localized: 'HP de la Base:'
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 4585992986121469958
   - m_Id: 919121813504
     m_Localized: Pausa
     m_Metadata:
       m_Items: []
   - m_Id: 1261817421824
-    m_Localized: Reanudar
+    m_Localized: Reiniciar
     m_Metadata:
       m_Items: []
   - m_Id: 1587593207808
-    m_Localized: "Volver al men\xFA"
+    m_Localized: "Volver al Men\xFA"
     m_Metadata:
       m_Items: []
   - m_Id: 1982612758528
@@ -43,9 +45,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2777303343104
-    m_Localized: En pausa
+    m_Localized: Pausado
     m_Metadata:
       m_Items: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4585992986121469958
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00e06dab01000000

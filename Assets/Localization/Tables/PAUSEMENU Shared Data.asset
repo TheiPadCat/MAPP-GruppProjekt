@@ -16,7 +16,7 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: f81d2d59519bb13479dbe19cba0086f1
   m_Entries:
   - m_Id: 7171072000
-    m_Key: Base Hp
+    m_Key: BaseHp
     m_Metadata:
       m_Items: []
   - m_Id: 919121813504

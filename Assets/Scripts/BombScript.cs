@@ -33,14 +33,7 @@ public class BombScript : MonoBehaviour
     public void Explode()
     {
         Debug.Log("explode");
-        Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, explosionRadius, enemyLayer);
-        foreach(Collider2D collider in collider2Ds)
-        {
-
-         
-            Debug.Log("TAKE DAMGAGE");
-            collider.GetComponent<IEnemy>().TakeDamage(damage);
-        }
+        Invoke("DealDamage", 0.1f);
         CinemachineCameraShake.Instance.ShakeCamera(5f, .1f);
         explosionParticles.Play();
         smokeParticles.Play();
@@ -52,6 +45,20 @@ public class BombScript : MonoBehaviour
         fireParticles.transform.parent = null;
         waveParticles.transform.parent = null;
         flashParticles.transform.parent = null;
+    }
+
+    public void DealDamage()
+    {
+        Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, explosionRadius, enemyLayer);
+        foreach (Collider2D collider in collider2Ds)
+        {
+
+
+            Debug.Log("TAKE DAMGAGE");
+            collider.GetComponent<IEnemy>().TakeDamage(damage);
+           
+        }
+        Destroy(transform.root.gameObject);
     }
 
     private void OnDrawGizmos()
