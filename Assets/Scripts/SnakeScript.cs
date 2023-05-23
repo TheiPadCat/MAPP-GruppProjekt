@@ -175,6 +175,7 @@ public class SnakeScript : MonoBehaviour
 
             else if (collision.gameObject.CompareTag("Supply"))
             {
+                GetComponent<AudioSource>().Play();
                 GameObject newTurret = collision.gameObject.GetComponentInChildren<Package>().Unpack();
                 trailList.Add(newTurret);
                 Calibrate();

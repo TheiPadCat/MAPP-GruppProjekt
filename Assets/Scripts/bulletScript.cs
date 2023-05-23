@@ -7,7 +7,7 @@ public class bulletScript : MonoBehaviour
     [SerializeField] float bulletVelocity;
     private Transform target;
     public Vector3 direction;
-    public int dmg;
+    public float dmg;
     public bool piercing;
 
 

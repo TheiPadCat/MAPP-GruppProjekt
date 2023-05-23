@@ -149,7 +149,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   baseIsland: {fileID: 0}
-  rangeRadius: 12
+  rangeRadius: 18
   bulletPrefab: {fileID: 7079678294669302919, guid: 64391b0429153cd4e96bc30b5a59c20d, type: 3}
   turnSpeed: 100
   sparkParticles: {fileID: 1955083083064364927}
@@ -340,6 +340,10 @@ PrefabInstance:
     - target: {fileID: 803065034417199057, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
       propertyPath: m_Name
       value: TurretCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 803065034417199068, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 803065034417199070, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
       propertyPath: m_Pivot.x

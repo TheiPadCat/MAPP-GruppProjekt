@@ -5125,7 +5125,7 @@ MonoBehaviour:
   turnSpeed: 100
   fireParticles: {fileID: 3526317348559193633}
   smokeParticles: {fileID: 9050847533263427489}
-  maxDamage: 5
+  maxDamage: 3
   damageRate: 0.5
 --- !u!1 &7421982068233526080
 GameObject:

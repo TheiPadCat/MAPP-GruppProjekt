@@ -5112,7 +5112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeParticles: {fileID: 6865495864647713508}
-  damage: 2
+  damage: 3
 --- !u!1 &8916711244284958575
 GameObject:
   m_ObjectHideFlags: 0
