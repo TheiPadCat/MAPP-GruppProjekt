@@ -22,7 +22,7 @@ public class BombShatterScript : MonoBehaviour
     }
     public void Explode()
     {
-        GameObject.Find("AudioMan").GetComponent<AudioScript>().Split();
+        GameObject.Find("AudioMan").GetComponent<AudioScript>().Split(transform.position);
         canHurtEnemy = true;
         explodeParticles.Emit(15);
         explodeParticles.transform.parent = null;

@@ -52,7 +52,7 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
 
     public void Die() {
         IEnemy.Death.Invoke(GetType(), transform.root.gameObject);
-        GameObject.Find("AudioMan").GetComponent<AudioScript>().Enemy();
+        GameObject.Find("AudioMan").GetComponent<AudioScript>().Enemy(transform.position);
         deathSplat.transform.parent = null;
         deathStain.transform.parent = null;
         deathTest.transform.parent = null;

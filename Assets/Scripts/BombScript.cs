@@ -32,7 +32,7 @@ public class BombScript : MonoBehaviour
 
     public void Explode()
     {
-        GameObject.Find("AudioMan").GetComponent<AudioScript>().Bomb();
+        GameObject.Find("AudioMan").GetComponent<AudioScript>().Bomb(transform.position);
         Debug.Log("explode");
         Invoke("DealDamage", 0.1f);
         CinemachineCameraShake.Instance.ShakeCamera(5f, .1f);

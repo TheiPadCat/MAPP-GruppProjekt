@@ -7064,7 +7064,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6282073730995601872, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
 --- !u!1 &1684644215 stripped
 GameObject:
@@ -7093,6 +7094,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2467837900458656105, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
   m_PrefabInstance: {fileID: 1989692784}
   m_PrefabAsset: {fileID: 0}
+--- !u!81 &1727826050
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238260989}
+  m_Enabled: 1
 --- !u!4 &1730980660 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3976518792014349675, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
@@ -7233,7 +7242,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -7430,7 +7439,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0bbb5a308a7098044b636a913db5f4e5, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -7440,7 +7449,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
