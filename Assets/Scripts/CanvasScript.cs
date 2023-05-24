@@ -36,11 +36,15 @@ public class CanvasScript : MonoBehaviour
     
     public void Pause()
     {
+        GetComponent<AudioSource>().pitch = 0.6f;
+        GetComponent<AudioSource>().Play();
         pausePanel.SetActive(true);
         Time.timeScale = 0;
     }
     public void UnPause()
     {
+        GetComponent<AudioSource>().pitch = 1f;
+        GetComponent<AudioSource>().Play();
         pausePanel.SetActive(false);
         Time.timeScale = 1;
     }

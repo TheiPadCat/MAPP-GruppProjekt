@@ -66,6 +66,8 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
 
     public void TakeDamage(float dmg) {
         currentHealth -= dmg;
+        GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.8f, 1f);
+        GetComponent<AudioSource>().Play();
         if (currentHealth <= 0) Die();
 
 
