@@ -95,6 +95,7 @@ public class Turret : MonoBehaviour
             if (currentLifeTime <= 0f)
             {
                 Destroy(transform.root.gameObject);
+                //GameObject.Find("AudioMan").GetComponent<AudioScript>().Bomb();
             }
 
         }

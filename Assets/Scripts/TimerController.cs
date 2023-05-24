@@ -9,6 +9,7 @@ public class TimerController : MonoBehaviour
     public float maxLifeTime;
     private float currentLifeTime;
     private bool lifeTimeActive;
+    public GameObject destroyEffect;
 
     public Slider hpSlider;
     void Start()
@@ -32,7 +33,10 @@ public class TimerController : MonoBehaviour
                     GetComponent<BombScript>().Explode();
                     return;
                 }
+                destroyEffect.transform.parent = null;
+                destroyEffect.GetComponent<ParticleSystem>().Play();
                 Destroy(transform.root.gameObject);
+                GameObject.Find("AudioMan").GetComponent<AudioScript>().Bomb();
             }
 
         }

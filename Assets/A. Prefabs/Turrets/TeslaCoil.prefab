@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLifeTime: 50
+  destroyEffect: {fileID: 7990004674271580614}
   hpSlider: {fileID: 8764974050270005060}
 --- !u!114 &3701498154873363221
 MonoBehaviour:
@@ -19904,11 +19905,28 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6688319122339612746, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.8431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688319122339612746, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.37647063
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688319122339612746, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.76470596
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
 --- !u!224 &4674932550540447952 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 803065034417199070, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+  m_PrefabInstance: {fileID: 5459977957196334862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7990004674271580614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2677266751691790024, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
   m_PrefabInstance: {fileID: 5459977957196334862}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8764974050270005060 stripped

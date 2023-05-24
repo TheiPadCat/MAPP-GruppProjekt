@@ -7,7 +7,7 @@ public class DamageEffects : MonoBehaviour
 
     [SerializeField] private Color flashColor;
     [SerializeField] private float lerpSpeed = 2f;
- 
+    [SerializeField] SpriteRenderer body;
 
     private Material material;
     private Coroutine flashCoroutine;
@@ -18,7 +18,8 @@ public class DamageEffects : MonoBehaviour
     private void Start()
     {
        
-        material = GetComponentInChildren<SpriteRenderer>().material;
+      //  material = GetComponentInChildren<SpriteRenderer>().material;
+      material = body.material;
     }
 
 
