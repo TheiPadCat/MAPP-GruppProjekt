@@ -73,8 +73,7 @@ public class ExplosiveBulletScript : MonoBehaviour
 
         //Explode the bomb
         bombToExplode.GetComponent<BombShatterScript>()?.Explode(); //"Unity objects should not use null propagation" ?
-        GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.8f, 1f);
-        GetComponent<AudioSource>().Play();
+        GameObject.Find("AudioMan").GetComponent<AudioScript>().Split();
 
         //Wait so it can do damage before getting destroyed
 

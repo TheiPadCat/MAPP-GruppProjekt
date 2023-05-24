@@ -32,6 +32,7 @@ public class BombScript : MonoBehaviour
 
     public void Explode()
     {
+        GameObject.Find("AudioMan").GetComponent<AudioScript>().Bomb();
         Debug.Log("explode");
         Invoke("DealDamage", 0.1f);
         CinemachineCameraShake.Instance.ShakeCamera(5f, .1f);
@@ -45,6 +46,7 @@ public class BombScript : MonoBehaviour
         fireParticles.transform.parent = null;
         waveParticles.transform.parent = null;
         flashParticles.transform.parent = null;
+       
     }
 
     public void DealDamage()
