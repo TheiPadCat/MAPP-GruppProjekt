@@ -16,8 +16,6 @@ MonoBehaviour:
   - Key: EnemyScript
     Value:
     - {fileID: 11400000, guid: 2cdebab10f5fb6545adb12edfb517104, type: 2}
-    - {fileID: 11400000, guid: 5b0adfca7d9c95f448e851759234f116, type: 2}
-    - {fileID: 11400000, guid: 0fb9eebc6bdbd0a4a8e5ff6686ffae70, type: 2}
   - Key: Package
     Value:
     - {fileID: 11400000, guid: 573f5a438d571c14ca1240eb507e8f07, type: 2}
