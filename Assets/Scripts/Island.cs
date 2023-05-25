@@ -28,7 +28,7 @@ public class Island : MonoBehaviour {
         volume.profile.TryGet(out chromaticAberration);
         Instance ??= this;
         health = PlayerPrefs.GetInt("BaseHealth", maxHealth);
-      
+        UpdateHealthText();
         
          
     }
@@ -48,7 +48,7 @@ public class Island : MonoBehaviour {
             // globalVolume.GetComponent<ChromaticAberration>().intensity = (health / maxHealth)
 
             damageParticles.Emit(80);
-          //  UpdateHealthText();
+           UpdateHealthText();
 
             CinemachineCameraShake.Instance.ShakeCamera(10f, .2f);
             //om basens nuvarande health modulo 5 är noll aka var femte minus i health och om basen inte har maxhealth
@@ -91,7 +91,9 @@ public class Island : MonoBehaviour {
         return health.ToString();
     }
 
-    // private void UpdateHealthText() {  }
+     private void UpdateHealthText() {
+        healthText.text = health.ToString();
+    }
     private void OnDestroy() { Instance = null; }
     private void OnEnable() { Instance ??= this; }
     private void OnDisable() { Instance = null; }

@@ -53,7 +53,7 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
     public void Die() {
         IEnemy.Death.Invoke(GetType(), transform.root.gameObject);
         // find is VERY expensive, consider using a singleton or save a reference in start
-        GameObject.Find("AudioMan").GetComponent<AudioScript>().Enemy();
+        GameObject.Find("AudioMan").GetComponent<AudioScript>().Enemy(transform.position);
         deathSplat.transform.parent = null;
         deathStain.transform.parent = null;
         deathTest.transform.parent = null;

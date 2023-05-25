@@ -36,7 +36,7 @@ public class TimerController : MonoBehaviour
                 }
                 particles.transform.parent = null;
                 particles.GetOrAddComponent<ParticleSystem>().Play();
-                GameObject.Find("AudioMan").GetComponent<AudioScript>().Bomb();
+                GameObject.Find("AudioMan").GetComponent<AudioScript>().Bomb(transform.position);
                 Destroy(transform.root.gameObject);
             }
 

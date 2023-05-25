@@ -194,6 +194,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 985864280}
     m_Modifications:
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.4666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8495227
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.9052223
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.39999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3976518792014349673, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
       propertyPath: m_Name
       value: Obstacle (9)
@@ -5197,6 +5221,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 985864280}
     m_Modifications:
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.4666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.75562245
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.70877934
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.39999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3976518792014349673, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
       propertyPath: m_Name
       value: Obstacle (1)
@@ -5631,9 +5679,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 110
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -5666,7 +5714,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5713,6 +5761,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 985864280}
     m_Modifications:
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.4666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.5595505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.39999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0.8747888
+      objectReference: {fileID: 0}
     - target: {fileID: 3976518792014349673, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
       propertyPath: m_Name
       value: Obstacle (6)
@@ -5932,6 +6000,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 985864280}
     m_Modifications:
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.99723357
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.4666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.826095
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0.39999998
+      objectReference: {fileID: 0}
     - target: {fileID: 3976518792014349673, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
       propertyPath: m_Name
       value: Obstacle (5)
@@ -6387,6 +6479,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 985864280}
     m_Modifications:
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.61666745
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.4666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.53551817
+      objectReference: {fileID: 0}
     - target: {fileID: 3976518792014349673, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
       propertyPath: m_Name
       value: Obstacle (8)
@@ -6449,6 +6561,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 985864280}
     m_Modifications:
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.4666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.7672361
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.39999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0.5835658
+      objectReference: {fileID: 0}
     - target: {fileID: 3976518792014349673, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
       propertyPath: m_Name
       value: Obstacle (2)
@@ -7040,6 +7176,10 @@ PrefabInstance:
       propertyPath: m_Dithering
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6282073730995601872, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6282073730995601873, guid: 6838d4ca492e4074a9d4829685153564, type: 3}
       propertyPath: m_ClearFlags
       value: 2
@@ -7093,6 +7233,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2467837900458656105, guid: 2280818f0f40b4aac93f983a9d94f72c, type: 3}
   m_PrefabInstance: {fileID: 1989692784}
   m_PrefabAsset: {fileID: 0}
+--- !u!81 &1727826050
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238260989}
+  m_Enabled: 1
 --- !u!4 &1730980660 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3976518792014349675, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
@@ -7105,6 +7253,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 985864280}
     m_Modifications:
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.4666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.4763072
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.43049347
+      objectReference: {fileID: 0}
     - target: {fileID: 3976518792014349673, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
       propertyPath: m_Name
       value: Obstacle
@@ -7233,9 +7393,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 70
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -7268,7 +7428,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -7329,9 +7489,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -7364,7 +7524,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -7412,7 +7572,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907856271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1511.8219, y: 715.9639, z: -6.973914}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7440,9 +7600,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 70
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -7475,7 +7635,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -7647,6 +7807,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 985864280}
     m_Modifications:
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.5065899
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.4666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.39999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.96506256
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3976518792014349673, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
       propertyPath: m_Name
       value: Obstacle (4)
@@ -7883,6 +8063,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 985864280}
     m_Modifications:
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.50127137
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.4666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.40581128
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.39999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976518790861486948, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3976518792014349673, guid: bd816aac4573b9844b80e08e16a9f122, type: 3}
       propertyPath: m_Name
       value: Obstacle (3)
@@ -8214,6 +8414,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 662752841, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b74b334d03dfc16488183e90c278a2f4, type: 2}
+    - target: {fileID: 662752841, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 668177418, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -8238,6 +8446,14 @@ PrefabInstance:
       propertyPath: targetObject
       value: 
       objectReference: {fileID: 1116427491}
+    - target: {fileID: 698035172, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b74b334d03dfc16488183e90c278a2f4, type: 2}
+    - target: {fileID: 698035172, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 740080821, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -8378,6 +8594,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1589167363, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b74b334d03dfc16488183e90c278a2f4, type: 2}
+    - target: {fileID: 1589167363, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1640068173, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -8413,6 +8637,14 @@ PrefabInstance:
     - target: {fileID: 2026266028, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137774697, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b74b334d03dfc16488183e90c278a2f4, type: 2}
+    - target: {fileID: 2137774697, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 925574112844379086, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
       propertyPath: m_RootOrder

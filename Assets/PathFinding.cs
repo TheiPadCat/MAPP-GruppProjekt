@@ -21,7 +21,7 @@ public class PathFinding : MonoBehaviour
     private void Start()
     {
         rockLayerMask = LayerMask.GetMask("Obstacle");
-        speed = 5f;
+       // speed = 5f;
         rigidbod = GetComponent<Rigidbody2D>();
         island = Island.Instance.transform;
     }
