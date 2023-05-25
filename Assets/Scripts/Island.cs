@@ -65,8 +65,8 @@ public class Island : MonoBehaviour {
     }
 
     public void LoseGame() { GameOverPanel.SetActive(true);
-        leaderBoardManager.AddNewEntry(playerName, RoundManager.Instance.RoundNumber);
         Time.timeScale = 0f;
+        leaderBoardManager.AddNewEntry(playerName, RoundManager.Instance.RoundNumber);
     }
    
     private void UpdateHealthText() { healthText.text = "Base HP: " + health.ToString(); }
