@@ -5113,7 +5113,7 @@ GameObject:
   - component: {fileID: 6885516718882121991}
   - component: {fileID: 8712004894047740791}
   m_Layer: 7
-  m_Name: mushroom-red
+  m_Name: Sprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
