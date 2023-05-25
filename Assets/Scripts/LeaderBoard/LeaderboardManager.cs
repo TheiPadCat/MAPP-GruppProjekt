@@ -9,7 +9,21 @@ public class LeaderboardManager : MonoBehaviour
 
     public GameObject leaderboardEntryPrefab;
     public Transform entriesParent;
+    public TextMeshProUGUI nameTextField;
+    public GameObject nameField;
+    public string plaName;
+    public Island island;
+    public int scr;
 
+
+    public void NameInputButton(){
+        island.playerName = nameTextField.text;
+        plaName = nameTextField.text;
+        ToggleNameBox(false);
+        LeaderboardEntry newEntry = new LeaderboardEntry(plaName, scr);
+        AddEntry(newEntry);
+        UpdateUI();
+    }
     private void Awake()
     {
         LoadLeaderboard();
@@ -26,12 +40,34 @@ public class LeaderboardManager : MonoBehaviour
         }
         SaveLeaderboard();
     }
+    public bool IsScoreInTopTen(int score)
+    {
+        // If the leaderboard has less than 10 entries, the score is automatically in the top 10
+        if (leaderboardEntries.Count < maxLeaderboardEntries)
+        {
+            return true;
+        }
 
+        // Otherwise, compare the score to the lowest score currently on the leaderboard
+        int lowestScore = leaderboardEntries[leaderboardEntries.Count - 1].score;
+        if (score > lowestScore)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private void ToggleNameBox(bool type){
+        nameField.SetActive(type);
+    }
     public void AddNewEntry(string playerName, int score)
     {
-        LeaderboardEntry newEntry = new LeaderboardEntry(playerName, score);
-        AddEntry(newEntry);
-        UpdateUI();
+        plaName = playerName;
+        scr = score;
+        if(IsScoreInTopTen(score)){
+            ToggleNameBox(true);
+        }
     }
     public void ClearLeaderboard()
     {
