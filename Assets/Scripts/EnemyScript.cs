@@ -44,7 +44,7 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) { // this is a bit OP
-      //  if (collision.gameObject.CompareTag("Player")) TakeDamage(collision.gameObject.GetComponent<CarButABoat>().dmg);
+                                                             //  if (collision.gameObject.CompareTag("Player")) TakeDamage(collision.gameObject.GetComponent<CarButABoat>().dmg);
     }
 
 
@@ -52,6 +52,7 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
 
     public void Die() {
         IEnemy.Death.Invoke(GetType(), transform.root.gameObject);
+        // find is VERY expensive, consider using a singleton or save a reference in start
         GameObject.Find("AudioMan").GetComponent<AudioScript>().Enemy();
         deathSplat.transform.parent = null;
         deathStain.transform.parent = null;
@@ -66,7 +67,7 @@ public class EnemyScript : MonoBehaviour, IEnemy, ISpawnable {
 
     public void TakeDamage(float dmg) {
         currentHealth -= dmg;
-        
+
         if (currentHealth <= 0) Die();
 
 

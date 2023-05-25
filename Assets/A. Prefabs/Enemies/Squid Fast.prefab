@@ -4907,7 +4907,7 @@ GameObject:
   - component: {fileID: 4674979991288748020}
   - component: {fileID: 381080385321671645}
   m_Layer: 7
-  m_Name: Crab
+  m_Name: Squid Fast
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5044,7 +5044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8cde984c434fd418259165890997ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 6
   spawnParticles: {fileID: 191402716230429005}
   deathSplat: {fileID: 7588828220973484684}
   deathStain: {fileID: 2929039962551644078}
@@ -5098,7 +5098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   island: {fileID: 5838258168825358719, guid: 2713ed13bbe33494abb3ea8c97a25421, type: 3}
   maxDistanceToIsland: 2
-  speed: 5
+  speed: 8
 --- !u!1 &2421930586554035486
 GameObject:
   m_ObjectHideFlags: 0
@@ -5109,9 +5109,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2421930586554035457}
   - component: {fileID: 2421930586554035458}
-  - component: {fileID: 6714222788982109448}
-  - component: {fileID: 6885516718882121991}
-  - component: {fileID: 8712004894047740791}
   m_Layer: 7
   m_Name: Sprite
   m_TagString: Enemy
@@ -5175,8 +5172,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2957da4ed28ce994ca4f1da77e5b3412, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e3a8cc2ec6c2a3f4db83802f0408a335, type: 3}
+  m_Color: {r: 1, g: 0.91867983, b: 0.013207495, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5186,53 +5183,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6714222788982109448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2421930586554035486}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff8cde984c434fd418259165890997ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 3
-  spawnParticles: {fileID: 0}
-  deathSplat: {fileID: 0}
-  deathStain: {fileID: 0}
-  deathTest: {fileID: 0}
---- !u!70 &6885516718882121991
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2421930586554035486}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.20049787, y: 0.34631371}
-  m_Size: {x: 6.183103, y: 6.183103}
-  m_Direction: 0
---- !u!114 &8712004894047740791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2421930586554035486}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16eabf25ab4779248be09f8c81ecc976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashColor: {r: 1, g: 1, b: 1, a: 1}
-  lerpSpeed: 2.5
 --- !u!1 &2902610082815502412
 GameObject:
   m_ObjectHideFlags: 0
