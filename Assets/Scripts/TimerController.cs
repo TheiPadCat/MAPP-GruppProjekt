@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class TimerController : MonoBehaviour
     public float maxLifeTime;
     private float currentLifeTime;
     private bool lifeTimeActive;
+    public GameObject particles;
 
     public Slider hpSlider;
     void Start()
@@ -32,6 +34,9 @@ public class TimerController : MonoBehaviour
                     GetComponent<BombScript>().Explode();
                     return;
                 }
+                particles.transform.parent = null;
+                particles.GetOrAddComponent<ParticleSystem>().Play();
+                GameObject.Find("AudioMan").GetComponent<AudioScript>().Bomb();
                 Destroy(transform.root.gameObject);
             }
 

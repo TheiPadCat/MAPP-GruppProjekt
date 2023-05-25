@@ -222,8 +222,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.9193326, g: 0.9339623, b: 0.22379847, a: 0.39215687}
-      maxColor: {r: 0.07295132, g: 1, b: 0, a: 0.39215687}
+      minColor: {r: 0.93333334, g: 0.22352937, b: 0.7086698, a: 0.39215687}
+      maxColor: {r: 1, g: 0.40980536, b: 0, a: 0.39215687}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.2584905, b: 0.8800539, a: 1}
@@ -5091,6 +5091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLifeTime: 50
+  particles: {fileID: 4310694131764102033}
   hpSlider: {fileID: 4960946951170831860}
 --- !u!114 &6292202006835071751
 MonoBehaviour:
@@ -10122,6 +10123,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1971681434310747675, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971681434310747675, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.34901962
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971681434310747675, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.9960785
+      objectReference: {fileID: 0}
     - target: {fileID: 3331035821550962243, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -10132,6 +10145,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+--- !u!1 &4310694131764102033 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5579036336377820719, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+  m_PrefabInstance: {fileID: 8556309895977301438}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4960946951170831860 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3631814946632417354, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}

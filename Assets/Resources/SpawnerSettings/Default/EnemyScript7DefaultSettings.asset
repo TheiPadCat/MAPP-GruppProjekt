@@ -17,7 +17,7 @@ MonoBehaviour:
   SpawnChanceIncreasePerRound: 0.15
   SpawnRate: 2
   NumberToAppearFirstRound: 8
-  StartRound: 3
+  StartRound: 20
   EndRound: 0
-  prefab: {fileID: 2421930585921709494, guid: bc58dc0ddadfbee4cb2033408ec0225e, type: 3}
+  prefab: {fileID: 2421930585921709494, guid: 96c066cd8e946ae4fa3023df31349dd2, type: 3}
   spawnArea: {x: -60, y: 60}

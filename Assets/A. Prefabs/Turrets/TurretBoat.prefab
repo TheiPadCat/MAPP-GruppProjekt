@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLifeTime: 50
+  particles: {fileID: 5064782225660555913}
   hpSlider: {fileID: 4126356187623228652}
 --- !u!82 &4512224419778261778
 AudioSource:
@@ -526,6 +527,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1971681434310747675, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.9450981
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971681434310747675, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.43921572
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971681434310747675, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.23137257
+      objectReference: {fileID: 0}
     - target: {fileID: 3331035821550962243, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -552,6 +565,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5064782225660555913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5579036336377820719, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+  m_PrefabInstance: {fileID: 803065033880650918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9016600523021440952
 PrefabInstance:
   m_ObjectHideFlags: 0

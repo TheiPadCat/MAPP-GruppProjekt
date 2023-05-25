@@ -19,5 +19,5 @@ MonoBehaviour:
   NumberToAppearFirstRound: 8
   StartRound: 1
   EndRound: 0
-  prefab: {fileID: 2421930585921709494, guid: ef81063a1d55429418e8f43fd78f926c, type: 3}
+  prefab: {fileID: 2421930585921709494, guid: 5b1f7264dc95e9c4f93f7784129347e7, type: 3}
   spawnArea: {x: -60, y: 60}
