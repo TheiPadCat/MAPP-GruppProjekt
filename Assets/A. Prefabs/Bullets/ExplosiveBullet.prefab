@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletVelocity: 70
-  shatterForce: 5
+  shatterForce: 8
   shatterTime: 1
   dmg: 1
   explosivePrefab: {fileID: 7079678294669302919, guid: ea3f79b5353f9dc4c9f0c90d6f010473, type: 3}

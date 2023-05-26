@@ -749,7 +749,7 @@ ParticleSystem:
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
-    radiusThickness: 0.66
+    radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
@@ -832,7 +832,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.15
+      value: 0.7
       mode: 0
       spread: 0
       speed:
@@ -5076,7 +5076,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 0.7
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -5113,7 +5113,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeParticles: {fileID: 6865495864647713508}
-  damage: 5
+  damage: 1
+  explosionRadius: 0.7
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!82 &267111168576684506
 AudioSource:
   m_ObjectHideFlags: 0

@@ -5044,7 +5044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8cde984c434fd418259165890997ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 15
+  maxHealth: 10
   spawnParticles: {fileID: 191402716230429005}
   deathSplat: {fileID: 7588828220973484684}
   deathStain: {fileID: 2929039962551644078}
