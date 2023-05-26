@@ -20,4 +20,4 @@ MonoBehaviour:
   StartRound: 20
   EndRound: 0
   prefab: {fileID: 2421930585921709494, guid: f55204a2d44ebe24eb630454a5fa7805, type: 3}
-  spawnArea: {x: -60, y: 60}
+  spawnArea: {x: -70, y: 70}

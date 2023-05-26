@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeName: 
   InitialSpawnChance: 0.5
-  SpawnChanceIncreasePerRound: 0.12
+  SpawnChanceIncreasePerRound: -0.01
   SpawnRate: 2
   NumberToAppearFirstRound: 8
   StartRound: 1
   EndRound: 0
   prefab: {fileID: 2421930585921709494, guid: 5b1f7264dc95e9c4f93f7784129347e7, type: 3}
-  spawnArea: {x: -60, y: 60}
+  spawnArea: {x: -70, y: 70}

@@ -5090,7 +5090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e8830291d93394fa47ed0f6e8fb118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLifeTime: 50
+  maxLifeTime: 80
   particles: {fileID: 4310694131764102033}
   hpSlider: {fileID: 4960946951170831860}
 --- !u!114 &6292202006835071751
@@ -10122,6 +10122,18 @@ PrefabInstance:
     - target: {fileID: 803065034417199070, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806302083292933954, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806302083292933954, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806302083292933954, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: 1971681434310747675, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
