@@ -4,85 +4,104 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    public AudioClip backgrunsMusik;
-    public Island baseIsland; 
-    public List<AudioClip> musikLager;
+    public List<AudioClip> musicLayers;
+    public Island baseIsland;
     public float baseLowHealth = 0.25f;
     public float checkHealth = 0.5f;
-    public int lagerIncreasePerRunda = 1;
-    public int lagerIntervall = 5; //diskutera med gruppen sen
-    public float tempoIncrease = 1.5f; //ingen aning om detta kommer räcka men får testa sen
+    public float tempoIncrease = 1.5f;
 
     private AudioSource audioSource;
-    private int nuvarandeLagerIndex = 0;
-    private int rundorSedanLastLager = 0;
-    private float nextCheckTime = 0f;
-    private float basTempo = 1.0f;
-
+    private int currentLayerIndex = 0;
+    private int loopCount = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = backgrunsMusik;
         audioSource.loop = true;
+        audioSource.clip = musicLayers[0];
         audioSource.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.time >= nextCheckTime)
+        if (Time.time >= checkHealth)
         {
-            nextCheckTime = Time.time + checkHealth;
+            checkHealth += checkHealth;
             CheckBaseHealth();
         }
     }
 
     void CheckBaseHealth()
     {
-        float baseHealth = baseIsland.health;
-        int önskatLagerIndex = Mathf.FloorToInt(baseHealth / baseLowHealth) * lagerIncreasePerRunda;
-
-        if(önskatLagerIndex > nuvarandeLagerIndex && önskatLagerIndex < musikLager.Count)
-        {
-            nuvarandeLagerIndex = önskatLagerIndex;
-            audioSource.clip = musikLager[nuvarandeLagerIndex];
-            audioSource.Play();
-        }
-
-        rundorSedanLastLager++;
-
-        if(rundorSedanLastLager >= lagerIntervall)
-        {
-            rundorSedanLastLager = 0;
-            if(nuvarandeLagerIndex < musikLager.Count - 1)
-            {
-                nuvarandeLagerIndex++;
-                audioSource.clip = musikLager[nuvarandeLagerIndex];
-                audioSource.Play();
-            }
-        }
+        float baseHealth = GetBaseHealth();
 
         if (baseHealth < baseLowHealth)
         {
-            audioSource.pitch = basTempo * lagerIncreasePerRunda;
-
-            if(nuvarandeLagerIndex < musikLager.Count - 1)
-            {
-                nuvarandeLagerIndex++;
-                audioSource.clip = musikLager[nuvarandeLagerIndex];
-                audioSource.Play();
-            }
+            IncreaseTempo();
         }
         else
         {
-            audioSource.pitch = basTempo;
+            ResetTempo();
         }
 
+        if (loopCount >= 2)
+        {
+            if (currentLayerIndex < musicLayers.Count - 1)
+            {
+                currentLayerIndex++;
+                audioSource.clip = musicLayers[currentLayerIndex];
+                audioSource.Play();
+                loopCount = 0;
+            }
+        }
+
+        if (currentLayerIndex == musicLayers.Count - 1 && loopCount >= 2)
+        {
+            audioSource.clip = CombineAudioClips(musicLayers);
+            audioSource.Play();
+        }
+
+        loopCount++;
     }
 
-    float GetBaseHealt()
+    void IncreaseTempo()
+    {
+        audioSource.pitch = tempoIncrease;
+    }
+
+    void ResetTempo()
+    {
+        audioSource.pitch = 1.0f;
+    }
+
+    AudioClip CombineAudioClips(List<AudioClip> clips)
+    {
+        int totalLength = 0;
+        foreach (AudioClip clip in clips)
+        {
+            totalLength += clip.samples;
+        }
+
+        float[] data = new float[totalLength];
+        int offset = 0;
+
+        foreach (AudioClip clip in clips)
+        {
+            float[] clipData = new float[clip.samples];
+            clip.GetData(clipData, 0);
+            clipData.CopyTo(data, offset);
+            offset += clipData.Length;
+        }
+
+        AudioClip combinedClip = AudioClip.Create("Combined", totalLength, 1, audioSource.clip.frequency, false);
+        combinedClip.SetData(data, 0);
+
+        return combinedClip;
+    }
+
+    float GetBaseHealth()
     {
         return baseIsland.health;
     }
