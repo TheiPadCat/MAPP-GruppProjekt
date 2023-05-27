@@ -39,11 +39,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20555489992704
-    m_Localized: Game over
+    m_Localized: Game Over
     m_Metadata:
       m_Items: []
   - m_Id: 21109435916288
-    m_Localized: Runda {roundNumber}  Avklarad!
+    m_Localized: Rundan avklarad!
     m_Metadata:
       m_Items: []
   - m_Id: 4414792273453056

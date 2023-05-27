@@ -39,7 +39,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 21109435916288
-    m_Localized: Round {roundNumber} Cleared!
+    m_Localized: Round Cleared!
     m_Metadata:
       m_Items: []
   - m_Id: 4414792273453056
