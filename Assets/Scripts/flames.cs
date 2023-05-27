@@ -88,7 +88,7 @@ public class flames : MonoBehaviour
          
                 fireParticles.Stop();
                 smokeParticles.Stop();
-            
+            GetComponent<AudioSource>().Stop();
         }
 
         fireCoolDown -= Time.deltaTime;
@@ -130,6 +130,11 @@ public class flames : MonoBehaviour
       
             smokeParticles.Play();
             fireParticles.Play();
+        if (!GetComponent<AudioSource>().isPlaying)
+        {
+           GetComponent<AudioSource>().Play();
+        }
+       
         
 
         foreach (Collider2D target in targetList)

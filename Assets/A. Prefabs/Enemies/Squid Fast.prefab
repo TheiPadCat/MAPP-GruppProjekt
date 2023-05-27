@@ -4922,8 +4922,8 @@ Transform:
   m_GameObject: {fileID: 2421930585921709494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2421930586554035457}
   - {fileID: 1731705397299026436}
@@ -5044,7 +5044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8cde984c434fd418259165890997ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 6
+  maxHealth: 8
   spawnParticles: {fileID: 191402716230429005}
   deathSplat: {fileID: 7588828220973484684}
   deathStain: {fileID: 2929039962551644078}
@@ -5098,7 +5098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   island: {fileID: 5838258168825358719, guid: 2713ed13bbe33494abb3ea8c97a25421, type: 3}
   maxDistanceToIsland: 2
-  speed: 8
+  speed: 9
 --- !u!1 &2421930586554035486
 GameObject:
   m_ObjectHideFlags: 0
@@ -5578,6 +5578,14 @@ PrefabInstance:
     - target: {fileID: 6613054710983438280, guid: 45a02fddbc879074593606634e979fc5, type: 3}
       propertyPath: m_Name
       value: DeathEffects
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086158695373259720, guid: 45a02fddbc879074593606634e979fc5, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.16470589
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086158695373259720, guid: 45a02fddbc879074593606634e979fc5, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8470589
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45a02fddbc879074593606634e979fc5, type: 3}

@@ -47,6 +47,7 @@ public class teslaCoil : MonoBehaviour
                
                 if (enemy.GetComponentInChildren<IEnemy>() != null)
                 {
+                    GetComponent<AudioSource>().Play();
                     enemy.GetComponentInChildren<IEnemy>().TakeDamage(damage);
 
                 }

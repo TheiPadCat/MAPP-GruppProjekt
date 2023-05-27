@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e8830291d93394fa47ed0f6e8fb118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLifeTime: 50
+  maxLifeTime: 40
   particles: {fileID: 5064782225660555913}
   hpSlider: {fileID: 4126356187623228652}
 --- !u!82 &4512224419778261778
@@ -546,6 +546,18 @@ PrefabInstance:
     - target: {fileID: 3331035821550962243, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331035821550962243, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331035821550962243, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331035821550962243, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.48
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d83490a00346d3343be31e77a82b3b9d, type: 3}

@@ -4,104 +4,121 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    public List<AudioClip> musicLayers;
+   
     public Island baseIsland;
-    public float baseLowHealth = 0.25f;
-    public float checkHealth = 0.5f;
-    public float tempoIncrease = 1.5f;
+    public List<AudioSource> musikLager;
 
-    private AudioSource audioSource;
-    private int currentLayerIndex = 0;
-    private int loopCount = 0;
+    public AudioSource audio1;
+    public AudioSource audio2;
+    public AudioSource audio3;
+    public AudioSource audio4;
+    public AudioSource audio5;
+    public AudioSource audio6;
+    public AudioSource audio7;
+
+    public float baseLowHealth = 10f;
+    public float checkHealth = 0.5f;
+    public int lagerIncreasePerRunda = 1;
+    public int lagerIntervall = 5; //diskutera med gruppen sen
+    public float tempoIncrease = 1.5f; //ingen aning om detta kommer räcka men får testa sen
+
+    //private AudioSource audioSource;
+    private int nuvarandeLagerIndex = 0;
+    private int rundorSedanLastLager = 0;
+    private float nextCheckTime = 0f;
+    private float basTempo = 1.0f;
+    private int antalRundor = 0;
+    public RoundManager rounds;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        audioSource.loop = true;
-        audioSource.clip = musicLayers[0];
-        audioSource.Play();
+
+
+        audio1.Play();audio1.loop = true;
+        audio2.Play();audio2.loop = true;
+        audio3.Play();audio3.loop = true;
+        audio4.Play(); audio4.loop = true;
+        audio5.Play(); audio5.loop = true;
+        audio6.Play(); audio6.loop = true;
+        audio7.Play(); audio7.loop = true; 
+        antalRundor = rounds.RoundNumber;
+        audio2.mute = true;
+        audio3.mute = true;
+        audio4.mute = true;
+        audio5.mute = true;
+        audio6.mute = true;
+        audio7.mute = true;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= checkHealth)
-        {
-            checkHealth += checkHealth;
             CheckBaseHealth();
-        }
+        
+
     }
 
     void CheckBaseHealth()
     {
-        float baseHealth = GetBaseHealth();
+        float baseHealth = baseIsland.health;
+        antalRundor = rounds.RoundNumber;
 
+        Debug.Log(antalRundor);
+        if(antalRundor < 2)
+        {
+            audio2.mute = false;
+        }
+
+        if(antalRundor < 4 && antalRundor > 2)
+        {
+            audio3.mute = false;
+        }
+
+        if(antalRundor < 6 && antalRundor > 4)
+        {
+            audio4.mute = false;
+        }
+        
+        if(antalRundor < 8 && antalRundor > 6)
+        {
+            audio5.mute = false;
+        }
+        if(antalRundor < 10 && antalRundor > 8)
+        {
+            audio6.mute = false;
+        }
+        if(antalRundor < 12 && antalRundor > 10)
+        {
+            audio7.mute = false;
+        }
         if (baseHealth < baseLowHealth)
         {
-            IncreaseTempo();
+            audio1.pitch = basTempo * tempoIncrease;
+            audio2.pitch = basTempo * tempoIncrease;
+            audio3.pitch = basTempo * tempoIncrease;
+            audio4.pitch = basTempo * tempoIncrease;
+            audio5.pitch = basTempo * tempoIncrease;
+            audio6.pitch = basTempo * tempoIncrease;
+            audio7.pitch = basTempo * tempoIncrease;
+
         }
         else
         {
-            ResetTempo();
+            audio1.pitch = basTempo;
+            audio2.pitch = basTempo;
+            audio3.pitch = basTempo;
+            audio4.pitch = basTempo;
+            audio5.pitch = basTempo;
+            audio6.pitch = basTempo;
+            audio7.pitch = basTempo;
         }
 
-        if (loopCount >= 2)
-        {
-            if (currentLayerIndex < musicLayers.Count - 1)
-            {
-                currentLayerIndex++;
-                audioSource.clip = musicLayers[currentLayerIndex];
-                audioSource.Play();
-                loopCount = 0;
-            }
-        }
-
-        if (currentLayerIndex == musicLayers.Count - 1 && loopCount >= 2)
-        {
-            audioSource.clip = CombineAudioClips(musicLayers);
-            audioSource.Play();
-        }
-
-        loopCount++;
     }
 
-    void IncreaseTempo()
-    {
-        audioSource.pitch = tempoIncrease;
-    }
-
-    void ResetTempo()
-    {
-        audioSource.pitch = 1.0f;
-    }
-
-    AudioClip CombineAudioClips(List<AudioClip> clips)
-    {
-        int totalLength = 0;
-        foreach (AudioClip clip in clips)
-        {
-            totalLength += clip.samples;
-        }
-
-        float[] data = new float[totalLength];
-        int offset = 0;
-
-        foreach (AudioClip clip in clips)
-        {
-            float[] clipData = new float[clip.samples];
-            clip.GetData(clipData, 0);
-            clipData.CopyTo(data, offset);
-            offset += clipData.Length;
-        }
-
-        AudioClip combinedClip = AudioClip.Create("Combined", totalLength, 1, audioSource.clip.frequency, false);
-        combinedClip.SetData(data, 0);
-
-        return combinedClip;
-    }
-
-    float GetBaseHealth()
+    float GetBaseHealt()
     {
         return baseIsland.health;
     }

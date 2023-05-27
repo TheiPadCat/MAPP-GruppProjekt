@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/A.Scenes/FrameTest.unity
     guid: 68dbb4ad07622f347a76b47015dc11dd
   - enabled: 1
-    path: Assets/A.Scenes/Main Menu.unity
+    path: Assets/A.Scenes/FINAL/Main Menu.unity
     guid: 1d2e3a7d5628c4e46a9b3f5ce4657b4f
   - enabled: 0
     path: Assets/A.Scenes/Ulles.unity
@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/A.Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/A.Scenes/JeolTestWorld.unity
+    path: Assets/A.Scenes/FINAL/JeolTestWorld.unity
     guid: a0ca91c970fb80142ad43a558b6628a7
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: e787b73ad19998548ad2cd439b8dd70f, type: 2}

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: EnemyScript9DefaultSettings
   m_EditorClassIdentifier: 
   TypeName: 
-  InitialSpawnChance: 0.5
-  SpawnChanceIncreasePerRound: 0.15
+  InitialSpawnChance: 0.2
+  SpawnChanceIncreasePerRound: 0.1
   SpawnRate: 2
-  NumberToAppearFirstRound: 8
+  NumberToAppearFirstRound: 1
   StartRound: 20
   EndRound: 0
   prefab: {fileID: 2421930585921709494, guid: f55204a2d44ebe24eb630454a5fa7805, type: 3}
-  spawnArea: {x: -60, y: 60}
+  spawnArea: {x: -70, y: 70}

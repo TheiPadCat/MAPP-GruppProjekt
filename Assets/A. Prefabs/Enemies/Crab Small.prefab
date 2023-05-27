@@ -5098,7 +5098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   island: {fileID: 5838258168825358719, guid: 2713ed13bbe33494abb3ea8c97a25421, type: 3}
   maxDistanceToIsland: 2
-  speed: 6
+  speed: 7
 --- !u!1 &2421930586554035486
 GameObject:
   m_ObjectHideFlags: 0
@@ -5175,7 +5175,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2957da4ed28ce994ca4f1da77e5b3412, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b53f37e5e8798d542b2ea1e9a4460fbf, type: 3}
   m_Color: {r: 0.764151, g: 0.27682447, b: 0.7459978, a: 1}
   m_FlipX: 0
   m_FlipY: 0

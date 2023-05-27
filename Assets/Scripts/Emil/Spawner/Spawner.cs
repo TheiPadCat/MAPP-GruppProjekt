@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour {
         Instance ??= this;
         LoadSpawnerSettings();
     }
-
+     
     private void LoadSpawnerSettings() {
         Type spawnableType = typeof(Spawner);
         Assembly assembly = Assembly.GetAssembly(spawnableType);
