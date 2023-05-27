@@ -35,11 +35,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 20555489992704
-    m_Localized: "\r\xA1Oh, no! \xA1Game Over!"
+    m_Localized: "\xA1Game Over!"
     m_Metadata:
       m_Items: []
   - m_Id: 21109435916288
-    m_Localized: "\r\xA1Ronda {roundNumber}  completada!"
+    m_Localized: "\r\xA1Ronda completada!"
     m_Metadata:
       m_Items: []
   - m_Id: 4414792273453056
