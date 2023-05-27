@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ public class RoundManager : MonoBehaviour {
     public static roundEnd RoundEnd;
     public static roundBegin RoundBegin;
     public static RoundManager Instance;
+    public CinemachineCameraShake camera;
     public int RoundNumber { get; set; }
     public int KillsRequired { get; private set; }
     public int KillsThisRound { get; private set; }
@@ -64,6 +66,7 @@ public class RoundManager : MonoBehaviour {
     }
 
     private void OnRoundBegin(int number) {
+        camera.GetComponent<CinemachineCameraShake>().enabled = true;
         KillsThisRound = 0;
         KillsRequired = 0;
         foreach (var enemyType in killsThisRoundByType) {
@@ -74,6 +77,7 @@ public class RoundManager : MonoBehaviour {
     }
 
     private void OnRoundEnd(int number) {
+        camera.GetComponent<CinemachineCameraShake>().enabled = false;
         print("Round " + number + " is over!");
     }
 
