@@ -5029,9 +5029,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.22308278, y: -0.32718801}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 3.1041055
 --- !u!114 &4381179211993935974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5044,7 +5044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8cde984c434fd418259165890997ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 15
+  maxHealth: 18
   spawnParticles: {fileID: 191402716230429005}
   deathSplat: {fileID: 7588828220973484684}
   deathStain: {fileID: 2929039962551644078}
@@ -5175,7 +5175,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2957da4ed28ce994ca4f1da77e5b3412, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b53f37e5e8798d542b2ea1e9a4460fbf, type: 3}
   m_Color: {r: 1, g: 0.02264148, b: 0.02264148, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletVelocity: 70
   direction: {x: 0, y: 0, z: 0}
-  dmg: 1
+  dmg: 3
   piercing: 1
 --- !u!50 &-795398051198555031
 Rigidbody2D:

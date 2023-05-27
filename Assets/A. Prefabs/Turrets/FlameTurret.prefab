@@ -5107,7 +5107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 5
-  maxLifeTime: 100
+  maxLifeTime: 40
   contactFilter:
     useTriggers: 0
     useLayerMask: 1

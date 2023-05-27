@@ -26,15 +26,15 @@ public class DamageEffects : MonoBehaviour
 
     public void PlayFlash()
     {
-       
-        try
+        
+        if(flashCoroutine != null && material != null)
         {
             flashCoroutine = StartCoroutine(Flashing());
         }
-        catch
-        {
-            
-        }
+
+        
+        
+        
 
 
         //FICK EN NULLREF EXCEPTION HÄR NÅGON GÅNG FIXA SÅ DET INTE SKER
@@ -52,7 +52,7 @@ public class DamageEffects : MonoBehaviour
 
     private IEnumerator Flashing()
     {
-
+        
         material.SetColor("_Color", flashColor);
 
         float lerp = 0f;

@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e8830291d93394fa47ed0f6e8fb118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLifeTime: 80
+  maxLifeTime: 40
   particles: {fileID: 479926909366268193}
   hpSlider: {fileID: 8764974050270005060}
 --- !u!114 &3701498154873363221
