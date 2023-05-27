@@ -8360,6 +8360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3378439470659786675, guid: 1f83c6706e5309e44adb4a669ad3eb03, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1821364721}
     - target: {fileID: 3378439470659786676, guid: 1f83c6706e5309e44adb4a669ad3eb03, type: 3}
       propertyPath: m_RootOrder
       value: 15

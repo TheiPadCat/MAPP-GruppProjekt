@@ -29,7 +29,7 @@ public class EndOfRoundUI : MonoBehaviour {
 
     private void OnRoundEnd(int number) {
         Time.timeScale = 0;
-        endOfRoundText.text = /*$"Round {number} Cleared!"*/ "Round Cleared!";
+        endOfRoundText.text = $"Round {number} Cleared!" + "Round Cleared!";
         panelImg.enabled = true;
         for (int i = 0; i < transform.childCount; i++) transform.GetChild(i).gameObject.SetActive(true);
     }
