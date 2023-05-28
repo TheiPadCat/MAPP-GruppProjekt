@@ -70,6 +70,10 @@ MonoBehaviour:
     m_Localized: SPANSKA
     m_Metadata:
       m_Items: []
+  - m_Id: 4733014151487488
+    m_Localized: 'Runda:'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

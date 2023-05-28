@@ -19,8 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 8446140416
-    m_Localized: "\xA1Contin\xFAa a la siguiente ronda o dedica tiempo a mejorar
-      tu puerto y barco!"
+    m_Localized: "\xA1Contin\xFAa a la siguiente ronda!"
     m_Metadata:
       m_Items: []
   - m_Id: 347119411200
