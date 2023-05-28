@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeName: 
   InitialSpawnChance: 0.5
-  SpawnChanceIncreasePerRound: -0.01
+  SpawnChanceIncreasePerRound: 0.05
   SpawnRate: 2
   NumberToAppearFirstRound: 8
   StartRound: 1
