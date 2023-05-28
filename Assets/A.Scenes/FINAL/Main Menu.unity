@@ -967,13 +967,13 @@ MonoBehaviour:
   m_text: PLAY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e7228a5ed4b45d94c8aff3dc9c4a9753, type: 2}
-  m_sharedMaterial: {fileID: 6836963736190822439, guid: b74b334d03dfc16488183e90c278a2f4, type: 2}
+  m_sharedMaterial: {fileID: 2319767056206461092, guid: e7228a5ed4b45d94c8aff3dc9c4a9753, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284875007
+    rgba: 4294967168
   m_fontColor: {r: 0.5019608, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1549,13 +1549,13 @@ MonoBehaviour:
   m_text: QUIT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e7228a5ed4b45d94c8aff3dc9c4a9753, type: 2}
-  m_sharedMaterial: {fileID: 6836963736190822439, guid: b74b334d03dfc16488183e90c278a2f4, type: 2}
+  m_sharedMaterial: {fileID: 2319767056206461092, guid: e7228a5ed4b45d94c8aff3dc9c4a9753, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284875007
+    rgba: 4294967168
   m_fontColor: {r: 0.5019608, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -2446,7 +2446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &501925494
 Transform:
   m_ObjectHideFlags: 0
@@ -3153,13 +3153,13 @@ MonoBehaviour:
   m_text: LOAD GAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e7228a5ed4b45d94c8aff3dc9c4a9753, type: 2}
-  m_sharedMaterial: {fileID: 6836963736190822439, guid: b74b334d03dfc16488183e90c278a2f4, type: 2}
+  m_sharedMaterial: {fileID: 2319767056206461092, guid: e7228a5ed4b45d94c8aff3dc9c4a9753, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284875007
+    rgba: 4294967168
   m_fontColor: {r: 0.5019608, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3177,7 +3177,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 55.7
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3499,7 +3499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &812334104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6333,13 +6333,13 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e7228a5ed4b45d94c8aff3dc9c4a9753, type: 2}
-  m_sharedMaterial: {fileID: 6836963736190822439, guid: b74b334d03dfc16488183e90c278a2f4, type: 2}
+  m_sharedMaterial: {fileID: 2319767056206461092, guid: e7228a5ed4b45d94c8aff3dc9c4a9753, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284875007
+    rgba: 4294967168
   m_fontColor: {r: 0.5019608, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -6357,7 +6357,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
+  m_fontSize: 40.7
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6810,13 +6810,13 @@ MonoBehaviour:
   m_text: LANGUAGE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e7228a5ed4b45d94c8aff3dc9c4a9753, type: 2}
-  m_sharedMaterial: {fileID: 6836963736190822439, guid: b74b334d03dfc16488183e90c278a2f4, type: 2}
+  m_sharedMaterial: {fileID: 2319767056206461092, guid: e7228a5ed4b45d94c8aff3dc9c4a9753, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284875007
+    rgba: 4294967168
   m_fontColor: {r: 0.5019608, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -6834,7 +6834,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
+  m_fontSize: 38.05
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7547,13 +7547,13 @@ MonoBehaviour:
   m_text: OPTIONS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e7228a5ed4b45d94c8aff3dc9c4a9753, type: 2}
-  m_sharedMaterial: {fileID: 6836963736190822439, guid: b74b334d03dfc16488183e90c278a2f4, type: 2}
+  m_sharedMaterial: {fileID: 2319767056206461092, guid: e7228a5ed4b45d94c8aff3dc9c4a9753, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284875007
+    rgba: 4294967168
   m_fontColor: {r: 0.5019608, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
