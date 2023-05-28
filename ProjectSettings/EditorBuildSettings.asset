@@ -6,19 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/A.Scenes/test.unity
+    path: Assets/A.Scenes/OLDSTUFF/RandomScenes/test.unity
     guid: b8c17c33b9b112d42ac03a2d80d281a7
   - enabled: 0
-    path: Assets/A.Scenes/FrameTest.unity
+    path: Assets/A.Scenes/OLDSTUFF/RandomScenes/FrameTest.unity
     guid: 68dbb4ad07622f347a76b47015dc11dd
   - enabled: 1
     path: Assets/A.Scenes/FINAL/Main Menu.unity
     guid: 1d2e3a7d5628c4e46a9b3f5ce4657b4f
   - enabled: 0
-    path: Assets/A.Scenes/Ulles.unity
+    path: Assets/A.Scenes/OLDSTUFF/RandomScenes/Ulles.unity
     guid: 9513da2d5705fc54abb92acbbdce01ee
   - enabled: 0
-    path: Assets/A.Scenes/SampleScene.unity
+    path: Assets/A.Scenes/OLDSTUFF/RandomScenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/A.Scenes/FINAL/JeolTestWorld.unity
