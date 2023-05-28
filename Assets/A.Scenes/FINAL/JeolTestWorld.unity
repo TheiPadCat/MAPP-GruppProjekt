@@ -5643,6 +5643,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 6916961522420100409, guid: e6086d0727616e34cb6faec09366af57, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6916961522420100415, guid: e6086d0727616e34cb6faec09366af57, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -9252,7 +9256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 582148604, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 582148605, guid: 0731ea3d35b86b2438dff50f8f52682d, type: 3}
       propertyPath: m_RootOrder

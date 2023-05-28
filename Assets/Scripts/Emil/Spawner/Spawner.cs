@@ -23,11 +23,16 @@ public class Spawner : MonoBehaviour {
     public readonly HashSet<SpawnableInfo> spawnInfoRaw = new HashSet<SpawnableInfo>();
 
 
+    private void Awake()
+    {
+        Instance ??= this;
+        LoadSpawnerSettings();
+    }
     // Start is called before the first frame update
     void Start() {
-        Instance ??= this;
-        DontDestroyOnLoad(Instance);
-        LoadSpawnerSettings();
+       // Instance ??= this;
+        //DontDestroyOnLoad(Instance);
+       // LoadSpawnerSettings();
     }
      
     private void LoadSpawnerSettings() {
