@@ -15,7 +15,7 @@ MonoBehaviour:
   TypeName: 
   InitialSpawnChance: 0.5
   SpawnChanceIncreasePerRound: 0.25
-  SpawnRate: 2
+  SpawnRate: 4
   NumberToAppearFirstRound: 8
   StartRound: 1
   EndRound: 5
