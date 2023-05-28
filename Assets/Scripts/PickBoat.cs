@@ -87,7 +87,7 @@ public class PickBoat : MonoBehaviour
                 carButABoat.SetSteering(3);
                 carButABoat.SetMaxVelocity(20);
                 carButABoat.SetDriftThreshold(35);
-                snakeScript.SetMaxBoats(12);
+                snakeScript.SetMaxBoats(15);
                 carButABoat.SetDmg(4);
                 player.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 break;

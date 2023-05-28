@@ -5098,7 +5098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   island: {fileID: 5838258168825358719, guid: 2713ed13bbe33494abb3ea8c97a25421, type: 3}
   maxDistanceToIsland: 2
-  speed: 6
+  speed: 5
 --- !u!1 &2421930586554035486
 GameObject:
   m_ObjectHideFlags: 0
