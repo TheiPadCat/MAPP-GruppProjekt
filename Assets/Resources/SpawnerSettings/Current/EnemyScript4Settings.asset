@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EnemyScript4Settings
   m_EditorClassIdentifier: 
   TypeName: 
-  InitialSpawnChance: 0.1
-  SpawnChanceIncreasePerRound: 0.07
+  InitialSpawnChance: 0.2
+  SpawnChanceIncreasePerRound: 0.1
   SpawnRate: 2
   NumberToAppearFirstRound: 1
   StartRound: 30

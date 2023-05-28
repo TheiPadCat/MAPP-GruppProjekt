@@ -29,20 +29,23 @@ public class DamageEffects : MonoBehaviour
         
         if(flashCoroutine != null && material != null)
         {
+           
+        }
+        if(material != null)
+        {
             flashCoroutine = StartCoroutine(Flashing());
         }
+        
 
-        
-        
-        
+
 
 
         //FICK EN NULLREF EXCEPTION HÄR NÅGON GÅNG FIXA SÅ DET INTE SKER
-  
-        
-      
-    
-        
+
+
+
+
+
 
 
 
@@ -67,8 +70,11 @@ public class DamageEffects : MonoBehaviour
 
 
 
+           if(material != null)
+            {
+                material.SetFloat("_Intensity", intensity);
+            }
            
-            material.SetFloat("_Intensity", intensity);
 
             //Debug.Log(intensity);
             yield return null;

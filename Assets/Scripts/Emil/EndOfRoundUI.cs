@@ -19,7 +19,7 @@ public class EndOfRoundUI : MonoBehaviour {
 
     private void Update() {
      
-        roundAndKillText.text = $"Round: {RoundManager.Instance.RoundNumber} \nKills: {RoundManager.Instance.KillsThisRound} / {RoundManager.Instance.KillsRequired}";
+        roundAndKillText.text = $"    {RoundManager.Instance.RoundNumber} \n{RoundManager.Instance.KillsThisRound} / {RoundManager.Instance.KillsRequired}";
     }
 
     private void OnRoundStart(int number) {

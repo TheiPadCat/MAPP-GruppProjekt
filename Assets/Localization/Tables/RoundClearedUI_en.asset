@@ -19,8 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 8446140416
-    m_Localized: Proceed to next round or take some time to upgrade your harbour
-      and ship!
+    m_Localized: Proceed to next round!
     m_Metadata:
       m_Items: []
   - m_Id: 347119411200
