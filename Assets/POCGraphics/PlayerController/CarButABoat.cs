@@ -75,7 +75,7 @@ public class CarButABoat : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity += rb.velocity.normalized * dashForce;
+          //  rb.velocity += rb.velocity.normalized * dashForce;
         }
 
         if (virtualJoystick.isDragged)
