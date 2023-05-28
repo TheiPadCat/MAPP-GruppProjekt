@@ -39,7 +39,7 @@ public class Island : MonoBehaviour {
 
             GetComponent<AudioSource>().Play();
             //Literally en rad kod som gör att mobilen vibrerar, inte anpassad till olika mobiler men vi får testa och se om det blir whack med vissa //Lova : )
-            Handheld.Vibrate();
+            //Handheld.Vibrate();
 
             collision.gameObject.GetComponent<EnemyScript>().Die();
 

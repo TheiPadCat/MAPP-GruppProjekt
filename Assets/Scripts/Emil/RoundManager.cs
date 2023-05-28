@@ -13,6 +13,7 @@ public class RoundManager : MonoBehaviour {
     public static roundBegin RoundBegin;
     public static RoundManager Instance;
     public CinemachineCameraShake camera;
+    public LoadManager loadManager;
     public int RoundNumber { get; set; }
     public int KillsRequired { get; private set; }
     public int KillsThisRound { get; private set; }
@@ -22,6 +23,8 @@ public class RoundManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+
+        
         Instance ??= this;
 
         foreach (var spawnInfo in Spawner.Instance.spawnInfoRaw) {
@@ -37,7 +40,7 @@ public class RoundManager : MonoBehaviour {
     }
 
     private bool IsRoundOver() {
-        //Ändrade till detta för att lösa bugg med rundorna
+        //ï¿½ndrade till detta fï¿½r att lï¿½sa bugg med rundorna
         if(KillsThisRound < KillsRequired)
         {
             return false;
@@ -78,6 +81,7 @@ public class RoundManager : MonoBehaviour {
 
     private void OnRoundEnd(int number) {
         camera.GetComponent<CinemachineCameraShake>().enabled = false;
+        loadManager.SaveGame();
         print("Round " + number + " is over!");
     }
 

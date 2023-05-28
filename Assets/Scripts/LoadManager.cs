@@ -34,6 +34,18 @@ public class LoadManager : MonoBehaviour
         PlayerPrefs.SetFloat("CarButABoatPosX", carButABoat.transform.position.x);
         PlayerPrefs.SetFloat("CarButABoatPosY", carButABoat.transform.position.y);
 
+        //spara alla object med enemyscript
+        EnemyScript[] objectsWithEnemyScript = FindObjectsOfType<EnemyScript>();
+        for(int k = 0; k < objectsWithEnemyScript.Length; k++)
+        {
+
+            EnemyScript objectWithEnemyScript = objectsWithEnemyScript[k];
+            string enemyKey = "Enemy" + k.ToString();
+            PlayerPrefs.SetFloat(enemyKey + "PosX", objectWithEnemyScript.transform.position.x);
+            PlayerPrefs.SetFloat(enemyKey + "PosY", objectWithEnemyScript.transform.position.y);
+
+        }
+
         //spara antal rundor
         PlayerPrefs.SetInt("CurrentRound", RoundManager.Instance.RoundNumber);
        
@@ -71,6 +83,17 @@ public class LoadManager : MonoBehaviour
         float carButABoatPosX = PlayerPrefs.GetFloat("CarButABoatPosX");
         float carButABoatPosY = PlayerPrefs.GetFloat("CarButABoatPosY");
         carButABoat.transform.position = new Vector2(carButABoatPosX, carButABoatPosY);
+
+        //ladda positionen av enemies i scenen
+        EnemyScript[] objectsWithEnemyScripts = FindObjectsOfType<EnemyScript>();
+        for(int k = 0; k < objectsWithEnemyScripts.Length; k++)
+        {
+            EnemyScript enemyScript = objectsWithEnemyScripts[k];
+            string enemyKey = "Enemy" + k.ToString();
+            float posX = PlayerPrefs.GetFloat(enemyKey + "PosX");
+            float posY = PlayerPrefs.GetFloat(enemyKey + "PosY");
+            enemyScript.transform.position = new Vector2(posX, posY);
+        }
 
         //ladda antal rundor
         RoundManager.Instance.RoundNumber = PlayerPrefs.GetInt("CurrentRound");
